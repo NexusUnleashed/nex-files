@@ -13,10 +13,10 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://log-wall.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: "/nex-files/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -64,24 +64,24 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+      image: "img/GeminiLogo.jpg",
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: "My Site",
+        title: "Home",
         logo: {
           alt: "My Site Logo",
-          src: "img/logo.svg",
+          src: "img/GeminiLogo.jpg",
         },
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "eventStreamSidebar",
             position: "left",
-            label: "Tutorial",
+            label: "eventStream",
           },
           {
             type: "docSidebar",
@@ -125,16 +125,12 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "Achaea Discord",
+                href: "https://discord.gg/achaea",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "Nexus Discord",
+                href: "https://discord.gg/M5spRjAw",
               },
             ],
           },
@@ -142,17 +138,13 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                href: "https://github.com/log-wall/nex-files",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Nexus Unleashed, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
