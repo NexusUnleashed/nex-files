@@ -21,8 +21,9 @@ const sidebars = {
       label: "eventStream",
       link: {
         type: "generated-index",
-        title: "Core Features",
-        description: "Introduction to nexSys Features",
+        title: "eventStream",
+        description:
+          "eventStream is an event handler for the Nexus client. This is a core dependency for all other nex* packages.",
         keywords: ["eventStream"],
       },
       items: [
@@ -43,6 +44,7 @@ const sidebars = {
         keywords: ["nexSys"],
       },
       items: [
+        "nexSys/introduction",
         {
           type: "category",
           label: "Affs",

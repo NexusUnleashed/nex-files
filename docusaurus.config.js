@@ -127,6 +127,10 @@ const config = {
                 label: "Nexus Wiki",
                 href: "https://nexus.ironrealms.com/Main_Page",
               },
+              {
+                label: "GitHub",
+                href: "https://github.com/log-wall/nex-files",
+              },
             ],
           },
           {
@@ -143,13 +147,8 @@ const config = {
             ],
           },
           {
-            title: "More",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/log-wall/nex-files",
-              },
-            ],
+            title: "Authors",
+            items: [{ label: "Khaseem", to: "/" }],
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Nexus Unleashed, Inc. Built with Docusaurus.`,
@@ -159,6 +158,13 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+
+  themes: ["@docusaurus/theme-mermaid"],
+  // In order for Mermaid code blocks in Markdown to work,
+  // you also need to enable the Remark plugin with this option
+  markdown: {
+    mermaid: true,
+  },
 };
 
 export default config;

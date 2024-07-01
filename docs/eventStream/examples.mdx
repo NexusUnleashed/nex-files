@@ -1,25 +1,51 @@
 # Examples
 
-## Nexus GMCP event
-
 The following is an example of a basic function tied to a GMCP event. This will wave to any player that enters the room. An example of the GMCP message from Nexus:
 
-#### \[GMCP\]: Room.AddPlayer {"name":"Khaseem","fullname":"Khaseem"}
+## Standard GMCP Events
 
-_note: Room.AddPlayer is sent by Nexus but is not a core server GMCP message_
+### Player enters the room
+
+```
+[GMCP]: Room.AddPlayer {"name":"Khaseem","fullname":"Khaseem"}
+```
+
+_note: Room.AddPlayer is sent by **Nexus** but is not a core server GMCP message_
 
 With GMCP messages thse are raised automatically by eventStream as received. This event/listener will fire every time a player enters the room.
 
 ```js
 const greetPlayer = (args) => {
+  // Wave hello to the player who entered the room.
   nexusclient.send_commands(`wave ${args.name}`);
 };
 eventStream.registerEvent("Room.AddPlayer", greetPlayer);
 ```
 
-## custom event
+### NPC enters the room
+
+```
+[GMCP]: Char.Items.Add {"location":"room","item":{"id":530669,"name":"a tiny blue quail","icon":"paw-claws","attrib":"m","parentid":"room"}}
+```
+
+Using the same style of code from the previous example we can make everyone else aware that we see the NPC. In this example the GMCP received is a bit more complex so we'll need to do some additional checks.
+
+```js
+const pointNpc = (args) => {
+  // Char.Items.Add will fire for both the Room and your Inventory.
+  //First lets check if this GMCP message is for an item in the Room.
+  if (args.location === "room") {
+    nexusclient.send_commands(`point ${args.item.id}`);
+  }
+};
+eventStream.registerEvent("Room.AddPlayer", greetPlayer);
+```
+
+## Custom event
 
 Any number of events can be created. The only requirement is a unique event id.
+
+### Target Shielding
 
 ```js
 const shieldNotice = (args) => {
@@ -30,7 +56,7 @@ const shieldNotice = (args) => {
 eventStream.registerEvent("targetShield", shieldNotice);
 ```
 
-Then in a Nexus trigger for ^A nearly invisible magical shield forms around (.\*)\\.$
+Then in a Nexus trigger with a pattern like `^A nearly invisible magical shield forms around (.*)\.$`
 You could have snippet of code for
 
 ```js

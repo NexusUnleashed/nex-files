@@ -1,6 +1,6 @@
 # API
 
-## `stream`
+## stream
 
 The `stream` object holds the array of all registered events. Users can browse this object for all available events.
 
@@ -8,17 +8,23 @@ The `stream` object holds the array of all registered events. Users can browse t
 eventStream.stream;
 ```
 
-## `registerEvent(event, callback, once = false, duration = false)`
+## registerEvent
 
-### event: string name of the event.
+<details>
+  <summary> Reference </summary>
 
-### callback: function to fire when event is raised.
+```js
+eventStream.registerEvent(event, callback, (once = false), (duration = false));
+```
 
-### once: boolean, listener will fire once and be removed (single fire).
+| Parameter | Type        | Description                                                |
+| --------- | ----------- | ---------------------------------------------------------- |
+| event     | string      | Name of the event. _example: GMCP.Item.Add_                |
+| callback  | function    | Callback function to fire when event is raised.            |
+| once      | boolean     | Listener will fire once and be removed (single fire).      |
+| duration  | miliseconds | Listener will be live and then removed after elapsed time. |
 
-### duration: in miliseconds, listener will be live and then remove after elapsed time.
-
-#### Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
+> Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
 
 ```js
 eventStream.registerEvent("testEvent", () => {
@@ -26,7 +32,7 @@ eventStream.registerEvent("testEvent", () => {
 });
 ```
 
-#### Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+> Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
 
 ```js
 const testFunction = () => {
@@ -35,7 +41,7 @@ const testFunction = () => {
 eventStream.registerEvent("testEvent", testFunction);
 ```
 
-#### Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+> Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
 
 ```js
 const singleFire = () => {
@@ -45,7 +51,12 @@ eventStream.registerEvent("testEvent", testFunction, true);
 // Listener will only fire once after testEvent is raised. This listener will not be present for subsequent testEvent events.
 ```
 
-## `raiseEvent(event)`
+</details>
+## raiseEvent
+
+```js
+eventStream.raiseEvent(event);
+```
 
 Events are string ids used to flag all associated listener functions to fire. By default all GMCP received from the server are raised as events. Users can add any number of additional events.
 
@@ -65,7 +76,11 @@ named arrow function
 */
 ```
 
-## `removeListener(event, callback id)`
+## removeListener
+
+```js
+eventStream.removeListener(event, callback id)
+```
 
 Removes a listener from an event. Typical usage is by function name. Will also accept an integer representing the array position of the listener.
 
@@ -78,7 +93,11 @@ arrow function
 */
 ```
 
-## `purge(event)`
+## purge
+
+```js
+eventStream.purge(event);
+```
 
 Removes all listeners from an event.
 
