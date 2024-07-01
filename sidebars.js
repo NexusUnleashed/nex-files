@@ -27,17 +27,8 @@ const sidebars = {
       },
       items: [
         "eventStream/installation",
-        {
-          type: "category",
-          label: "Affs",
-          link: {
-            type: "generated-index",
-            title: "Core Features",
-            description: "Introduction to nexSys Features",
-            keywords: ["nexSys"],
-          },
-          items: ["nexSys/affs/functions"],
-        },
+        "eventStream/api",
+        "eventStream/examples",
       ],
     },
   ],
@@ -111,12 +102,47 @@ const sidebars = {
             description: "Introduction to nexSys Features",
             keywords: ["nexSys"],
           },
-          items: ["nexSys/affs/functions"],
+          items: [
+            {
+              type: "doc",
+              label: "Snippets",
+              id: "nexSys/affs/functions",
+            },
+          ],
         },
       ],
     },
   ],
-
+  nexusSidebar: [
+    {
+      type: "category",
+      label: "Nexus",
+      link: {
+        type: "generated-index",
+        title: "Nexus Web Client",
+        description:
+          "Introduction to Nexus Web Client Features, Functionality, and JavaScript",
+        keywords: ["nexus"],
+      },
+      items: [
+        {
+          type: "doc",
+          label: "Tutorials",
+          id: "nexus/tutorials",
+        },
+        {
+          type: "doc",
+          label: "Quick Reference",
+          id: "nexus/quickReference",
+        },
+        {
+          type: "doc",
+          label: "Snippets",
+          id: "nexus/snippets",
+        },
+      ],
+    },
+  ],
   // But you can create a sidebar manually
   /*
   tutorialSidebar: [

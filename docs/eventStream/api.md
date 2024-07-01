@@ -1,0 +1,87 @@
+# API
+
+## `stream`
+
+The `stream` object holds the array of all registered events. Users can browse this object for all available events.
+
+```js
+eventStream.stream;
+```
+
+## `registerEvent(event, callback, once = false, duration = false)`
+
+### event: string name of the event.
+
+### callback: function to fire when event is raised.
+
+### once: boolean, listener will fire once and be removed (single fire).
+
+### duration: in miliseconds, listener will be live and then remove after elapsed time.
+
+#### Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
+
+```js
+eventStream.registerEvent("testEvent", () => {
+  console.log("arrow function");
+});
+```
+
+#### Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+
+```js
+const testFunction = () => {
+  console.log("named arrow function");
+};
+eventStream.registerEvent("testEvent", testFunction);
+```
+
+#### Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+
+```js
+const singleFire = () => {
+  console.log("single fire event");
+};
+eventStream.registerEvent("testEvent", testFunction, true);
+// Listener will only fire once after testEvent is raised. This listener will not be present for subsequent testEvent events.
+```
+
+## `raiseEvent(event)`
+
+Events are string ids used to flag all associated listener functions to fire. By default all GMCP received from the server are raised as events. Users can add any number of additional events.
+
+```js
+eventStream.raiseEvent("testEvent");
+/*
+Expected console output based on previous examples:
+arrow function
+named arrow function
+single fire event
+*/
+eventStream.raiseEvent("testEvent");
+/*
+Expected console output based on previous examples:
+arrow function
+named arrow function
+*/
+```
+
+## `removeListener(event, callback id)`
+
+Removes a listener from an event. Typical usage is by function name. Will also accept an integer representing the array position of the listener.
+
+```js
+eventStream.removeListener("testEvent", "testFunction");
+eventStream.raiseEvent("testEvent");
+/*
+Expected console output based on previous examples:
+arrow function
+*/
+```
+
+## `purge(event)`
+
+Removes all listeners from an event.
+
+```js
+eventStream.purge("testEvent");
+```

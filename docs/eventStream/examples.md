@@ -1,0 +1,55 @@
+# Examples
+
+## Nexus GMCP event
+
+The following is an example of a basic function tied to a GMCP event. This will wave to any player that enters the room. An example of the GMCP message from Nexus:
+
+#### \[GMCP\]: Room.AddPlayer {"name":"Khaseem","fullname":"Khaseem"}
+
+_note: Room.AddPlayer is sent by Nexus but is not a core server GMCP message_
+
+With GMCP messages thse are raised automatically by eventStream as received. This event/listener will fire every time a player enters the room.
+
+```js
+const greetPlayer = (args) => {
+  nexusclient.send_commands(`wave ${args.name}`);
+};
+eventStream.registerEvent("Room.AddPlayer", greetPlayer);
+```
+
+## custom event
+
+Any number of events can be created. The only requirement is a unique event id.
+
+```js
+const shieldNotice = (args) => {
+  if (args.id === GMCP.Target.Text) {
+    nexusclient.display_notice("MY TARGET HAS SHIELDED!!!!");
+  }
+};
+eventStream.registerEvent("targetShield", shieldNotice);
+```
+
+Then in a Nexus trigger for ^A nearly invisible magical shield forms around (.\*)\\.$
+You could have snippet of code for
+
+```js
+eventStream.raiseEvent("targetShield", { id: args[1] });
+```
+
+Now, someone may ask why not just place the code directly in the trigger? What purpose is the event servering here?
+
+Both are viable paths. One benefit of an event handler in this scenario is any number of other packages could add on to the targetShield event. You may have a bashing package that cares when a target shields, but also a pvp package that cares as well. In a completely separate package you could add another listener:
+
+```js
+const razeTargetPVP = (args) => {
+  nexusclient.send_commands(`queue addclear free raze ${myTargetVar}`);
+};
+eventStream.registerEvent("targetShield", razeTargetPVP);
+```
+
+## Packaged events
+
+Many packages, like nexMap, nexSys, nexGui, create and handle a variety of custom events that users can tap into. nexSys for example will raise events for things like afflictions, defences, items, etc.
+
+Check with the various packages for details.

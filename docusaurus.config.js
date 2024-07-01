@@ -13,14 +13,14 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://log-wall.github.io",
+  url: "https://nexusunleashed.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/nex-files/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "Log-Wall", // Usually your GitHub org/user name.
+  organizationName: "NexusUnleashed", // Usually your GitHub org/user name.
   projectName: "nex-files", // Usually your repo name.
 
   onBrokenLinks: "throw",
@@ -43,15 +43,13 @@ const config = {
           sidebarPath: "./sidebars.js",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/NexusUnleashed/nex-files/tree/main/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/NexusUnleashed/nex-files/tree/main/",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -101,9 +99,15 @@ const config = {
             position: "left",
             label: "nexGui",
           },
+          {
+            type: "docSidebar",
+            sidebarId: "nexusSidebar",
+            position: "left",
+            label: "Nexus",
+          },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/NexusUnleashed/nex-files",
             label: "GitHub",
             position: "right",
           },
@@ -113,11 +117,15 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Links",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Achaea",
+                href: "https://www.achaea.com/front",
+              },
+              {
+                label: "Nexus Wiki",
+                href: "https://nexus.ironrealms.com/Main_Page",
               },
             ],
           },
