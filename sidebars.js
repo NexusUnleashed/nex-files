@@ -119,7 +119,7 @@ const sidebars = {
         description: "Introduction to insight Features",
         keywords: ["insight"],
       },
-      items: ["insight/introduction"],
+      items: ["insight/introduction", "insight/api"],
     },
   ],
   nexusSidebar: [
