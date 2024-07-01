@@ -30,6 +30,17 @@ const sidebars = {
         "eventStream/installation",
         "eventStream/api",
         "eventStream/examples",
+        {
+          type: "category",
+          label: "nexSkills",
+          link: {
+            type: "generated-index",
+            title: "Core Features",
+            description: "Introduction to nexSkills Features",
+            keywords: ["nexSkills"],
+          },
+          items: ["eventStream/nexSkills/introduction"],
+        },
       ],
     },
   ],
@@ -62,57 +73,53 @@ const sidebars = {
   nexMapSidebar: [
     {
       type: "category",
-      label: "nexSys",
+      label: "nexMap",
       link: {
         type: "generated-index",
         title: "Core Features",
-        description: "Introduction to nexSys Features",
-        keywords: ["nexSys"],
+        description: "Introduction to nexMap Features",
+        keywords: ["nexMap"],
       },
-      items: [
-        {
-          type: "category",
-          label: "Affs",
-          link: {
-            type: "generated-index",
-            title: "Core Features",
-            description: "Introduction to nexSys Features",
-            keywords: ["nexSys"],
-          },
-          items: ["nexSys/affs/functions"],
-        },
-      ],
+      items: ["nexMap/introduction"],
     },
   ],
   nexGuiSidebar: [
     {
       type: "category",
-      label: "nexSys",
+      label: "nexGui",
       link: {
         type: "generated-index",
         title: "Core Features",
-        description: "Introduction to nexSys Features",
-        keywords: ["nexSys"],
+        description: "Introduction to nexGui Features",
+        keywords: ["nexGui"],
       },
-      items: [
-        {
-          type: "category",
-          label: "Affs",
-          link: {
-            type: "generated-index",
-            title: "Core Features",
-            description: "Introduction to nexSys Features",
-            keywords: ["nexSys"],
-          },
-          items: [
-            {
-              type: "doc",
-              label: "Snippets",
-              id: "nexSys/affs/functions",
-            },
-          ],
-        },
-      ],
+      items: ["nexGui/introduction"],
+    },
+  ],
+  nexActionSidebar: [
+    {
+      type: "category",
+      label: "nexAction",
+      link: {
+        type: "generated-index",
+        title: "Core Features",
+        description: "Introduction to nexAction Features",
+        keywords: ["nexAction"],
+      },
+      items: ["nexAction/introduction"],
+    },
+  ],
+  insightSidebar: [
+    {
+      type: "category",
+      label: "insight",
+      link: {
+        type: "generated-index",
+        title: "Core Features",
+        description: "Introduction to insight Features",
+        keywords: ["insight"],
+      },
+      items: ["insight/introduction"],
     },
   ],
   nexusSidebar: [

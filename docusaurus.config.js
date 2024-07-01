@@ -13,7 +13,7 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://nexusunleashed.github.io",
+  url: "https://nexusunleashed.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/nex-files/",
@@ -101,11 +101,23 @@ const config = {
           },
           {
             type: "docSidebar",
+            sidebarId: "nexActionSidebar",
+            position: "left",
+            label: "nexAction",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "insightSidebar",
+            position: "left",
+            label: "insight",
+          },
+          {
+            type: "docSidebar",
             sidebarId: "nexusSidebar",
             position: "left",
             label: "Nexus",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Blog", position: "right" },
           {
             href: "https://github.com/NexusUnleashed/nex-files",
             label: "GitHub",
@@ -148,7 +160,7 @@ const config = {
           },
           {
             title: "Authors",
-            items: [{ label: "Khaseem", to: "/" }],
+            items: [{ label: "Khaseem (Achaea)", to: "/" }],
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Nexus Unleashed, Inc. Built with Docusaurus.`,
