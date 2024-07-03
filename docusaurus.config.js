@@ -123,25 +123,30 @@ const config = {
             label: "GitHub",
             position: "right",
           },
-          /*
+
           {
             type: "dropdown",
-            label: "Community",
+            label: "Packages",
             position: "left",
             items: [
               {
-                label: "Facebook",
-                href: "https://www.facebook.com",
+                type: "docSidebar",
+                label: "nexSys",
+                sidebarId: "nexSysSidebar",
               },
               {
-                type: "doc",
-                label: "Social",
-                docId: "nexSys/introduction",
+                type: "docSidebar",
+                label: "nexMap",
+                sidebarId: "nexMapSidebar",
+              },
+              {
+                type: "docSidebar",
+                label: "nexGui",
+                sidebarId: "nexGuiSidebar",
               },
               // ... more items
             ],
           },
-          */
         ],
       },
       footer: {
