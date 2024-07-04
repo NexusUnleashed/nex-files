@@ -19,26 +19,22 @@ const sidebars = {
     {
       type: "category",
       label: "eventStream",
-      link: {
-        type: "generated-index",
-        title: "eventStream",
-        description:
-          "eventStream is an event handler for the Nexus client. This is a core dependency for all other nex* packages.",
-        keywords: ["eventStream"],
-      },
+      link: { type: "doc", id: "eventStream/introduction" },
       items: [
+        "eventStream/introduction",
         "eventStream/installation",
         "eventStream/api",
         "eventStream/examples",
         {
           type: "category",
+          label: "nexAction",
+          link: { type: "doc", id: "eventStream/nexAction/introduction" },
+          items: ["eventStream/nexAction/introduction"],
+        },
+        {
+          type: "category",
           label: "nexSkills",
-          link: {
-            type: "generated-index",
-            title: "Core Features",
-            description: "Introduction to nexSkills Features",
-            keywords: ["nexSkills"],
-          },
+          link: { type: "doc", id: "eventStream/nexSkills/introduction" },
           items: ["eventStream/nexSkills/introduction"],
         },
       ],
@@ -48,12 +44,15 @@ const sidebars = {
     {
       type: "category",
       label: "nexSys",
+      /*
       link: {
         type: "generated-index",
         title: "Core Features",
         description: "Introduction to nexSys Features",
         keywords: ["nexSys"],
       },
+      */
+      link: { type: "doc", id: "nexSys/introduction" },
       items: [
         "nexSys/introduction",
         "nexSys/installation",
@@ -102,12 +101,7 @@ const sidebars = {
     {
       type: "category",
       label: "nexMap",
-      link: {
-        type: "generated-index",
-        title: "Core Features",
-        description: "Introduction to nexMap Features",
-        keywords: ["nexMap"],
-      },
+      link: { type: "doc", id: "nexMap/introduction" },
       items: [
         "nexMap/introduction",
         "nexMap/installation",
@@ -121,38 +115,16 @@ const sidebars = {
     {
       type: "category",
       label: "nexGui",
-      link: {
-        type: "generated-index",
-        title: "Core Features",
-        description: "Introduction to nexGui Features",
-        keywords: ["nexGui"],
-      },
+      link: { type: "doc", id: "nexGui/introduction" },
       items: ["nexGui/introduction"],
     },
   ],
-  nexActionSidebar: [
-    {
-      type: "category",
-      label: "nexAction",
-      link: {
-        type: "generated-index",
-        title: "Core Features",
-        description: "Introduction to nexAction Features",
-        keywords: ["nexAction"],
-      },
-      items: ["nexAction/introduction"],
-    },
-  ],
+
   insightSidebar: [
     {
       type: "category",
       label: "insight",
-      link: {
-        type: "generated-index",
-        title: "Core Features",
-        description: "Introduction to insight Features",
-        keywords: ["insight"],
-      },
+      link: { type: "doc", id: "insight/introduction" },
       items: ["insight/introduction", "insight/api"],
     },
   ],
@@ -170,6 +142,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "API",
+          id: "nexus/API",
+        },
+        {
+          type: "doc",
           label: "Tutorials",
           id: "nexus/tutorials",
         },
@@ -180,7 +157,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Snippets",
+          label: "Useful Snippets",
           id: "nexus/snippets",
         },
       ],

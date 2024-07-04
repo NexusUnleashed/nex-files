@@ -99,12 +99,7 @@ const config = {
             position: "left",
             label: "nexGui",
           },
-          {
-            type: "docSidebar",
-            sidebarId: "nexActionSidebar",
-            position: "left",
-            label: "nexAction",
-          },
+
           {
             type: "docSidebar",
             sidebarId: "insightSidebar",
@@ -126,25 +121,34 @@ const config = {
 
           {
             type: "dropdown",
-            label: "Packages",
+            label: "Mini Packages",
             position: "left",
             items: [
               {
                 type: "docSidebar",
-                label: "nexSys",
+                label: "nexMsg",
                 sidebarId: "nexSysSidebar",
               },
               {
                 type: "docSidebar",
-                label: "nexMap",
-                sidebarId: "nexMapSidebar",
+                label: "nexTalisman",
+                sidebarId: "nexSysSidebar",
               },
               {
                 type: "docSidebar",
-                label: "nexGui",
-                sidebarId: "nexGuiSidebar",
+                label: "nexShop",
+                sidebarId: "nexSysSidebar",
               },
-              // ... more items
+              {
+                type: "docSidebar",
+                label: "nexCrafting",
+                sidebarId: "nexSysSidebar",
+              },
+              {
+                type: "docSidebar",
+                label: "nexMilling",
+                sidebarId: "nexSysSidebar",
+              },
             ],
           },
         ],
