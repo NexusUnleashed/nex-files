@@ -22,7 +22,6 @@ const sidebars = {
       link: { type: "doc", id: "eventStream/introduction" },
       items: [
         "eventStream/introduction",
-        "eventStream/installation",
         "eventStream/api",
         "eventStream/examples",
         {

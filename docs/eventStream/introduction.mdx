@@ -1,1 +1,71 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { FaDiscord } from "react-icons/fa6";
+
 # Introduction
+
+Welcome to the **eventStream** documentation! eventStream is a powerful clientside
+event handler designed specifically for Achaea using the official Nexus client.
+As a core dependency for all nex\* packages, eventStream simplifies the process of handling
+both serverside GMCP events and clientside user-defined events.
+
+## Features
+
+eventStream comes packed with several key features to enhance your Achaean gameplay experience:
+
+- **GMCP Events**: Preconfigured support for GMCP events, ensuring seamless integration with the Nexus client.
+- **User-Defined Events**: Flexibility to create and manage custom events tailored to your specific needs.
+- **nexAction**: The nexAction clientside trigger handler package comes pre-bundled with eventStream.
+- **nexSkills**: Provide out of the box events for player actions in the game.
+
+## Installation
+
+Installing eventStream is quick and straightforward. Follow the steps below to get started:
+
+### Download
+
+You can download the eventStream `.nxs` file from the following sources:
+
+<Tabs>
+  <TabItem value="github" label="GitHub" default>
+    [Download from GitHub](https://github.com/NexusUnleashed/eventStream3)
+  </TabItem>
+  <TabItem value="discord" label="Discord">
+    [Download from
+    Discord](https://discord.com/channels/956996499483525140/1104946776634572869)
+  </TabItem>
+</Tabs>
+
+### Installation Steps
+
+1. **Download the `.nxs` file**: Obtain the eventStream package from either the GitHub repository or the Discord forum.
+2. **Import into Nexus**: Drag and drop the `.nxs` file into the Reflexes section of the Nexus client.
+3. **Automatic Setup**: eventStream will automatically handle the rest, downloading and installing the latest version from NPM.
+
+That's it! eventStream is now ready to enhance your gameplay.
+
+## Startup
+
+eventStream is designed to be user-friendly and low-maintenance. Here’s what you need to know about getting started:
+
+- **Automatic Updates**: Once installed, eventStream will automatically check for and install updates each time you log in.
+- **No Manual Intervention Needed**: After the initial setup, no further action is required from you. eventStream will load automatically with each login.
+
+### Recovery and Debugging
+
+For advanced users, eventStream provides a recovery and debugging alias:
+
+:::note
+**Alias: `es load`**
+
+The `es load` alias is included in the package for recovery and debugging purposes. While not required for normal operation, it can be used to manually reload eventStream if needed.
+:::
+
+## Getting Help
+
+If you encounter any issues or have questions, there are several resources available:
+
+- **GitHub Issues**: Report bugs or request features on the [GitHub issues page](https://github.com/NexusUnleashed/eventStream3/issues).
+- **Discord Community**: Join the discussion and get help from other users on the [Discord forum](https://discord.com/channels/956996499483525140/1104946776634572869).
+
+Hopefully you enjoy using eventStream and find it a valuable addition to your Achaean adventures!

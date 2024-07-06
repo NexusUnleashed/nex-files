@@ -10,9 +10,6 @@ eventStream.stream;
 
 ## registerEvent
 
-<details>
-  <summary> Reference </summary>
-
 ```js
 eventStream.registerEvent(event, callback, (once = false), (duration = false));
 ```
@@ -24,7 +21,7 @@ eventStream.registerEvent(event, callback, (once = false), (duration = false));
 | once      | boolean     | Listener will fire once and be removed (single fire).      |
 | duration  | miliseconds | Listener will be live and then removed after elapsed time. |
 
-> Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
+Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
 
 ```js
 eventStream.registerEvent("testEvent", () => {
@@ -32,7 +29,7 @@ eventStream.registerEvent("testEvent", () => {
 });
 ```
 
-> Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
 
 ```js
 const testFunction = () => {
@@ -41,22 +38,27 @@ const testFunction = () => {
 eventStream.registerEvent("testEvent", testFunction);
 ```
 
-> Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
+Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
 
-```js
+```js sdfasdf
 const singleFire = () => {
   console.log("single fire event");
 };
 eventStream.registerEvent("testEvent", testFunction, true);
-// Listener will only fire once after testEvent is raised. This listener will not be present for subsequent testEvent events.
+// Listener will only fire once after testEvent is raised.
+// This listener will not be present for subsequent testEvent events.
 ```
 
-</details>
 ## raiseEvent
 
 ```js
-eventStream.raiseEvent(event);
+eventStream.raiseEvent(event, args);
 ```
+
+| Parameter | Type   | Description                                                        |
+| --------- | ------ | ------------------------------------------------------------------ |
+| event     | string | Name of the event. _example: GMCP.Item.Add_                        |
+| args      | object | Data object to be passed as a parameter to all callback functions. |
 
 Events are string ids used to flag all associated listener functions to fire. By default all GMCP received from the server are raised as events. Users can add any number of additional events.
 
@@ -64,23 +66,30 @@ Events are string ids used to flag all associated listener functions to fire. By
 eventStream.raiseEvent("testEvent");
 /*
 Expected console output based on previous examples:
-arrow function
-named arrow function
-single fire event
+> "arrow function"
+> "named arrow function"
+> "single fire event"
 */
 eventStream.raiseEvent("testEvent");
 /*
 Expected console output based on previous examples:
-arrow function
-named arrow function
+> "arrow function"
+> "named arrow function"
+
+** Note the "single fire event" output is not present in this second run
 */
 ```
 
 ## removeListener
 
 ```js
-eventStream.removeListener(event, callback id)
+eventStream.removeListener(event, callbackId);
 ```
+
+| Parameter  | Type   | Description                                 |
+| ---------- | ------ | ------------------------------------------- |
+| event      | string | Name of the event. _example: GMCP.Item.Add_ |
+| callbackId | string | Callback id. _Function name_                |
 
 Removes a listener from an event. Typical usage is by function name. Will also accept an integer representing the array position of the listener.
 
@@ -89,7 +98,7 @@ eventStream.removeListener("testEvent", "testFunction");
 eventStream.raiseEvent("testEvent");
 /*
 Expected console output based on previous examples:
-arrow function
+> "arrow function"
 */
 ```
 
