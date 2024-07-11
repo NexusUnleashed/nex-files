@@ -7,15 +7,31 @@ add = ({
     regex,
     action,
     id = crypto.randomUUID(),
-    tags = [],
     enabled = true,
     once = false,
     duration = false,
     fg = false,
     bg = false,
     lines = 0,
+    tags = [],
     onRemove,
     onDisable,
     onEnable,
   })
 ```
+
+| Name        | Type          | Default      | Description                                                |
+| ----------- | ------------- | ------------ | ---------------------------------------------------------- |
+| `regex`     | `regex`       | **Required** | Name of the event. _example: GMCP.Item.Add_                |
+| `action`    | `function`    | **Required** | Callback function to fire when event is raised.            |
+| `id`        | `string`      | `guid`       | Listener will fire once and be removed (single fire).      |
+| `enabled`   | `boolean`     | `true`       | Name of the event. _example: GMCP.Item.Add_                |
+| `once`      | `boolean`     | `false`      | Callback function to fire when event is raised.            |
+| `duration`  | `miliseconds` | Optional     | Listener will fire once and be removed (single fire).      |
+| `fg`        | `hex`         | Optional     | Listener will be live and then removed after elapsed time. |
+| `bg`        | `hex`         | Optional     | Name of the event. _example: GMCP.Item.Add_                |
+| `lines`     | `int`         | Optional     | Callback function to fire when event is raised.            |
+| `tags`      | `array`       | Optional     | Listener will be live and then removed after elapsed time. |
+| `onRemove`  | `function`    | Optional     | Listener will fire once and be removed (single fire).      |
+| `onDisable` | `function`    | Optional     | Listener will be live and then removed after elapsed time. |
+| `onEnable`  | `function`    | Optional     | Name of the event. _example: GMCP.Item.Add_                |

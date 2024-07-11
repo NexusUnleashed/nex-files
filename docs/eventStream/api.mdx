@@ -14,12 +14,12 @@ eventStream.stream;
 eventStream.registerEvent(event, callback, (once = false), (duration = false));
 ```
 
-| Parameter | Type        | Description                                                |
-| --------- | ----------- | ---------------------------------------------------------- |
-| event     | string      | Name of the event. _example: GMCP.Item.Add_                |
-| callback  | function    | Callback function to fire when event is raised.            |
-| once      | boolean     | Listener will fire once and be removed (single fire).      |
-| duration  | miliseconds | Listener will be live and then removed after elapsed time. |
+| Name       | Type          | Default      | Description                                                |
+| ---------- | ------------- | ------------ | ---------------------------------------------------------- |
+| `event`    | `string`      | **Required** | Name of the event. _example: GMCP.Item.Add_                |
+| `callback` | `function`    | **Required** | Callback function to fire when event is raised.            |
+| `once`     | `boolean`     | Optional     | Listener will fire once and be removed (single fire).      |
+| `duration` | `miliseconds` | Optional     | Listener will be live and then removed after elapsed time. |
 
 Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
 
