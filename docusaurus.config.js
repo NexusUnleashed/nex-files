@@ -125,6 +125,11 @@ const config = {
             position: "left",
             items: [
               {
+                type: "doc",
+                label: "nexWorld",
+                docId: "miniPackages/nexWorld",
+              },
+              {
                 type: "docSidebar",
                 label: "nexMsg",
                 sidebarId: "nexSysSidebar",
