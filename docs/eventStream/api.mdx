@@ -32,9 +32,11 @@ eventStream.registerEvent("testEvent", () => {
 Named functions can be more helpful for accessing the listener at a later time. Typically when a user wants to remove a listener from an event.
 
 ```js
+// highlight-start
 const testFunction = () => {
   console.log("named arrow function");
 };
+// highlight-end
 eventStream.registerEvent("testEvent", testFunction);
 ```
 
@@ -44,6 +46,7 @@ Named functions can be more helpful for accessing the listener at a later time. 
 const singleFire = () => {
   console.log("single fire event");
 };
+// highlight-next-line
 eventStream.registerEvent("testEvent", testFunction, true);
 // Listener will only fire once after testEvent is raised.
 // This listener will not be present for subsequent testEvent events.
