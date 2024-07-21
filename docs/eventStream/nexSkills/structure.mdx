@@ -1,0 +1,33 @@
+# Structure
+
+Example data structure for an `action` object:
+
+```js
+{
+  id: "warp",
+  fullName: "Warp",
+  firstPerson:
+    /^You reach out and clench a fist before (?<target>.+?), who screams and doubles over in agony as \w+ skin suddenly bubbles with gangrenous growths\.$/,
+  secondPerson:
+    /^(?<user>\w+) reaches out and clenches a fist before you\. You scream and double over in agony as your skin bubbles with gangrenous growths\.$/,
+  thirdPerson:
+    /^(?<user>\w+) reaches out and clenches a fist before (?<target>.+?), who screams and doubles over in agony as \w+ skin suddenly bubbles with gangrenous growths\.$/,
+  profession: ["occultist"],
+  skill: "occultism",
+  balance: "equilibrium",
+  tags: ["pve", "damage"],
+  info: false,
+  reaction: false
+  length: 3.0,
+}
+```
+
+## TODO
+
+Additional tags or properties?
+
+- whileProne?
+- offBalance?
+- offEquilibrium?
+- whileParalyzed?
+- whileStunned?
