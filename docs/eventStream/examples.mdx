@@ -74,6 +74,8 @@ const razeTargetPVP = (args) => {
 eventStream.registerEvent("targetShield", razeTargetPVP);
 ```
 
+Using this basic example when someone shields in your room (the trigger we previously noted that raises the event `targetShield`) both of the event listeners we have attached `razeTargetPVP` and `shieldNotice` will fire. Resulting in a display_notice and an attempt to raze the target.
+
 ## Packaged events
 
 Many packages, like [nexMap](../nexMap/introduction.mdx), [nexGui](../nexGui/introduction.mdx), [nexSys](../nexSys/introduction.mdx), etc. create and handle a variety of custom events that users can hook into. nexSys for example will raise events for things like afflictions, defences, items, etc.
