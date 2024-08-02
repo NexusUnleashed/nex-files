@@ -1,12 +1,12 @@
 # Examples
 
-The following is an example of a basic function tied to a GMCP event. This will wave to any player that enters the room. An example of the GMCP message from Nexus:
-
 ## Standard GMCP Events
 
 ### Player enters the room
 
-```
+The following is an example of a basic function tied to a GMCP event. This will wave to any player that enters the room. An example of the GMCP message from Nexus:
+
+```JSON title="GMCP received from server"
 [GMCP]: Room.AddPlayer {"name":"Khaseem","fullname":"Khaseem"}
 ```
 
@@ -24,7 +24,7 @@ eventStream.registerEvent("Room.AddPlayer", greetPlayer);
 
 ### NPC enters the room
 
-```
+```JSON title="GMCP received from server"
 [GMCP]: Char.Items.Add {"location":"room","item":{"id":530669,"name":"a tiny blue quail","icon":"paw-claws","attrib":"m","parentid":"room"}}
 ```
 
@@ -38,7 +38,7 @@ const pointNpc = (args) => {
     nexusclient.send_commands(`point ${args.item.id}`);
   }
 };
-eventStream.registerEvent("Room.AddPlayer", greetPlayer);
+eventStream.registerEvent("Char.Items.Add", pointNpc);
 ```
 
 ## Custom event
@@ -73,6 +73,8 @@ const razeTargetPVP = (args) => {
 };
 eventStream.registerEvent("targetShield", razeTargetPVP);
 ```
+
+Using this basic example when someone shields in your room (the trigger we previously noted that raises the event `targetShield`) both of the event listeners we have attached `razeTargetPVP` and `shieldNotice` will fire. Resulting in a display_notice and an attempt to raze the target.
 
 ## Packaged events
 
