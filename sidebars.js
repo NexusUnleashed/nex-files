@@ -62,6 +62,11 @@ const sidebars = {
         "nexSys/introduction",
         "nexSys/installation",
         "nexSys/configuration",
+        "nexSys/api",
+        "nexSys/queues",
+        "nexSys/prompt",
+        "nexSys/prioSwaps",
+
         {
           type: "category",
           label: "Affs",
@@ -95,10 +100,6 @@ const sidebars = {
           },
           items: ["nexSys/affs/functions"],
         },
-        "nexSys/queues",
-        "nexSys/prompt",
-        "nexSys/prioSwaps",
-        "nexSys/api",
       ],
     },
   ],
