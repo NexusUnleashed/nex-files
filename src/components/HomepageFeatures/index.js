@@ -10,7 +10,7 @@ const FeatureList = [
       <>
         Nexus packages designed to enhance your Achaea gameplay experience.
         These packages were developed to solve nagging QoL issues and provide
-        powerful funcationlity for advanced users.
+        powerful functionality for advanced users.
       </>
     ),
   },
