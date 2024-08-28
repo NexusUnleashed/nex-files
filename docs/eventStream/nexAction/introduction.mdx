@@ -20,18 +20,18 @@ add = ({
   })
 ```
 
-| Name        | Type          | Default      | Description                                                |
-| ----------- | ------------- | ------------ | ---------------------------------------------------------- |
-| `regex`     | `regex`       | **Required** | Name of the event. _example: GMCP.Item.Add_                |
-| `action`    | `function`    | **Required** | Callback function to fire when event is raised.            |
-| `id`        | `string`      | `guid`       | Listener will fire once and be removed (single fire).      |
-| `enabled`   | `boolean`     | `true`       | Name of the event. _example: GMCP.Item.Add_                |
-| `once`      | `boolean`     | `false`      | Callback function to fire when event is raised.            |
-| `duration`  | `miliseconds` | Optional     | Listener will fire once and be removed (single fire).      |
-| `fg`        | `hex`         | Optional     | Listener will be live and then removed after elapsed time. |
-| `bg`        | `hex`         | Optional     | Name of the event. _example: GMCP.Item.Add_                |
-| `lines`     | `int`         | Optional     | Callback function to fire when event is raised.            |
-| `tags`      | `array`       | Optional     | Listener will be live and then removed after elapsed time. |
-| `onRemove`  | `function`    | Optional     | Listener will fire once and be removed (single fire).      |
-| `onDisable` | `function`    | Optional     | Listener will be live and then removed after elapsed time. |
-| `onEnable`  | `function`    | Optional     | Name of the event. _example: GMCP.Item.Add_                |
+| Name        | Type           | Default      | Description                                           |
+| ----------- | -------------- | ------------ | ----------------------------------------------------- |
+| `regex`     | `regex`        | **Required** | Regex pattern to match                                |
+| `action`    | `function`     | **Required** | Callback function to fire when event is raised.       |
+| `id`        | `string`       | `guid`       | id used for enabling/disabling/deleting               |
+| `enabled`   | `boolean`      | `true`       | Enabled or disabled state of the action               |
+| `once`      | `boolean`      | `false`      | Listener will fire once and be removed (single fire). |
+| `duration`  | `miliseconds`  | Optional     | Duration for action to remain active (single fire).   |
+| `fg`        | `hex`          | Optional     | Foreground color to match in form of hex color code   |
+| `bg`        | `hex`          | Optional     | Background color to match in form of hex color code   |
+| `lines`     | `int`          | Optional     | Number of lines for action to remain active           |
+| `tags`      | `string array` | Optional     | String identifiers for filtering and searching        |
+| `onRemove`  | `function`     | Optional     | Callback function to fire when action is **removed**  |
+| `onDisable` | `function`     | Optional     | Callback function to fire when action is **disabled** |
+| `onEnable`  | `function`     | Optional     | Callback function to fire when action is **enabled**  |
