@@ -13,50 +13,170 @@ Here's a table of our events:
 <!-- <affliction>AffCountAddEvent -->
 <!-- <affliction>AffCountSubtractEvent -->
 
-| Event Name                 | Description                                |
-| -------------------------- | ------------------------------------------ |
-| AffGot                     | Any affliction is gained                   |
-| AffLost                    | Any affliction is lost                     |
-| \<affliction\>GotAffEvent  | Specific affliction is gained              |
-| \<affliction\>LostAffEvent | Specific affliction is lost                |
-| DefGot                     |                                            |
-| DefLost                    |                                            |
-| \<defence\>GotDefEvent     |                                            |
-| \<defence\>LostDefEvent    |                                            |
-| BalanceGot                 |                                            |
-| BalanceLost                |                                            |
-| \<balance\>GotBalEvent     |                                            |
-| \<balance\>LostBalEvent    |                                            |
-| eqBalRecoveredEvent        | Both Balance and Equilibrium have returned |
-| SystemPaused               | nexSys system is paused                    |
-| SystemUnpaused             | nexSys system is unpaused                  |
-| SystemSlowModeOn           |                                            |
-| SystemSlowModeOff          |                                            |
-| PromptEvent                | New prompt is received                     |
-| RoomChangedEvent           | Moved rooms                                |
-| ItemAddedToRoom            |                                            |
-| ItemAddedToInv             |                                            |
-| ItemRemovedFromRoom        |                                            |
-| ItemRemoveFromInv          |                                            |
-| ItemUpdatedRoom            |                                            |
-| ItemUpdatedInv             |                                            |
-| ItemListForRoom            |                                            |
-| ItemListForInv             |                                            |
-| TargetSetEvent             |                                            |
-| TargetChanged              |                                            |
-| ClassChanged               |                                            |
-| HealthUpdated              |                                            |
-| ManaUpdated                |                                            |
-| RageUpdated                |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
-|                            |                                            |
+| Event Name                                            | Description                                            |
+| ----------------------------------------------------- | ------------------------------------------------------ |
+| [AffGot](#affgot)                                     | Any affliction is gained                               |
+| [AffLost](#afflost)                                   | Any affliction is lost                                 |
+| [\<affliction\>GotAffEvent](#afflictiongotaffevent)   | Specific affliction is gained                          |
+| [\<affliction\>LostAffEvent](#afflictionlostaffevent) | Specific affliction is lost                            |
+| [DefGot](#defgot)                                     | A defense is gained                                    |
+| [DefLost](#deflost)                                   | A defense is lost                                      |
+| [\<defence\>GotDefEvent](#defencegotdefevent)         | Specific defense is gained                             |
+| [\<defence\>LostDefEvent](#defencelostdefevent)       | Specific defense is lost                               |
+| [BalanceGot](#balancegot)                             | Balance has been regained                              |
+| [BalanceLost](#balancelost)                           | Balance has been lost                                  |
+| [\<balance\>GotBalEvent](#balancegotbalevent)         | Specific balance state has been regained               |
+| [\<balance\>LostBalEvent](#balancelostbalevent)       | Specific balance state has been lost                   |
+| [eqBalRecoveredEvent](#eqbalrecoveredevent)           | Both Balance and Equilibrium have returned             |
+| [SystemPaused](#systempaused)                         | nexSys system is paused                                |
+| [SystemUnpaused](#systemunpaused)                     | nexSys system is unpaused                              |
+| [SystemSlowModeOn](#systemslowmodeon)                 | nexSys system slow mode is enabled                     |
+| [SystemSlowModeOff](#systemslowmodeoff)               | nexSys system slow mode is disabled                    |
+| [PromptEvent](#promptevent)                           | New prompt is received                                 |
+| [RoomChangedEvent](#roomchangedevent)                 | The player has moved to a different room               |
+| [ItemAddedToRoom](#itemaddedtoroom)                   | An item has been added to the current room             |
+| [ItemAddedToInv](#itemaddedtoinv)                     | An item has been added to the inventory                |
+| [ItemRemovedFromRoom](#itemremovedfromroom)           | An item has been removed from the current room         |
+| [ItemRemoveFromInv](#itemremovefrominv)               | An item has been removed from the inventory            |
+| [ItemUpdatedRoom](#itemupdatedroom)                   | An item in the room has been updated                   |
+| [ItemUpdatedInv](#itemupdatedinv)                     | An item in the inventory has been updated              |
+| [ItemListForRoom](#itemlistforroom)                   | The list of items in the current room has been updated |
+| [ItemListForInv](#itemlistforinv)                     | The list of items in the inventory has been updated    |
+| [TargetSetEvent](#targetsetevent)                     | A new target has been set                              |
+| [TargetChanged](#targetchanged)                       | The current target has been changed                    |
+| [ClassChanged](#classchanged)                         | The player’s class has changed                         |
+| [HealthUpdated](#healthupdated)                       | The player’s health has been updated                   |
+| [ManaUpdated](#manaupdated)                           | The player’s mana has been updated                     |
+| [RageUpdated](#rageupdated)                           | The player’s rage has been updated                     |
+
+## AffGot
+
+Triggered when any affliction is gained by the player.
+
+## AffLost
+
+Triggered when any affliction is lost by the player.
+
+## \<affliction\>GotAffEvent
+
+Triggered when a specific affliction is gained by the player. Replace `\<affliction\>` with the actual affliction name.
+
+## \<affliction\>LostAffEvent
+
+Triggered when a specific affliction is lost by the player. Replace `\<affliction\>` with the actual affliction name.
+
+## DefGot
+
+Triggered when any defense is gained by the player.
+
+## DefLost
+
+Triggered when any defense is lost by the player.
+
+## \<defence\>GotDefEvent
+
+Triggered when a specific defense is gained by the player. Replace `\<defence\>` with the actual defense name.
+
+## \<defence\>LostDefEvent
+
+Triggered when a specific defense is lost by the player. Replace `\<defence\>` with the actual defense name.
+
+## BalanceGot
+
+Triggered when balance is regained by the player.
+
+## BalanceLost
+
+Triggered when balance is lost by the player.
+
+## \<balance\>GotBalEvent
+
+Triggered when a specific balance state is regained by the player. Replace `\<balance\>` with the actual balance type.
+
+## \<balance\>LostBalEvent
+
+Triggered when a specific balance state is lost by the player. Replace `\<balance\>` with the actual balance type.
+
+## eqBalRecoveredEvent
+
+Triggered when both balance and equilibrium have returned to the player.
+
+## SystemPaused
+
+Triggered when the nexSys system is paused.
+
+## SystemUnpaused
+
+Triggered when the nexSys system is unpaused.
+
+## SystemSlowModeOn
+
+Triggered when the nexSys system slow mode is enabled.
+
+## SystemSlowModeOff
+
+Triggered when the nexSys system slow mode is disabled.
+
+## PromptEvent
+
+Triggered when a new prompt is received.
+
+## RoomChangedEvent
+
+Triggered when the player has moved to a different room.
+
+## ItemAddedToRoom
+
+Triggered when an item has been added to the current room.
+
+## ItemAddedToInv
+
+Triggered when an item has been added to the inventory.
+
+## ItemRemovedFromRoom
+
+Triggered when an item has been removed from the current room.
+
+## ItemRemoveFromInv
+
+Triggered when an item has been removed from the inventory.
+
+## ItemUpdatedRoom
+
+Triggered when an item in the room has been updated.
+
+## ItemUpdatedInv
+
+Triggered when an item in the inventory has been updated.
+
+## ItemListForRoom
+
+Triggered when the list of items in the current room has been updated.
+
+## ItemListForInv
+
+Triggered when the list of items in the inventory has been updated.
+
+## TargetSetEvent
+
+Triggered when a new target has been set.
+
+## TargetChanged
+
+Triggered when the current target has been changed.
+
+## ClassChanged
+
+Triggered when the player’s class has changed.
+
+## HealthUpdated
+
+Triggered when the player’s health has been updated.
+
+## ManaUpdated
+
+Triggered when the player’s mana has been updated.
+
+## RageUpdated
+
+Triggered when the player’s rage has been updated.
