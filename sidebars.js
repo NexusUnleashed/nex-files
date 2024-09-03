@@ -62,10 +62,11 @@ const sidebars = {
         "nexSys/introduction",
         "nexSys/installation",
         "nexSys/configuration",
-        "nexSys/api",
         "nexSys/queues",
         "nexSys/prompt",
         "nexSys/prioSwaps",
+        "nexSys/api",
+        "nexSys/events",
 
         {
           type: "category",
