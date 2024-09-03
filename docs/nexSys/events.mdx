@@ -10,8 +10,53 @@ nexSys relies on [eventStream](../eventStream/introduction.mdx) as the backend e
 
 Here's a table of our events:
 
-| Event Name | Description |
-| ---------- | ----------- |
-|            |             |
-|            |             |
-|            |             |
+<!-- <affliction>AffCountAddEvent -->
+<!-- <affliction>AffCountSubtractEvent -->
+
+| Event Name                 | Description                                |
+| -------------------------- | ------------------------------------------ |
+| AffGot                     | Any affliction is gained                   |
+| AffLost                    | Any affliction is lost                     |
+| \<affliction\>GotAffEvent  | Specific affliction is gained              |
+| \<affliction\>LostAffEvent | Specific affliction is lost                |
+| DefGot                     |                                            |
+| DefLost                    |                                            |
+| \<defence\>GotDefEvent     |                                            |
+| \<defence\>LostDefEvent    |                                            |
+| BalanceGot                 |                                            |
+| BalanceLost                |                                            |
+| \<balance\>GotBalEvent     |                                            |
+| \<balance\>LostBalEvent    |                                            |
+| eqBalRecoveredEvent        | Both Balance and Equilibrium have returned |
+| SystemPaused               | nexSys system is paused                    |
+| SystemUnpaused             | nexSys system is unpaused                  |
+| SystemSlowModeOn           |                                            |
+| SystemSlowModeOff          |                                            |
+| PromptEvent                | New prompt is received                     |
+| RoomChangedEvent           | Moved rooms                                |
+| ItemAddedToRoom            |                                            |
+| ItemAddedToInv             |                                            |
+| ItemRemovedFromRoom        |                                            |
+| ItemRemoveFromInv          |                                            |
+| ItemUpdatedRoom            |                                            |
+| ItemUpdatedInv             |                                            |
+| ItemListForRoom            |                                            |
+| ItemListForInv             |                                            |
+| TargetSetEvent             |                                            |
+| TargetChanged              |                                            |
+| ClassChanged               |                                            |
+| HealthUpdated              |                                            |
+| ManaUpdated                |                                            |
+| RageUpdated                |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
+|                            |                                            |
