@@ -55,6 +55,8 @@ Here's a table of our events:
 
 **Returns**: nexSys Aff object, containing detailed information about the affliction.
 
+**Example**:
+
 ```js
 const example = function (args) {
   if (args.name === "aeon") {
@@ -79,6 +81,7 @@ eventStream.registerEvent("AffGot", example);
 **Description**: Triggered when a specific affliction is gained by the player. Replace `<affliction>` with the actual affliction name.
 
 **Returns**: Specific nexSys Aff object for the gained affliction.
+
 **Example**:
 
 ```js
@@ -95,6 +98,7 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 **Description**: Triggered when a specific affliction is lost by the player. Replace `<affliction>` with the actual affliction name.
 
 **Returns**: Specific nexSys Aff object for the lost affliction.
+
 **Example**:
 
 ```js
@@ -127,6 +131,7 @@ eventStream.registerEvent("aeonLostAffEvent", example);
 **Description**: Triggered when a specific defense is gained by the player. Replace `<defence>` with the actual defense name.
 
 **Returns**: Specific nexSys Def object for the gained defense.
+
 **Example**:
 
 ```js
@@ -143,6 +148,7 @@ eventStream.registerEvent("prismaticGotDefEvent", example);
 **Description**: Triggered when a specific defense is lost by the player. Replace `<defence>` with the actual defense name.
 
 **Returns**: Specific nexSys Def object for the lost defense.
+
 **Example**:
 
 ```js
