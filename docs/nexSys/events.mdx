@@ -95,6 +95,14 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 **Description**: Triggered when a specific affliction is lost by the player. Replace `<affliction>` with the actual affliction name.
 
 **Returns**: Specific nexSys Aff object for the lost affliction.
+**Example**:
+
+```js
+const example = function (args) {
+  nexusclient.display_notice("I'm alive! Or maybe I'm dead...");
+};
+eventStream.registerEvent("aeonLostAffEvent", example);
+```
 
 ---
 
@@ -119,6 +127,14 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 **Description**: Triggered when a specific defense is gained by the player. Replace `<defence>` with the actual defense name.
 
 **Returns**: Specific nexSys Def object for the gained defense.
+**Example**:
+
+```js
+const example = function () {
+  nexSys.sys.pause();
+};
+eventStream.registerEvent("prismaticGotDefEvent", example);
+```
 
 ---
 
@@ -127,6 +143,14 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 **Description**: Triggered when a specific defense is lost by the player. Replace `<defence>` with the actual defense name.
 
 **Returns**: Specific nexSys Def object for the lost defense.
+**Example**:
+
+```js
+const example = function () {
+  nexSys.sys.unpause();
+};
+eventStream.registerEvent("prismaticLostDefEvent", example);
+```
 
 ---
 
@@ -204,7 +228,7 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 
 ## PromptEvent
 
-**Description**: Triggered when a new prompt is received.
+**Description**: Triggered when a new prompt is received. Similar to the Nexus onBlock function.
 
 **Returns**: Object containing the details of the new prompt.
 
@@ -214,7 +238,7 @@ eventStream.registerEvent("aeonGotAffEvent", example);
 
 **Description**: Triggered when the player has moved to a different room.
 
-**Returns**: Object containing information about the new room, such as room ID and description.
+**Returns**: GMCP Room.Info object containing information about the new room, such as room ID and description.
 
 ---
 
