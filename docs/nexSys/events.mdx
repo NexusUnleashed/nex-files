@@ -55,6 +55,15 @@ Here's a table of our events:
 
 **Returns**: nexSys Aff object, containing detailed information about the affliction.
 
+```js
+const example = function (args) {
+  if (args.name === "aeon") {
+    nexusclient.display_notice("I guess this is the end");
+  }
+};
+eventStream.registerEvent("AffGot", example);
+```
+
 ---
 
 ## AffLost
@@ -70,6 +79,14 @@ Here's a table of our events:
 **Description**: Triggered when a specific affliction is gained by the player. Replace `<affliction>` with the actual affliction name.
 
 **Returns**: Specific nexSys Aff object for the gained affliction.
+**Example**:
+
+```js
+const example = function (args) {
+  nexusclient.display_notice("I guess this is the end");
+};
+eventStream.registerEvent("aeonGotAffEvent", example);
+```
 
 ---
 
@@ -308,6 +325,17 @@ Here's a table of our events:
   current: int,
   diff: int
 }
+```
+
+**Example**:
+
+```js
+const example = function (args) {
+  if (args.max / args.current < 0.5) {
+    nexusclient.send_commands("touch crystal|pt save me!");
+  }
+};
+eventStream.registerEvent("HealthUpdated", example);
 ```
 
 ---
