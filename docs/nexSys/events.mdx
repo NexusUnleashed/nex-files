@@ -51,123 +51,241 @@ Here's a table of our events:
 
 ## AffGot
 
-Triggered when any affliction is gained by the player. Returns nexSys Aff object.
+**Description**: Triggered when any affliction is gained by the player.
+
+**Returns**: nexSys Aff object, containing detailed information about the affliction.
+
+---
 
 ## AffLost
 
-Triggered when any affliction is lost by the player. Returns nexSys Aff object.
+**Description**: Triggered when any affliction is lost by the player.
+
+**Returns**: nexSys Aff object, containing detailed information about the lost affliction.
+
+---
 
 ## \<affliction\>GotAffEvent
 
-Triggered when a specific affliction is gained by the player. Replace `\<affliction\>` with the actual affliction name. Returns specific nexSys Aff object.
+**Description**: Triggered when a specific affliction is gained by the player. Replace `<affliction>` with the actual affliction name.
+
+**Returns**: Specific nexSys Aff object for the gained affliction.
+
+---
 
 ## \<affliction\>LostAffEvent
 
-Triggered when a specific affliction is lost by the player. Replace `\<affliction\>` with the actual affliction name. Returns specific nexSys Aff object.
+**Description**: Triggered when a specific affliction is lost by the player. Replace `<affliction>` with the actual affliction name.
+
+**Returns**: Specific nexSys Aff object for the lost affliction.
+
+---
 
 ## DefGot
 
-Triggered when any defense is gained by the player. Returns nexSys Def object.
+**Description**: Triggered when any defense is gained by the player.
+
+**Returns**: nexSys Def object, detailing the gained defense.
+
+---
 
 ## DefLost
 
-Triggered when any defense is lost by the player. Returns nexSys Def object.
+**Description**: Triggered when any defense is lost by the player.
+
+**Returns**: nexSys Def object, detailing the lost defense.
+
+---
 
 ## \<defence\>GotDefEvent
 
-Triggered when a specific defense is gained by the player. Replace `\<defence\>` with the actual defense name. Returns specific nexSys Def object.
+**Description**: Triggered when a specific defense is gained by the player. Replace `<defence>` with the actual defense name.
+
+**Returns**: Specific nexSys Def object for the gained defense.
+
+---
 
 ## \<defence\>LostDefEvent
 
-Triggered when a specific defense is lost by the player. Replace `\<defence\>` with the actual defense name. Returns specific nexSys Def object.
+**Description**: Triggered when a specific defense is lost by the player. Replace `<defence>` with the actual defense name.
+
+**Returns**: Specific nexSys Def object for the lost defense.
+
+---
 
 ## BalanceGot
 
-Triggered when balance is regained by the player.
+**Description**: Triggered when balance is regained by the player.
+
+**Returns**: Boolean value indicating the new balance state.
+
+---
 
 ## BalanceLost
 
-Triggered when balance is lost by the player.
+**Description**: Triggered when balance is lost by the player.
+
+**Returns**: Boolean value indicating the lost balance state.
+
+---
 
 ## \<balance\>GotBalEvent
 
-Triggered when a specific balance state is regained by the player. Replace `\<balance\>` with the actual balance type.
+**Description**: Triggered when a specific balance state is regained by the player. Replace `<balance>` with the actual balance type.
+
+**Returns**: Boolean or specific balance state object, depending on the balance type.
+
+---
 
 ## \<balance\>LostBalEvent
 
-Triggered when a specific balance state is lost by the player. Replace `\<balance\>` with the actual balance type.
+**Description**: Triggered when a specific balance state is lost by the player. Replace `<balance>` with the actual balance type.
+
+**Returns**: Boolean or specific balance state object, depending on the balance type.
+
+---
 
 ## eqBalRecoveredEvent
 
-Triggered when both balance and equilibrium have returned to the player.
+**Description**: Triggered when both balance and equilibrium have returned to the player.
+
+**Returns**: Object indicating that both balance and equilibrium are recovered.
+
+---
 
 ## SystemPaused
 
-Triggered when the nexSys system is paused.
+**Description**: Triggered when the nexSys system is paused.
+
+**Returns**: Boolean indicating the system's paused state.
+
+---
 
 ## SystemUnpaused
 
-Triggered when the nexSys system is unpaused.
+**Description**: Triggered when the nexSys system is unpaused.
+
+**Returns**: Boolean indicating the system's unpaused state.
+
+---
 
 ## SystemSlowModeOn
 
-Triggered when the nexSys system slow mode is enabled.
+**Description**: Triggered when the nexSys system slow mode is enabled.
+
+**Returns**: Boolean indicating that slow mode is active.
+
+---
 
 ## SystemSlowModeOff
 
-Triggered when the nexSys system slow mode is disabled.
+**Description**: Triggered when the nexSys system slow mode is disabled.
+
+**Returns**: Boolean indicating that slow mode is inactive.
+
+---
 
 ## PromptEvent
 
-Triggered when a new prompt is received.
+**Description**: Triggered when a new prompt is received.
+
+**Returns**: Object containing the details of the new prompt.
+
+---
 
 ## RoomChangedEvent
 
-Triggered when the player has moved to a different room.
+**Description**: Triggered when the player has moved to a different room.
+
+**Returns**: Object containing information about the new room, such as room ID and description.
+
+---
 
 ## ItemAddedToRoom
 
-Triggered when an item has been added to the current room. Returns GMCP item object.
+**Description**: Triggered when an item has been added to the current room.
+
+**Returns**: GMCP item object with details of the added item.
+
+---
 
 ## ItemAddedToInv
 
-Triggered when an item has been added to the inventory. Returns GMCP item object.
+**Description**: Triggered when an item has been added to the inventory.
+
+**Returns**: GMCP item object with details of the added item.
+
+---
 
 ## ItemRemovedFromRoom
 
-Triggered when an item has been removed from the current room. Returns GMCP item object.
+**Description**: Triggered when an item has been removed from the current room.
+
+**Returns**: GMCP item object with details of the removed item.
+
+---
 
 ## ItemRemoveFromInv
 
-Triggered when an item has been removed from the inventory. Returns GMCP item object.
+**Description**: Triggered when an item has been removed from the inventory.
+
+**Returns**: GMCP item object with details of the removed item.
+
+---
 
 ## ItemUpdatedRoom
 
-Triggered when an item in the room has been updated. Returns GMCP item object.
+**Description**: Triggered when an item in the room has been updated.
+
+**Returns**: GMCP item object with updated details of the item.
+
+---
 
 ## ItemUpdatedInv
 
-Triggered when an item in the inventory has been updated. Returns GMCP item object.
+**Description**: Triggered when an item in the inventory has been updated.
+
+**Returns**: GMCP item object with updated details of the item.
+
+---
 
 ## ItemListForRoom
 
-Triggered when the list of items in the current room has been updated. Returns array of GMCP item objects.
+**Description**: Triggered when the list of items in the current room has been updated.
+
+**Returns**: Array of GMCP item objects, representing the updated list of items.
+
+---
 
 ## ItemListForInv
 
-Triggered when the list of items in the inventory has been updated. Returns array of GMCP item objects.
+**Description**: Triggered when the list of items in the inventory has been updated.
+
+**Returns**: Array of GMCP item objects, representing the updated inventory.
+
+---
 
 ## TargetSetEvent
 
-Returns string value of new (current) target.
+**Description**: Triggered when a new target is set.
+
+**Returns**: String value of the new (current) target.
+
+---
 
 ## TargetChanged
 
-Returns string value of new (current) target.
+**Description**: Triggered when the current target has been changed.
+
+**Returns**: String value of the new (current) target.
+
+---
 
 ## ClassChanged
 
-Returns object on class change:
+**Description**: Triggered when the player's class changes.
+
+**Returns**: Object detailing the old and new class names.
 
 ```js
 {
@@ -176,9 +294,13 @@ Returns object on class change:
 }
 ```
 
+---
+
 ## HealthUpdated
 
-Returns object for player's health:
+**Description**: Event is raised any time the player's health value changes.
+
+**Returns**: Object with health details.
 
 ```js
 {
@@ -187,10 +309,14 @@ Returns object for player's health:
   diff: int
 }
 ```
+
+---
 
 ## ManaUpdated
 
-Returns object for player's mana:
+**Description**: Event is raised any time the player's mana value changes.
+
+**Returns**: Object with mana details.
 
 ```js
 {
@@ -200,9 +326,13 @@ Returns object for player's mana:
 }
 ```
 
+---
+
 ## RageUpdated
 
-Returns object for player's rage:
+**Description**: Event is raised any time the player's rage value changes.
+
+**Returns**: Object with Rage details.
 
 ```js
 {
