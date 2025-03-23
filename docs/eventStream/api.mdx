@@ -11,15 +11,23 @@ eventStream.stream;
 ## registerEvent
 
 ```js
-eventStream.registerEvent(event, callback, (once = false), (duration = false));
+eventStream.registerEvent(event, callback, { options });
 ```
 
-| Name       | Type          | Default      | Description                                                |
-| ---------- | ------------- | ------------ | ---------------------------------------------------------- |
-| `event`    | `string`      | **Required** | Name of the event. _example: GMCP.Item.Add_                |
-| `callback` | `function`    | **Required** | Callback function to fire when event is raised.            |
-| `once`     | `boolean`     | Optional     | Listener will fire once and be removed (single fire).      |
-| `duration` | `miliseconds` | Optional     | Listener will be live and then removed after elapsed time. |
+| Name       | Type       | Default      | Description                                     |
+| ---------- | ---------- | ------------ | ----------------------------------------------- |
+| `event`    | `string`   | **Required** | Name of the event. _example: GMCP.Item.Add_     |
+| `callback` | `function` | **Required** | Callback function to fire when event is raised. |
+| `options`  | `Object`   | Optional     | Listener optional settings                      |
+
+### options: optional parameters
+
+| Name       | Type      | Default  | Description                                                                                |
+| ---------- | --------- | -------- | ------------------------------------------------------------------------------------------ |
+| `id`       | `string`  | guid     | Unique id for the listener. Defaults to the callback name or GUID if no name is available. |
+| `tags`     | `array`   | Optional | String tag ids for group and searching. IE ["nexSys", "gag"].                              |
+| `once`     | `boolean` | Optional | Single fire event. Will be removed on first execution.                                     |
+| `duration` | `int`     | Optional | Temporary event listener. Will be removed after the provided number of miliseconds         |
 
 Users can register an anonymous function to the event. This can be useful for quick snippets or temporary event listeners.
 
@@ -47,7 +55,7 @@ const singleFire = () => {
   console.log("single fire event");
 };
 // highlight-next-line
-eventStream.registerEvent("testEvent", testFunction, true);
+eventStream.registerEvent("testEvent", testFunction, { once: true });
 // Listener will only fire once after testEvent is raised.
 // This listener will not be present for subsequent testEvent events.
 ```
