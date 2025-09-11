@@ -130,29 +130,9 @@ const config = {
                 docId: "miniPackages/nexWorld",
               },
               {
-                type: "docSidebar",
-                label: "nexMsg",
-                sidebarId: "nexSysSidebar",
-              },
-              {
-                type: "docSidebar",
-                label: "nexTalisman",
-                sidebarId: "nexSysSidebar",
-              },
-              {
-                type: "docSidebar",
-                label: "nexShop",
-                sidebarId: "nexSysSidebar",
-              },
-              {
-                type: "docSidebar",
-                label: "nexCrafting",
-                sidebarId: "nexSysSidebar",
-              },
-              {
-                type: "docSidebar",
-                label: "nexMilling",
-                sidebarId: "nexSysSidebar",
+                type: "doc",
+                label: "nexGear",
+                sidebarId: "miniPackages/nexGear",
               },
             ],
           },

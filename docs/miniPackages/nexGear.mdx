@@ -1,0 +1,182 @@
+<!-- Insert a banner or screenshot of the nexGear UI here -->
+
+# nexGear
+
+`nexGear` is a package for the **Iron Realms Nexus client** that provides a streamlined, interactive way to manage all of your gear in Achaea.  
+It integrates directly with the Nexus UI to give you sortable, filterable tables, quick selection controls, and custom set management — all while storing your preferences automatically.
+
+---
+
+## 🌟 Features
+
+- **Interactive Gear Table**
+
+  - Built on [TanStack React Table](https://tanstack.com/table).
+  - Supports sorting, grouping, and filtering by any column.
+  - Clean UI that adapts to both light and dark themes.
+
+- **Set Management**
+
+  - Exclusive, radio-style slot selection for each **official set** (Fireplane, Waterplane, etc.).
+  - Multi-set assignment ✦ picker for **user-defined custom sets**.
+  - Automatic persistence to `window.nexGear.sets`.
+
+- **Trinket Management**
+
+  - Dedicated ✦ picker for trinkets, since they are not tied to a single set.
+  - Assign one trinket to multiple sets with a simple checklist.
+  - Supports both official and custom sets.
+
+- **Custom Sets**
+
+  - Create new set IDs via a **Manage Sets** popover.
+  - Add or delete custom sets on the fly.
+  - Immediately available in trinket and gear assignment pickers.
+
+- **Modal Integration**
+
+  - Fully integrated **NexDialog** with draggable/resizable modal.
+  - Footer controls:
+    - **Manage Sets** (left)
+    - **Clear Filters** and **Close** (right)
+
+- **Smart Grouping**
+
+  - When you group by the **Set** column, custom sets appear alongside official ones.
+  - Items display under every set they are assigned to.
+
+- **Persistence**
+  - All assignments and preferences are stored in `window.nexGear.sets`.
+  - Automatically reapplied on reload.
+
+<!-- Insert screenshot of gear table with Use + Set columns -->
+
+---
+
+## 📊 Gear Table Columns
+
+- **Actions** — quick action buttons for equipping/deleting items.
+- **Use** — radio buttons for official sets, ✦ picker for custom sets.
+- **Set** — displays the official set ID, or “Trinket” for trinkets.
+- **Slot** — slot type (head, chest, feet, trinket, etc).
+- **Name** — full item name.
+- **Rarity** — rarity classification.
+- **Status** — item status.
+- **Decay** — shows decay timer.
+- **Alterations** — any item alterations.
+- **Effect** — effect text (filterable).
+- **Constraint** — ✦ X indicator with tooltip for constraint details.
+
+<!-- Insert screenshot of constraint tooltip in action -->
+
+---
+
+## ⚙️ API & Commands
+
+The `nexGear` package exposes its configuration and state under the global object:
+
+```js
+window.nexGear;
+```
+
+### Structure
+
+```js
+window.nexGear = {
+  sets: {
+    [setId: string]: {
+      head?: itemId,
+      hands?: itemId,
+      chest?: itemId,
+      feet?: itemId,
+      trinket?: itemId,
+      // ...other slots
+    },
+    // e.g.
+    fireplane: {
+      head: 10123,
+      feet: 10555,
+    },
+    BossKiller: {
+      chest: 20202,
+      trinket: 30001,
+    }
+  }
+}
+```
+
+- **Official sets** (e.g., `fireplane`) — enforced “one item per slot”.
+- **Custom sets** (e.g., `BossKiller`) — user-defined; gear can come from any set.
+
+### API Usage
+
+- **Assign gear to a slot**
+
+  ```js
+  // Assign boots (id 10555) to fireplane feet
+  nexGear.sets.fireplane.feet = 10555;
+  ```
+
+- **Remove gear from a slot**
+
+  ```js
+  delete nexGear.sets.fireplane.feet;
+  ```
+
+- **Create a new custom set**
+
+  ```js
+  nexGear.sets.MyCustomSet = {};
+  ```
+
+- **Assign trinket to multiple sets**
+
+  ```js
+  nexGear.sets.fireplane.trinket = 30001;
+  nexGear.sets.BossKiller.trinket = 30001;
+  ```
+
+- **Delete a custom set**
+  ```js
+  delete nexGear.sets.BossKiller;
+  ```
+
+---
+
+## 🖱️ UI Interactions
+
+- **Radio button** — select exactly one gear piece per slot per official set.
+- **✦ icon button** — open the multi-set assignment picker:
+  - For trinkets: lists all sets.
+  - For standard gear: lists only custom sets.
+- **Manage Sets** — add/remove custom set IDs via footer popover.
+
+<!-- Insert animated gif of using Manage Sets popover -->
+
+---
+
+## 📌 Notes
+
+- All configuration is stored in the client session (`window.nexGear.sets`).
+- If you clear or reset the Nexus client, reloading your package will restore gear handling.
+- Custom sets are entirely client-side and won’t conflict with game mechanics.
+- Intended for **player convenience only** — it doesn’t change game rules, just how you manage your equipment.
+
+---
+
+## 🚀 Getting Started
+
+1. Install `nexGear` from npm/unpkg:
+
+   ```js
+   import("https://unpkg.com/nexgear/bundle.min.js");
+   ```
+
+2. Open the modal (`nexGear Control Panel`) in Nexus.
+3. Add your gear pieces and assign them to sets/trinkets.
+4. Optionally create custom sets for your own builds.
+5. Save and close — everything persists automatically.
+
+---
+
+<!-- Insert final screenshot of modal with custom sets and trinket picker -->
