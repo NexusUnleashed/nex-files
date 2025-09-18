@@ -132,7 +132,7 @@ const config = {
               {
                 type: "doc",
                 label: "nexGear",
-                sidebarId: "miniPackages/nexGear",
+                docId: "miniPackages/nexGear",
               },
             ],
           },
