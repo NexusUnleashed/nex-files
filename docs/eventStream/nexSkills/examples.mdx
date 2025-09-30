@@ -1,0 +1,100 @@
+# Examples
+
+## nexSkillMatch
+
+### Generic match
+
+The following is an example of a basic function tied to any nexSkill match. Typically this is a general match and any filtering logic will need to be done in the callback function
+
+```JSON title="Text received from the game with a matching nexSkill entry"
+Khaseem touches a tree of life tattoo.
+```
+
+_note: This is an example of one match. There are over 350 actions currently stored in nexSkills_
+
+#### Registered event listener
+
+```js
+const nexSkillGenericMatch = function (args) {
+  // Check if the match was a tattoo AND it was not us touching a tattoo.
+  if (args.skill == "tattoos" && args.matchType == "thirdPerson") {
+    nexusclient.display_notice(`${args.user} just touched a tattoo!`);
+    nexusclient.display_notice(
+      `${args.user} just touched a ${args.id} tattoo!`
+    );
+  }
+};
+eventStream.registerEvent("nexSkillMatch", nexSkillGenericMatch);
+```
+
+#### Expected result
+
+```
+  "Khaseem just touched a tattoo!"
+  "Khaseem just touched a tree tattoo!"
+```
+
+## nexSkillMatch.id
+
+### Specific skill match
+
+The following is an example of a basic function tied to any nexSkill match. Typically this is a general match and any filtering logic will need to be done in the callback function
+
+```JSON title="Text received from the game with a matching nexSkill entry"
+Khaseem touches a tree of life tattoo.
+```
+
+#### Registered event listener
+
+```js
+const nexSkillTreeMatch = function (args) {
+  // Someone else touched a tattoo.
+  if (args.matchType == "thirdPerson") {
+    nexusclient.display_notice(`${args.user} just touched a tattoo!`);
+    nexusclient.display_notice(
+      `${args.user} just touched a ${args.id} tattoo!`
+    );
+  }
+};
+eventStream.registerEvent("nexSkillMatch.tree", nexSkillTreeMatch);
+```
+
+#### Expected result
+
+```
+  "Khaseem just touched a tattoo!"
+  "Khaseem just touched a tree tattoo!"
+```
+
+## nexSkillMatch.id.type
+
+### Specific skill match
+
+The following is an example of a basic function tied to any nexSkill match. Typically this is a general match and any filtering logic will need to be done in the callback function
+
+```JSON title="Text received from the game with a matching nexSkill entry"
+Khaseem touches a tree of life tattoo.
+```
+
+#### Registered event listener
+
+```js
+const nexSkillTree3pMatch = function (args) {
+  // Someone else touched a tattoo.
+  nexusclient.display_notice(`${args.user} just touched a tattoo!`);
+  nexusclient.display_notice(`${args.user} just touched a ${args.id} tattoo!`);
+};
+eventStream.registerEvent(
+  "nexSkillMatch.tree.thirdPerson",
+  nexSkillTree3pMatch
+);
+```
+
+#### Expected result
+
+```
+  "Khaseem just touched a tattoo!"
+  "Khaseem just touched a tree tattoo!"
+```
+
+## nexSkillNpcMatch

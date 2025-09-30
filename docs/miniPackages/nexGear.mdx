@@ -1,0 +1,117 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { FaDiscord } from "react-icons/fa6";
+
+<!-- Insert a banner or screenshot of the nexGear UI here -->
+
+# nexGear
+
+`nexGear` is a package for the **Nexus** that provides a streamlined, interactive way to manage all of your gear in **Achaea**.
+
+It integrates directly with the Nexus UI to give you sortable, filterable tables, quick selection controls, and custom set management — all while storing your preferences automatically.
+
+## Download
+
+You can download the eventStream `.nxs` file from the following sources:
+
+<Tabs>
+<TabItem value="dropbox" label="Dropbox" default>
+    [Download from
+    Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
+
+  </TabItem>
+</Tabs>
+
+---
+
+<!-- Insert final screenshot of modal with custom sets and trinket picker -->
+
+---
+
+## 🌟 Features
+
+- **Interactive Gear Table**
+
+  - Built on [TanStack React Table](https://tanstack.com/table).
+  - Supports sorting, grouping, and filtering by any column.
+  - Clean UI that adapts to both light and dark themes.
+
+- **Set Management**
+
+  - Exclusive, radio-style slot selection for each **official set** (Fireplane, Waterplane, etc.).
+  - Multi-set assignment ✦ picker for **user-defined custom sets**.
+  - Automatic persistence to `window.nexGear.sets`.
+
+- **Trinket Management**
+
+  - Dedicated ✦ picker for trinkets, since they are not tied to a single set.
+  - Assign one trinket to multiple sets with a simple checklist.
+  - Supports both official and custom sets.
+
+- **Custom Sets**
+
+  - Create new set IDs via a **Manage Sets** popover.
+  - Add or delete custom sets on the fly.
+  - Immediately available in trinket and gear assignment pickers.
+
+- **Modal Integration**
+
+  - Fully integrated **NexDialog** with draggable/resizable modal.
+  - Footer controls:
+    - **Manage Sets** (left)
+    - **Clear Filters** and **Close** (right)
+
+- **Smart Grouping**
+
+  - When you group by the **Set** column, custom sets appear alongside official ones.
+  - Items display under every set they are assigned to.
+
+- **Persistence**
+  - All assignments and preferences are stored in `window.nexGear.sets`.
+  - Automatically reapplied on reload.
+
+<!-- Insert screenshot of gear table with Use + Set columns -->
+
+---
+
+## 📊 Gear Table Columns
+
+- **Actions** — quick action buttons for equipping/deleting items.
+- **Use** — radio buttons for official sets, ✦ picker for custom sets.
+- **Set** — displays the official set ID, or “Trinket” for trinkets.
+- **Slot** — slot type (head, chest, feet, trinket, etc).
+- **Name** — full item name.
+- **Rarity** — rarity classification.
+- **Status** — item status.
+- **Decay** — shows decay timer "remaining(max").
+- **Alterations** — any item alterations (WIP).
+- **Effect** — effect text (filterable).
+- **Constraint** — ✦ X indicator with tooltip for constraint details.
+
+<!-- Insert screenshot of constraint tooltip in action -->
+
+---
+
+## ⚙️ API & Commands
+
+COMING SOON
+
+---
+
+### API Usage
+
+COMING SOON
+
+---
+
+## 🖱️ UI Interactions
+
+- **Radio button** — select exactly one gear piece per slot per official set.
+- **✦ icon button** — open the multi-set assignment picker:
+  - For trinkets: lists all sets.
+  - For standard gear: lists only custom sets.
+- **Manage Sets** — add/remove custom set IDs via footer popover.
+
+<!-- Insert animated gif of using Manage Sets popover -->
+
+---
