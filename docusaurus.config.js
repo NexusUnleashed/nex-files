@@ -112,6 +112,12 @@ const config = {
             position: "left",
             label: "Nexus",
           },
+          {
+            type: "doc",
+            docId: "classleads/class-skills-tree",
+            position: "left",
+            label: "Classleads",
+          },
           { to: "/blog", label: "Blog", position: "right" },
           {
             href: "https://github.com/NexusUnleashed/nex-files",

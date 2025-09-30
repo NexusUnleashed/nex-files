@@ -1,0 +1,53 @@
+---
+id: class-skills-tree
+title: Class Skills Tree with Changes
+sidebar_label: Class Skills Tree
+---
+
+import data from '../static/classleads_data.json';
+
+# Class Skills Tree
+
+Drag-and-drop update: replace `static/classleads_data.json` and rebuild. The tree below renders from that JSON.
+
+
+<input type="text" id="skillSearch" placeholder="Filter changes..." style={{padding:'8px', width:'100%', maxWidth:'500px', marginBottom:'12px'}} onInput={(e)=>{
+  const q = e.target.value.toLowerCase();
+  for (const el of document.querySelectorAll('[data-change-line]')) {
+    const show = el.getAttribute('data-text').toLowerCase().includes(q);
+    el.style.display = show ? '' : 'none';
+  }
+}}/>
+
+<div>
+
+{Object.keys(data.classes).sort().map(cls => (
+  <details key={cls}>
+    <summary><strong>{cls}</strong></summary>
+    {data.classes[cls].map(skill => (
+      <details key={skill} id={skill.toLowerCase()}>
+        <summary><strong>{skill}</strong></summary>
+        {(data.skills[skill] && data.skills[skill].length) ? (
+          <ul>
+            {data.skills[skill].map((chg, i) => (
+              <li key={i} data-change-line data-text={`${chg.text} ${chg.dateDisplay||''}`}>
+                {chg.text} {chg.dateDisplay ? <em>({chg.dateDisplay})</em> : null}
+              </li>
+            ))}
+          </ul>
+        ) : <p>No changes recorded.</p>}
+      </details>
+    ))}
+  </details>
+))}
+</div>
+
+
+## Skill Groups
+
+{Array.from(new Set(Object.values(data.classes).flat())).sort().map(s => (<div key={s}>- <a href={`#${s.toLowerCase()}`}>{s}</a></div>))}
+
+
+## Unmapped Skills
+
+{(data.unmappedSkills && data.unmappedSkills.length) ? (<ul>{data.unmappedSkills.map(s=>(<li key={s}><a href={`#${s.toLowerCase()}`}>{s}</a></li>))}</ul>) : <p>None.</p>}
