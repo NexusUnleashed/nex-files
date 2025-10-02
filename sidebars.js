@@ -11,6 +11,23 @@
 
 // @ts-check
 
+const classleadsData = require("./docs/classleads/classleads_data.json");
+
+const classSkillsDocId = "classleads/class-skills-tree";
+const classSkillsDocPath = `/nex-files/docs/${classSkillsDocId}`;
+const classleadsSidebarItems = Object.entries(classleadsData.classes || {})
+  .sort(([classA], [classB]) => classA.localeCompare(classB))
+  .map(([className, skills]) => ({
+    type: "category",
+    label: className,
+    collapsed: true,
+    items: (Array.isArray(skills) ? skills : []).map((skill) => ({
+      type: "link",
+      label: skill,
+      href: `${classSkillsDocPath}#${skill.toLowerCase()}`,
+    })),
+  }));
+
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
@@ -139,6 +156,10 @@ const sidebars = {
       items: ["insight/introduction", "insight/api"],
     },
   ],
+  classleadsSidebar: [
+    { type: "doc", id: classSkillsDocId },
+    ...classleadsSidebarItems,
+  ],
   nexusSidebar: [
     {
       type: "category",
@@ -189,3 +210,4 @@ const sidebars = {
 };
 
 export default sidebars;
+
