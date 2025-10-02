@@ -28,3 +28,18 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Hide the generated h2 headings in the Classleads page while keeping them in the ToC */
+#classleads-skilltree h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
+
+/* Styling for the small class label next to each skill name */
+.skill-classes {
+  margin-left: 0.5rem;
+  font-weight: 400;
+}

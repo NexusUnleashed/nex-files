@@ -112,9 +112,10 @@ const config = {
             position: "left",
             label: "Nexus",
           },
+
           {
-            type: "doc",
-            docId: "classleads/class-skills-tree",
+            type: "docSidebar",
+            sidebarId: "classleadsSidebar",
             position: "left",
             label: "Classleads",
           },
