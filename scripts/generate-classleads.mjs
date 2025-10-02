@@ -65,8 +65,6 @@ function buildDoc(data) {
   let body = "";
 
   body += "# Class Skills Tree\n\n";
-  body +=
-    "Drag-and-drop update: replace `static/classleads_data.json` and rebuild. The list below renders from that JSON.\n\n";
   // Wrap all generated skill sections so we can target headings via global CSS
   body += '<div id="classleads-skilltree">\n\n';
 
