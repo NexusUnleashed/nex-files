@@ -1,0 +1,402 @@
+# Events
+
+Insight raises events throughout its operation that you can listen to and respond to in your scripts. These events allow you to react to changes in afflictions, defenses, balances, limbs, and more.
+
+## Core Events
+
+### insightLoaded
+
+Raised when the Insight package has finished loading and is ready to use.
+
+```js
+eventStream.registerEvent("insightLoaded", function () {
+  console.log("Insight is ready!");
+});
+```
+
+### insightAffsUpdated
+
+Raised whenever afflictions are updated on any target. This is useful for triggering display updates or other reactions to affliction changes.
+
+```js
+eventStream.registerEvent("insightAffsUpdated", function () {
+  // Update your UI or take other actions
+  console.log("Afflictions updated");
+});
+```
+
+## Affliction Events
+
+### insightGotAff
+
+Raised when a target gains any affliction. The event payload is the Affliction object containing `id`, `player`, `probability`, and `have` properties.
+
+```js
+eventStream.registerEvent("insightGotAff", function (aff) {
+  console.log(`${aff.player.id} gained ${aff.id}`);
+  console.log(`Probability: ${aff.probability}`);
+});
+```
+
+### insightGotAff{afflictionId}
+
+Raised when a target gains a specific affliction. Replace `{afflictionId}` with the actual affliction name (e.g., `insightGotAffasthma`, `insightGotAffparalysis`).
+
+```js
+eventStream.registerEvent("insightGotAffasthma", function (aff) {
+  console.log(`Target gained asthma!`);
+  // Take specific action for asthma
+});
+
+eventStream.registerEvent("insightGotAffparalysis", function (aff) {
+  console.log(`Target gained paralysis!`);
+});
+```
+
+### insightLostAff
+
+Raised when a target loses any affliction. The event payload is the Affliction object.
+
+```js
+eventStream.registerEvent("insightLostAff", function (aff) {
+  console.log(`${aff.player.id} lost ${aff.id}`);
+});
+```
+
+### insightLostAff{afflictionId}
+
+Raised when a target loses a specific affliction. Replace `{afflictionId}` with the actual affliction name.
+
+```js
+eventStream.registerEvent("insightLostAffasthma", function (aff) {
+  console.log(`Target cured asthma!`);
+});
+
+eventStream.registerEvent("insightLostAffparalysis", function (aff) {
+  console.log(`Target cured paralysis!`);
+});
+```
+
+## Defense Events
+
+### insightGotDef
+
+Raised when a target gains any defense. The event payload is the Defence object containing `id`, `player`, and `have` properties.
+
+```js
+eventStream.registerEvent("insightGotDef", function (def) {
+  console.log(`${def.player.id} gained defense: ${def.id}`);
+});
+```
+
+### insightGotDef{defenseId}
+
+Raised when a target gains a specific defense. Replace `{defenseId}` with the actual defense name (e.g., `insightGotDefrebounding`, `insightGotDefshield`).
+
+```js
+eventStream.registerEvent("insightGotDefrebounding", function (def) {
+  console.log(`Target put up rebounding!`);
+  // Stop attacking or raze
+});
+
+eventStream.registerEvent("insightGotDefshield", function (def) {
+  console.log(`Target has shield!`);
+});
+```
+
+### insightLostDef
+
+Raised when a target loses any defense. The event payload is the Defence object.
+
+```js
+eventStream.registerEvent("insightLostDef", function (def) {
+  console.log(`${def.player.id} lost defense: ${def.id}`);
+});
+```
+
+### insightLostDef{defenseId}
+
+Raised when a target loses a specific defense. Replace `{defenseId}` with the actual defense name.
+
+```js
+eventStream.registerEvent("insightLostDefrebounding", function (def) {
+  console.log(`Target lost rebounding!`);
+  // Resume attacking
+});
+
+eventStream.registerEvent("insightLostDefshield", function (def) {
+  console.log(`Target's shield dropped!`);
+});
+```
+
+## Balance Events
+
+### insightGotBal
+
+Raised when a balance is regained. The event payload is the Balance object containing `id`, `player`, `have`, and `timer` properties.
+
+```js
+eventStream.registerEvent("insightGotBal", function (bal) {
+  console.log(`${bal.player.id} regained ${bal.id}`);
+});
+```
+
+### insightGotBal{balanceId}
+
+Raised when a specific balance is regained. Replace `{balanceId}` with the actual balance name (e.g., `insightGotBalbalance`, `insightGotBalequilibrium`, `insightGotBalsip`).
+
+```js
+eventStream.registerEvent("insightGotBalbalance", function (bal) {
+  console.log(`Regained balance!`);
+  // Execute next attack
+});
+
+eventStream.registerEvent("insightGotBalequilibrium", function (bal) {
+  console.log(`Regained equilibrium!`);
+});
+
+eventStream.registerEvent("insightGotBalsip", function (bal) {
+  console.log(`Can sip again!`);
+});
+```
+
+### insightLostBal
+
+Raised when a balance is lost. The event payload is the Balance object.
+
+```js
+eventStream.registerEvent("insightLostBal", function (bal) {
+  console.log(`${bal.player.id} lost ${bal.id}`);
+});
+```
+
+### insightLostBal{balanceId}
+
+Raised when a specific balance is lost. Replace `{balanceId}` with the actual balance name.
+
+```js
+eventStream.registerEvent("insightLostBalbalance", function (bal) {
+  console.log(`Lost balance!`);
+});
+
+eventStream.registerEvent("insightLostBalequilibrium", function (bal) {
+  console.log(`Lost equilibrium!`);
+});
+```
+
+## Limb Events
+
+### insightLimbHit
+
+Raised when any limb is hit and takes damage. The event payload is the Limb object containing `id`, `player`, `percent`, and `timer` properties.
+
+```js
+eventStream.registerEvent("insightLimbHit", function (limb) {
+  console.log(`${limb.id} hit! Damage: ${limb.percent}%`);
+});
+```
+
+### insightLimbHit{limbId}
+
+Raised when a specific limb is hit. Replace `{limbId}` with the actual limb name (e.g., `insightLimbHitleftarm`, `insightLimbHitrightleg`).
+
+```js
+eventStream.registerEvent("insightLimbHitleftarm", function (limb) {
+  console.log(`Left arm hit! Damage: ${limb.percent}%`);
+});
+
+eventStream.registerEvent("insightLimbHitrightleg", function (limb) {
+  console.log(`Right leg hit! Damage: ${limb.percent}%`);
+  if (limb.percent >= 80) {
+    console.log(`Right leg close to breaking!`);
+  }
+});
+```
+
+### insightLimbBreak
+
+Raised when any limb breaks (reaches 100% damage). The event payload is the Limb object.
+
+```js
+eventStream.registerEvent("insightLimbBreak", function (limb) {
+  console.log(`${limb.id} broke!`);
+});
+```
+
+### insightLimbBreak{limbId}
+
+Raised when a specific limb breaks. Replace `{limbId}` with the actual limb name.
+
+```js
+eventStream.registerEvent("insightLimbBreakleftarm", function (limb) {
+  console.log(`Left arm broke!`);
+  // Switch limb targeting
+});
+
+eventStream.registerEvent("insightLimbBreakrightleg", function (limb) {
+  console.log(`Right leg broke!`);
+});
+```
+
+### insightLimbReset
+
+Raised when any limb damage is reset (typically after healing or timeout). The event payload is the Limb object.
+
+```js
+eventStream.registerEvent("insightLimbReset", function (limb) {
+  console.log(`${limb.id} damage reset`);
+});
+```
+
+### insightLimbReset{limbId}
+
+Raised when a specific limb's damage is reset. Replace `{limbId}` with the actual limb name.
+
+```js
+eventStream.registerEvent("insightLimbResetleftarm", function (limb) {
+  console.log(`Left arm damage reset`);
+});
+
+eventStream.registerEvent("insightLimbResetrightleg", function (limb) {
+  console.log(`Right leg damage reset`);
+});
+```
+
+## Cure Events
+
+### insightUsedCure
+
+Raised when a cure is used by any target. The event payload contains `id` (cure name) and `person` (Player object).
+
+```js
+eventStream.registerEvent("insightUsedCure", function (data) {
+  console.log(`${data.person.id} used ${data.id}`);
+});
+```
+
+### insightUsedCure{cureId}
+
+Raised when a specific cure is used. Replace `{cureId}` with the actual cure name (e.g., `insightUsedCurekelp`, `insightUsedCureginseng`).
+
+```js
+eventStream.registerEvent("insightUsedCurekelp", function (person) {
+  console.log(`${person.id} ate kelp`);
+  // Update affliction probabilities
+});
+
+eventStream.registerEvent("insightUsedCureginseng", function (person) {
+  console.log(`${person.id} ate ginseng`);
+});
+
+eventStream.registerEvent("insightUsedCuremending", function (person) {
+  console.log(`${person.id} applied mending salve`);
+});
+```
+
+## Timer Events
+
+Timer events are raised by the Timer class used internally by Insight for tracking durations.
+
+### timerReset{timerId}
+
+Raised when a timer is reset. Replace `{timerId}` with the actual timer identifier.
+
+```js
+eventStream.registerEvent("timerResetinsightTimerasthma", function () {
+  console.log(`Asthma timer reset`);
+});
+```
+
+### timerStarted{timerId}
+
+Raised when a timer starts. Replace `{timerId}` with the actual timer identifier.
+
+```js
+eventStream.registerEvent("timerStartedinsightTimerasthma", function () {
+  console.log(`Asthma timer started`);
+});
+```
+
+### timerStopped{timerId}
+
+Raised when a timer stops. Replace `{timerId}` with the actual timer identifier.
+
+```js
+eventStream.registerEvent("timerStoppedinsightTimerasthma", function () {
+  console.log(`Asthma timer stopped`);
+});
+```
+
+## Skill Events
+
+### insight.{skill}.{ability}
+
+Raised when a skill ability is detected. Replace `{skill}` with the skill name and `{ability}` with the ability name (e.g., `insight.occultism.instill`, `insight.elementalism.staffstrike`).
+
+```js
+eventStream.registerEvent("insight.occultism.instill", function (args) {
+  console.log(`Occultism instill detected`);
+  console.log(args); // Contains match details
+});
+
+eventStream.registerEvent("insight.elementalism.staffstrike", function (args) {
+  console.log(`Staff strike detected`);
+});
+```
+
+## Example: Complete Combat System Integration
+
+```js
+// Track when target cures
+eventStream.registerEvent("insightUsedCure", function (data) {
+  if (data.person.id === insight.target.id) {
+    console.log(`Target used ${data.id}`);
+    // Adjust offense based on cure used
+  }
+});
+
+// React to specific afflictions
+eventStream.registerEvent("insightGotAffasthma", function (aff) {
+  if (aff.player.id === insight.target.id && aff.probability >= 0.8) {
+    console.log(`High probability asthma - good for lock!`);
+  }
+});
+
+eventStream.registerEvent("insightGotAffparalysis", function (aff) {
+  if (aff.player.id === insight.target.id) {
+    console.log(`Target paralyzed`);
+  }
+});
+
+// Track defenses for offense
+eventStream.registerEvent("insightGotDefrebounding", function (def) {
+  if (def.player.id === insight.target.id) {
+    console.log(`Need to raze rebounding`);
+    // Trigger raze ability
+  }
+});
+
+// Monitor limb breaks
+eventStream.registerEvent("insightLimbBreak", function (limb) {
+  if (limb.player.id === insight.target.id) {
+    console.log(`${limb.id} broke - switching target`);
+    // Switch to different limb
+  }
+});
+
+// Wait for balances before attacking
+eventStream.registerEvent("insightGotBalbalance", function (bal) {
+  if (insight.hasBal({ id: "equilibrium" })) {
+    console.log(`Have both balance and equilibrium - attacking!`);
+    // Execute attack
+  }
+});
+```
+
+## Tips
+
+- Use specific events (like `insightGotAffasthma`) when you only care about one affliction to improve performance
+- Use general events (like `insightGotAff`) when you want to handle multiple afflictions with the same logic
+- Check `aff.probability` in affliction events to make decisions based on confidence levels
+- The `insightAffsUpdated` event is useful for updating displays or UIs
+- Balance and timer events can help you create responsive offense systems that wait for the right moment to act
