@@ -7,9 +7,7 @@ nexSys ships with a dedicated configuration dialog that drives all runtime setti
 ## Open the dialog
 
 ```js
-nexSys.evt.dispatchEvent(
-  new CustomEvent("nexSys-config-dialog", { detail: true })
-);
+ns config
 ```
 
 ## Configuration tabs
@@ -22,39 +20,39 @@ nexSys.evt.dispatchEvent(
 
 ## System settings reference
 
-| Setting | Type | Default | Description |
-| --- | --- | --- | --- |
-| `sep` | string | `false` | Command separator used for multi command sends. Required. |
-| `customPrompt` | boolean | `false` | Enable the custom nexSys prompt overlay. |
-| `overrideTab` | boolean | `false` | Enable nexSys tab completion override. |
-| `loadOnLogin` | boolean | `false` | Load settings automatically on login. |
-| `queueWhilePaused` | boolean | `false` | Allow queues to send while paused. |
-| `echoOutput` | boolean | `true` | Echo the system output line to notices. |
-| `echoAffGot` | boolean | `false` | Echo affliction gained events. |
-| `echoAffLost` | boolean | `false` | Echo affliction lost events. |
-| `echoDefGot` | boolean | `false` | Echo defence gained events. |
-| `echoDefLost` | boolean | `false` | Echo defence lost events. |
-| `echoBalanceGot` | boolean | `false` | Echo balance regained events. |
-| `echoBalanceLost` | boolean | `false` | Echo balance lost events. |
-| `echoTrackableGot` | boolean | `false` | Echo trackable gained events. |
-| `echoTrackableLost` | boolean | `false` | Echo trackable lost events. |
-| `echoPrioritySet` | boolean | `false` | Echo priority updates. |
-| `curingMethod` | string | `Transmutation` | Server side curing method. |
-| `sipPriority` | string | `Health` | Sip preference for serverside curing. |
-| `sipHealthAt` | number | `80` | Sip health threshold (percent). |
-| `sipManaAt` | number | `80` | Sip mana threshold (percent). |
-| `mossHealthAt` | number | `80` | Moss health threshold (percent). |
-| `mossManaAt` | number | `80` | Moss mana threshold (percent). |
-| `focus` | boolean | `true` | Enable focus curing. |
-| `focusOverHerbs` | boolean | `true` | Prefer focus over herbs. |
-| `tree` | boolean | `true` | Enable tree usage. |
-| `clot` | boolean | `true` | Enable clotting. |
-| `clotAt` | number | `5` | Clot threshold. |
-| `insomnia` | boolean | `true` | Enable insomnia. |
-| `fracturesAbove` | number | `30` | Fracture threshold (percent). |
-| `manaAbilitiesAbove` | number | `1` | Mana ability threshold (percent). |
-| `clotAbove` | number | `25` | Clot threshold (percent health). |
-| `batch` | boolean | `true` | Enable serverside batching. |
+| Setting              | Type    | Default         | Description                                               |
+| -------------------- | ------- | --------------- | --------------------------------------------------------- |
+| `sep`                | string  | `false`         | Command separator used for multi command sends. Required. |
+| `customPrompt`       | boolean | `false`         | Enable the custom nexSys prompt overlay.                  |
+| `overrideTab`        | boolean | `false`         | Enable nexSys tab completion override.                    |
+| `loadOnLogin`        | boolean | `false`         | Load settings automatically on login.                     |
+| `queueWhilePaused`   | boolean | `false`         | Allow queues to send while paused.                        |
+| `echoOutput`         | boolean | `true`          | Echo the system output line to notices.                   |
+| `echoAffGot`         | boolean | `false`         | Echo affliction gained events.                            |
+| `echoAffLost`        | boolean | `false`         | Echo affliction lost events.                              |
+| `echoDefGot`         | boolean | `false`         | Echo defence gained events.                               |
+| `echoDefLost`        | boolean | `false`         | Echo defence lost events.                                 |
+| `echoBalanceGot`     | boolean | `false`         | Echo balance regained events.                             |
+| `echoBalanceLost`    | boolean | `false`         | Echo balance lost events.                                 |
+| `echoTrackableGot`   | boolean | `false`         | Echo trackable gained events.                             |
+| `echoTrackableLost`  | boolean | `false`         | Echo trackable lost events.                               |
+| `echoPrioritySet`    | boolean | `false`         | Echo priority updates.                                    |
+| `curingMethod`       | string  | `Transmutation` | Server side curing method.                                |
+| `sipPriority`        | string  | `Health`        | Sip preference for serverside curing.                     |
+| `sipHealthAt`        | number  | `80`            | Sip health threshold (percent).                           |
+| `sipManaAt`          | number  | `80`            | Sip mana threshold (percent).                             |
+| `mossHealthAt`       | number  | `80`            | Moss health threshold (percent).                          |
+| `mossManaAt`         | number  | `80`            | Moss mana threshold (percent).                            |
+| `focus`              | boolean | `true`          | Enable focus curing.                                      |
+| `focusOverHerbs`     | boolean | `true`          | Prefer focus over herbs.                                  |
+| `tree`               | boolean | `true`          | Enable tree usage.                                        |
+| `clot`               | boolean | `true`          | Enable clotting.                                          |
+| `clotAt`             | number  | `5`             | Clot threshold.                                           |
+| `insomnia`           | boolean | `true`          | Enable insomnia.                                          |
+| `fracturesAbove`     | number  | `30`            | Fracture threshold (percent).                             |
+| `manaAbilitiesAbove` | number  | `1`             | Mana ability threshold (percent).                         |
+| `clotAbove`          | number  | `25`            | Clot threshold (percent health).                          |
+| `batch`              | boolean | `true`          | Enable serverside batching.                               |
 
 ## Storage
 

@@ -8,12 +8,10 @@ Install [eventStream](../eventStream/introduction.mdx) first, then install nexSy
 
 ## 2. Open the configuration dialog
 
-If the dialog does not open automatically, run this in the Nexus console or a function block:
+If the dialog does not open automatically, run this in the command line:
 
 ```js
-nexSys.evt.dispatchEvent(
-  new CustomEvent("nexSys-config-dialog", { detail: true })
-);
+ns config;
 ```
 
 <!-- TODO: Add a screenshot of the config dialog. -->

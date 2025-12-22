@@ -18,12 +18,10 @@ This downloads the crowdmap data and builds the map graph (this can take a few s
 
 ## 3. Open the configuration dialog
 
-If the dialog does not open automatically, run this in the Nexus console or a function block:
+If the dialog does not open automatically, run this in the command input :
 
 ```js
-nexMap.status.evt.dispatchEvent(
-  new CustomEvent("nexMap-config-dialog", { detail: true })
-);
+nm config
 ```
 
 <!-- TODO: Add a screenshot of the configuration dialog. -->

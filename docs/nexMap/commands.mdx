@@ -6,40 +6,39 @@ Most nexMap commands are available via the `nm` alias. Use `nm` to list commands
 
 ## Standard commands
 
-| Command | Description |
-| --- | --- |
-| `nm load` | Load the map and build the graph. |
-| `nm config` | Open the configuration dialog. |
-| `nm save` | Save current settings. |
-| `nm find <string>` | Search room names and display results. |
-| `nm area <string>` | Search area names and display results. |
-| `nm npc <string>` | Search the NPC database and display results. |
-| `nm info` | Print the current GMCP room information. |
-| `nm goto <roomId>` | Route to the specified room ID. |
-| `nm goto <area or mark>` | Route to a matching area or landmark. |
-| `nm mark <label>` | Create a landmark at the current room. |
-| `nm marks` | Show all landmarks and click to route. |
-| `nm stop` | Cancel pathing. |
-| `nm zoom <0.2-3>` | Set map zoom level. |
-| `nm fit` | Fit the map to the display. |
-| `nm center` | Center the map on your current room. |
-| `nm refresh` | Refresh map display and styles. |
-| `nm wormholes` | Toggle wormhole routing. |
-| `nm clouds` | Toggle low and high clouds. |
-| `nm treasureHunt` | Highlight diggable rooms and set treasure hunt triggers. |
+| Command                  | Description                                              |
+| ------------------------ | -------------------------------------------------------- |
+| `nm load`                | Load the map and build the graph.                        |
+| `nm config`              | Open the configuration dialog.                           |
+| `nm save`                | Save current settings.                                   |
+| `nm find <string>`       | Search room names and display results.                   |
+| `nm area <string>`       | Search area names and display results.                   |
+| `nm npc <string>`        | Search the NPC database and display results.             |
+| `nm info`                | Print the current GMCP room information.                 |
+| `nm goto <roomId>`       | Route to the specified room ID.                          |
+| `nm goto <area or mark>` | Route to a matching area or landmark.                    |
+| `nm mark <label>`        | Create a landmark at the current room.                   |
+| `nm marks`               | Show all landmarks and click to route.                   |
+| `nm stop`                | Cancel pathing.                                          |
+| `nm zoom <0.2-3>`        | Set map zoom level.                                      |
+| `nm fit`                 | Fit the map to the display.                              |
+| `nm center`              | Center the map on your current room.                     |
+| `nm refresh`             | Refresh map display and styles.                          |
+| `nm wormholes`           | Toggle wormhole routing.                                 |
+| `nm clouds`              | Toggle low and high clouds.                              |
+| `nm treasureHunt`        | Highlight diggable rooms and set treasure hunt triggers. |
 
 ## Tracking commands
 
 These are available via the console or `nm` if your alias table includes them.
 
-| Command | Description |
-| --- | --- |
-| `nm track <roomId> [name]` | Track a target in a room. |
-| `nm trackSubject <type> <roomId> [name] [center]` | Track a subject type (`target`, `doppleganger`, `pet`). |
-| `nm trackDoppleganger <roomId> [name]` | Track a doppleganger. |
-| `nm trackPet <roomId> [name]` | Track a pet. |
-| `nm untrack [type]` | Clear a single tracked subject or all. |
-| `nm listTracked` | List current tracked subjects. |
+| Command                                           | Description                             |
+| ------------------------------------------------- | --------------------------------------- |
+| `nm track <roomId> [name]`                        | Track a target in a room.               |
+| `nm trackSubject <type> <roomId> [name] [center]` | Track a subject type (`target`, `pet`). |
+| `nm trackPet <roomId> [name]`                     | Track a pet.                            |
+| `nm untrack [type]`                               | Clear a single tracked subject or all.  |
+| `nm listTracked`                                  | List current tracked subjects.          |
 
 ## Advanced commands
 
