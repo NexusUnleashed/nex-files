@@ -1,0 +1,49 @@
+---
+title: API
+---
+
+nexMap exposes a global `nexMap` object. Most users only need the `aliases` and `settings` modules, but the full API is available for advanced integrations.
+
+## Core modules
+
+| Property | Description |
+| --- | --- |
+| `nexMap.status` | Runtime state, current room, area, tracking, and version. |
+| `nexMap.settings` | User preferences and save helpers. |
+| `nexMap.aliases` | Command handlers for `nm` commands. |
+| `nexMap.walker` | Pathing and hybrid route logic. |
+| `nexMap.wormholes` | Wormhole tracking data. |
+| `nexMap.tracking` | Subject tracking API. |
+| `nexMap.display` | Table rendering and notices. |
+| `nexMap.styles` | Cytoscape style helpers. |
+| `nexMap.mudmap` | Parsed crowdmap data and area lists. |
+
+## Common snippets
+
+```js
+// Path to a room
+nexMap.aliases.goto(3885);
+
+// Open the config dialog
+nexMap.status.evt.dispatchEvent(
+  new CustomEvent("nexMap-config-dialog", { detail: true })
+);
+
+// Toggle wormholes and save
+nexMap.settings.toggleWormholes(true);
+nexMap.settings.save();
+
+// Track a target
+nexMap.tracking.trackSubject("target", 100, "Target Name");
+```
+
+## Admin-only functions
+
+Some functions are only exposed to the package author (a built in auth check):
+
+- `nexMap.findRoom`, `nexMap.findRooms`
+- `nexMap.startUp`, `nexMap.changeRoom`
+- `nexMap.mongo`
+- `nexMap.wormholes.addWormhole`, `removeWormhole`, `wormholeFound`, `wormholeProcessSources`
+
+If these are not present, your package build does not enable admin access.

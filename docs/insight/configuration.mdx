@@ -1,0 +1,37 @@
+---
+title: Configuration
+---
+
+insight uses runtime settings on `insight.reporting` and internal state on `insight.state`.
+
+## Reporting settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `promptDisplay` | `true` | Show afflictions on prompt updates. |
+| `shouldShow` | `false` | Internal flag used to prevent spam. |
+| `notices` | `false` | Show notice output on aff/def updates. |
+| `shortNames` | `true` | Use abbreviations in displays. |
+| `colors` | `true` | Enable colored display output. |
+| `logging` | `false` | Enable console logging. |
+| `probabilityThreshold` | `0` | Minimum aff probability to display. |
+
+Example:
+
+```js
+insight.reporting.notices = true;
+insight.reporting.probabilityThreshold = 0.4;
+```
+
+## State settings
+
+| Property | Description |
+| --- | --- |
+| `state.queues` | Internal tracking of outgoing queues. |
+| `state.serverAliases` | Captured serverside alias info. |
+| `state.logging` | Low level debug logging. |
+| `state.lastQueue` | Last seen queue command. |
+
+## Prompt display styling
+
+Prompt output uses the abbreviations and colors defined in `display.affAbbrev`.

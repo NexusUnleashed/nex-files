@@ -1,0 +1,55 @@
+---
+title: Quickstart
+---
+
+## 1. Install dependencies
+
+Install [eventStream](../eventStream/introduction.mdx) first, then install nexMap.
+
+## 2. Load the map
+
+If you did not enable auto load, run:
+
+```text
+nm load
+```
+
+This downloads the crowdmap data and builds the map graph (this can take a few seconds).
+
+## 3. Open the configuration dialog
+
+If the dialog does not open automatically, run this in the Nexus console or a function block:
+
+```js
+nexMap.status.evt.dispatchEvent(
+  new CustomEvent("nexMap-config-dialog", { detail: true })
+);
+```
+
+<!-- TODO: Add a screenshot of the configuration dialog. -->
+
+## 4. Set key options
+
+- **Command separator:** set a separator you do not use for normal commands (default is `\`).
+- **Celerity:** adjust to match your movement speed (default `3`).
+- Enable travel options you own (wormholes, clouds, tarot, etc.).
+
+## 5. Try your first route
+
+- Click a room on the map to path to it, or
+- Run `nm goto <roomId>` for a direct route, or
+- Run `nm goto <area name>` to route to a known area.
+
+## 6. Save settings
+
+Click **Save** in the dialog or run:
+
+```text
+nm save
+```
+
+## 7. Validate
+
+- Run `nexMap.status.loaded` and confirm it is `true`.
+- Run `nexMap.status.currentRoom` and confirm it matches GMCP.
+- Watch for `nexMapLoaded` or `nexMapPathingStart` events if you use eventStream logging.

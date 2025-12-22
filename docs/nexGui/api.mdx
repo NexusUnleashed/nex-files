@@ -1,0 +1,37 @@
+---
+title: API
+---
+
+nexGui exposes a global `nexGui` object. Most users interact with tabs and Game Options, but the API is available for custom scripts.
+
+## Core modules
+
+| Property | Description |
+| --- | --- |
+| `nexGui.tabs` | Tab registry and theme configuration. |
+| `nexGui.stream` | System and combat stream buffers. |
+| `nexGui.timers` | Timer registry and helpers. |
+| `nexGui.colors` | Ally/enemy formatting, gradients, and room text replacements. |
+| `nexGui.party` | Party management state. |
+| `nexGui.stats` | Play statistics (instance/session/month). |
+| `nexGui.virtual` | Infinite display and virtual buffer helpers. |
+| `nexGui.cdb` | Character database and who list helpers. |
+| `nexGui.msg` | Message formatting helpers. |
+| `nexGui.notice` | Styled output helper. |
+
+## Common snippets
+
+```js
+// Add a 30s timer at the top of the timers tab
+nexGui.timers.add("sip", "Sip Cooldown", 30, "top");
+
+// Toggle system stream on
+nexGui.settings.options.systemStream = true;
+
+// Rebuild tabs (after layout changes)
+nexGui.startUp();
+```
+
+## Admin-only features
+
+If your character matches the internal auth key, `nexGui.mongo` is exposed for database operations and `nexGui.mongo.updatePlayer` can force a CDB refresh.

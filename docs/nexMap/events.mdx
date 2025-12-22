@@ -1,0 +1,35 @@
+---
+title: Events
+---
+
+nexMap uses eventStream for its internal event model. Subscribe to these events to integrate other packages with map state changes.
+
+## Emitted events
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `nexMapLoaded` | none | Map has been loaded and rendered. |
+| `nexMapRoomChanged` | none | Current room changed; read from `nexMap.status`. |
+| `nexMapRoomChanged.<roomId>` | none | Room specific change event. |
+| `nexMapAreaChanged` | `areaId` | Current area changed. |
+| `nexMapPathingStart` | none | Pathing has started. |
+| `nexMapPathingComplete` | none | Pathing completed. |
+| `nexMapSubjectTracked` | `{ subjectType, id, name, room, area }` | A subject was tracked. |
+| `nexMapSubjectCleared` | `{ subjectType }` | A tracked subject was cleared. |
+| `nexMapTrackingCleared` | none | All tracking was cleared. |
+
+## Consumed events
+
+nexMap subscribes to these eventStream events:
+
+- `Room.Info` to update the current room.
+- `Char.Status` to enable wormholes for serpents or vibrating stick users.
+- `eqBalRecoveredEvent` to advance pathing when balance is recovered.
+
+## Example
+
+```js
+eventStream.registerEvent("nexMapLoaded", () => {
+  console.log("nexMap is ready");
+});
+```

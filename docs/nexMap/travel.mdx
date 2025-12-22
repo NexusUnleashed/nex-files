@@ -1,0 +1,49 @@
+---
+title: Travel Options
+---
+
+nexMap can route through a number of fast travel systems. These are optional and should only be enabled if you own the travel method.
+
+## Travel options
+
+| Option | Toggle | Notes |
+| --- | --- | --- |
+| Wormholes | Use wormholes | Uses stored wormhole edges and `worm warp`. |
+| Sewer grates | Use sewer grates | Adds sewer grate exits to the graph. |
+| Low clouds | Eagle wings | Uses `duanatharCommand` to enter low clouds. |
+| High clouds | Atavian wings | Uses `duanatharanCommand` to enter high clouds. |
+| Universe tarot | Use Universe tarot | Jester/Occultist only; adds universe nodes and exits. |
+| Macbre Knocker | Macbre Knocker | Adds a knocker door shortcut. |
+| Air harness | Air Harness | Adds air harness exits in the Western Isles. |
+| Enchanted pebble | Enchanted Pebble | Toggles the Rageteeth &lt;-&gt; Dark Forest shortcut. |
+| Gare | Automatic | Dragon only; adds a Gare shortcut. |
+| Urn mounts | Automatic | Uses mounted urn exits if `nexSys` reports a valid mount. |
+| Flame collars | Automatic | Adds flame paths in Yggdrasil related areas. |
+
+## Travel weights
+
+nexMap assigns weights to travel edges using your **celerity** setting. If your movement speed changes, update `celerity` so route selection stays accurate.
+
+## Wormholes
+
+Wormholes are loaded from the shared wormhole database and can also be discovered in play. nexMap listens for wormhole messages and updates the graph. If a wormhole is missing, nexMap removes it and recalculates the route.
+
+- Serpents can enable **Vibrating Stick** to probe for wormholes.
+- Use `nm wormholes` to toggle wormhole routing on or off.
+
+## Cloud travel
+
+Cloud travel is added to any outdoor room in the Main or Meropis continents. Set the command strings in configuration:
+
+- `duanatharCommand` (low clouds)
+- `duanatharanCommand` (high clouds)
+
+These commands can be multi-step sequences separated by your command separator.
+
+## Universe tarot
+
+Universe exits are created for Jester and Occultist characters. If you do not meet the class requirement, the toggle has no effect.
+
+## Air harness
+
+Air harness exits are limited to the Western Isles. If you enable the toggle without owning the harness, routing will fail when it attempts to use those edges.

@@ -1,0 +1,38 @@
+---
+title: Troubleshooting
+---
+
+## Map does not load
+
+- Run `nm load` manually and wait for the crowdmap download to finish.
+- Confirm eventStream is installed and working.
+- Check the console for `nexMap invalid API key` messages.
+
+## nexMap tab is missing
+
+- Reload the client after installing the package.
+- Open the Nexus map panel and look for the **nexMap** tab.
+- Run `nexMap.status.evt.dispatchEvent(new CustomEvent("nexMap-config-dialog", { detail: true }))` to force dialog visibility.
+
+## Pathing fails or stops
+
+- Check that your travel toggles match your character abilities.
+- Ensure `excludeRooms` does not block required rooms.
+- Try `nm stop` then `nm goto <roomId>` to reset a route.
+
+## Wormhole errors
+
+- If you see `I cannot fathom the meaning of "worm"`, disable wormholes.
+- Serpents should enable **Vibrating Stick** in settings.
+- Wormholes are community sourced; a missing wormhole will be removed automatically.
+
+## NPC search returns empty results
+
+- Wait for `nm load` to finish.
+- Ensure network access to the nexMap API is allowed.
+- The database is community driven; not all NPCs are indexed yet.
+
+## Performance issues
+
+- Disable logging with `nexMap.status.toggleLogging()` if it is enabled.
+- Avoid excessive map zoom changes while the map is still loading.

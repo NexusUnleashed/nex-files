@@ -1,0 +1,51 @@
+---
+title: Pathing and Navigation
+---
+
+nexMap provides click to path navigation and hybrid routing that combines built in Nexus `path track` with special exits like wormholes and clouds.
+
+## Core pathing flow
+
+1. The map graph is built from Crowdmap data.
+2. A Graphology shortest path is calculated between your current room and the destination.
+3. The route is converted into a hybrid command list that uses `path track` for long stretches and direct commands for special exits.
+4. Each step is sent as your balance allows (via EventStream).
+
+## Common commands
+
+- `nm goto <roomId>`: route to a room number.
+- `nm goto <area name>`: route to a matching game area.
+- `nm stop`: cancel the current route.
+- `nm find <string>`: search for a room name and click to route.
+- `nm area <string>`: search for areas and click to route.
+
+## Click to path
+
+Click any room on the map to begin routing. The current room is outlined, and the destination is selected on the map.
+
+## Special exits
+
+Special exits are broken out of `path track` automatically. Examples include:
+
+- Wormholes (`worm warp`)
+- Sewer grates (`enter grate`)
+- Tarot shortcuts
+- Clouds and wings
+- Air harness
+
+If a special exit is required, nexMap will send a `path stop` before issuing the command, then resume path tracking.
+
+## Pathing limits
+
+- The Nexus `path track` command cannot exceed ~100 steps. nexMap segments long routes to stay within the limit.
+- If your routing settings exclude a critical room, the path may fail. Check `excludeRooms` and travel toggles.
+
+## Logging
+
+Enable internal logging with:
+
+```js
+nexMap.status.toggleLogging();
+```
+
+This adds timing and route diagnostics to the console.

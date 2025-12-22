@@ -1,28 +1,43 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import { FaDiscord } from "react-icons/fa6";
+---
+title: insight
+sidebar_label: Overview
+---
 
-# Introduction
+insight is a combat intelligence engine that tracks afflictions, defences, balances, limbs, and target state with probabilistic timelines. It ingests GMCP and skill detection events and exposes a clean API for scripts to query and react to state changes.
 
-## Download
+<!-- TODO: Add a screenshot or example output snippet from the insight prompt display. -->
 
-You can download the insight `.nxs` file from the following sources:
+## What you get
 
-<Tabs>
-  <TabItem value="dropbox" label="Dropbox">
-    [Download from
-    Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
+- Multi target tracking with per target timelines and probabilities.
+- Affliction, defence, balance, limb, and stat state models.
+- Cure inference and confirmation helpers.
+- EventStream integration for high signal events.
+- Optional prompt display of active afflictions.
 
-  </TabItem>
-</Tabs>
+## Requirements
 
-`Insight` is a full featured, event based, affliction tracker for the Nexus client.
+- Nexus web client (official).
+- eventStream (required dependency).
+- nexAction (required for skill detection events).
 
-- Afflictions
-- Limbs
-- Defences
-- Stats
-- Balances
-- Anti-illusion
-- Multi-target
-- Predictive curing
+Optional integrations:
+
+- nexSys for shared curing and damage signals.
+- nexGui for target visualization (limbs, affs).
+
+## Architecture overview
+
+insight creates a Player model for every tracked target. Each player has affs, defs, bals, limbs, stats, and a Timeline that manages probability forks. Skill modules register `insight.<skill>.<ability>` events which feed into timeline updates.
+
+Key modules:
+
+- `base/api`: public API and helpers.
+- `base/events`: eventStream wiring and prompt display.
+- `base/classes`: Player, Timeline, Affliction, Balance, Limb, Stat.
+- `base/factories`: afflictions, defences, balances, cures, limbs, stats.
+- `base/skills`: skill specific handlers for detections.
+
+## Version
+
+Current package version is `0.5.4` (see `insight.version`).

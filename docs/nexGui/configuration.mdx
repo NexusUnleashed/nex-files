@@ -1,0 +1,101 @@
+---
+title: Configuration
+---
+
+nexGui settings are stored under `nexusclient.variables().vars.nexGuiSettings`. The Game Options tab writes to this object.
+
+## Settings structure
+
+```js
+{
+  style: {
+    backgroundImage: "",
+    fontSize: 12,
+    opacity: 0.5,
+    hue: 0,
+    filter: "hue-rotate(0deg)",
+  },
+  stats: {
+    kills: 0,
+    month: {
+      deaths: 0,
+      goldCap: 0,
+      month: 0,
+      startingGold: 0,
+      startingKills: 0,
+      startingXp: 0,
+      currentXp: 0,
+      xp: 0,
+      year: 0,
+    },
+  },
+  options: {
+    loginTracker: false,
+    msgReplace: false,
+    combatStream: false,
+    systemStream: false,
+    logoutDownload: false,
+    virtualizedLogs: false,
+    nexGuiRenderer: false,
+    netflixMode: false,
+    allyEnemyFormatting: true,
+    targetFormatting: true,
+    damageNumbers: true,
+  },
+  modal: {
+    width: 600,
+    height: 400,
+    x: 0,
+    y: 0,
+  },
+}
+```
+
+## Game Options: Config tab
+
+| Setting | Description | Notes |
+| --- | --- | --- |
+| Echo Input | Show your commands in the main output. | Nexus setting. |
+| Display GMCP | Echo GMCP events to output. | Nexus setting. |
+| Single Prompt | Use single prompt line. | Toggles `show_prompts`. |
+| Display Timestamps | Show timestamps in output. | Affects infinite display too. |
+| Display Tabstrip | Show tab strip on tabsets. | Updates flex model. |
+| System Stream | Enable system stream tab. | Enables `nexGui.stream` reflex group. |
+| Combat Stream | Enable combat stream tab. | Uses combat stream buffer. |
+| Msg Replace | Replace skill messages. | Requires nexSys. |
+| PVE Dmg Numbers | Enable damage numbers. | Requires nexSys. |
+
+## Game Options: Style tab
+
+| Setting | Description | Notes |
+| --- | --- | --- |
+| Background Image | Select a theme background. | Uses bundled image URLs. |
+| Background opacity | Adjust background alpha. | Stored in `style.opacity`. |
+| Background hue | Hue rotation filter. | Stored in `style.hue` and `style.filter`. |
+| Font Size | Base font size for nexGui tabs. | Updates `nexGui.tabs.theme.nexusFontSize`. |
+| Ally-Enemy Formatting | Add brackets and colors to players. | Uses `colors.allyEnemyFormat`. |
+| Target Formatting | Highlight current target in lists. | Adds red outline. |
+
+## Game Options: Experimental tab
+
+| Setting | Description | Notes |
+| --- | --- | --- |
+| Login Tracker | Notify when players log in or out. | Uses Achaea character API. |
+| Download on Logout | Export log on disconnect. | Uses log buffer. |
+| Virtualized Logs | Export from virtual buffer. | Best with infinite display. |
+| Override Nexus Display | Use the infinite display renderer. | Replaces `output_main`. |
+| Netflix Mode | Play sound cues on communication. | Adds a trigger and sound. |
+
+## Layouts
+
+nexGui includes built in layout presets:
+
+- `kDesktop` (recommended desktop layout)
+- `mobile` (compact layout)
+- `desktop` (saved layout from `nexGuiLayout`)
+
+Use `ng layout <id>` to switch.
+
+## Modal buffer
+
+The infinite buffer modal uses `nexGuiSettings.modal` for size and position. You can move and resize the modal, and the settings are saved automatically.

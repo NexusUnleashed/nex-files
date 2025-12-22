@@ -1,0 +1,28 @@
+---
+title: Commands
+---
+
+Most nexGui commands are exposed through the `ng` alias.
+
+## Standard commands
+
+| Command | Description |
+| --- | --- |
+| `ng load` | Start nexGui and initialize tabs. |
+| `ng startUp` | Same as `ng load`. |
+| `ng layout <id>` | Apply a layout preset (`kDesktop`, `mobile`, `desktop`). |
+| `ng whois <name>` | Open the player detail dialog for a name. |
+| `ng call <alias>` | Call another nexGui alias. |
+
+## Useful console helpers
+
+```js
+// Open the infinite buffer modal
+nexGui.virtual.openModal();
+
+// Add a timer
+nexGui.timers.add("shrug", "Shrug Cooldown", 30);
+
+// Start a timer
+nexGui.timers.start("shrug");
+```

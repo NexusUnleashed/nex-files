@@ -5,13 +5,14 @@ import TabItem from "@theme/TabItem";
 title: Installation
 ---
 
-nexMap depends on eventStream. Install eventStream before installing nexMap.
+nexGui depends on eventStream. Install eventStream before installing nexGui.
 
 ## Download
 
 <Tabs>
   <TabItem value="github" label="GitHub" default>
-    [Download from GitHub](https://github.com/NexusUnleashed/nexmap3/blob/master/dist/nexMap3.nxs)
+    [Download from GitHub](https://github.com/NexusUnleashed/nexgui3/blob/master/dist/nexGui3.nxs)
+
     <!-- TODO: Add a download button image. -->
   </TabItem>
   <TabItem value="dropbox" label="Dropbox">
@@ -25,10 +26,10 @@ nexMap depends on eventStream. Install eventStream before installing nexMap.
 
 1. Download the `.nxs` file.
 2. Drag and drop the file into the **Reflexes** panel in Nexus.
-3. Reload the client or relog if the nexMap tab does not appear.
+3. Reload the client or relog if you do not see the nexGui tabs.
 
 ## Verify
 
-- Run `nm load`.
-- Confirm the **nexMap** tab appears and the map renders.
-- Run `nexMap.status.version` in the console to confirm the version.
+- Run `ng load` or `nexGui.startUp()`.
+- Confirm the nexGui tabs appear next to the Map tab.
+- Run `nexGui.version` in the console.

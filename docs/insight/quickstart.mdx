@@ -1,0 +1,38 @@
+---
+title: Quickstart
+---
+
+## 1. Install dependencies
+
+Install [eventStream](../eventStream/introduction.mdx) and nexAction before installing insight.
+
+## 2. Load insight
+
+insight starts automatically after install. If needed, reload the client.
+
+## 3. Set your target
+
+```js
+insight.setTarget("TargetName");
+```
+
+## 4. Check current affs
+
+```js
+insight.currentAffs();
+```
+
+## 5. Enable prompt display
+
+```js
+insight.reporting.promptDisplay = true;
+insight.reporting.probabilityThreshold = 0.5;
+```
+
+## 6. Listen for events
+
+```js
+eventStream.registerEvent("insightGotAff", (aff) => {
+  console.log(`${aff.player.id} gained ${aff.id}`);
+});
+```

@@ -1,0 +1,24 @@
+---
+title: Timers
+---
+
+Timers shows active count up and count down timers created by nexGui.
+
+<!-- TODO: Add a screenshot of the Timers tab. -->
+
+## What it shows
+
+- Timers positioned at the top or bottom of the panel.
+- Count up timers and count down timers.
+
+## Managing timers
+
+```js
+nexGui.timers.add("sip", "Sip Cooldown", 30, "top");
+
+nexGui.timers.start("sip");
+```
+
+## Notes
+
+- Updates are broadcast using `nexGui.evt` and eventStream timer events.

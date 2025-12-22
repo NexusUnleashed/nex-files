@@ -1,0 +1,35 @@
+---
+title: Troubleshooting
+---
+
+## Tabs do not appear
+
+- Run `ng load` or `nexGui.startUp()`.
+- Confirm eventStream is installed.
+- Reload the client after installing nexGui.
+
+## Game Options tab is empty
+
+- Make sure `nexGameOptions` is visible in your layout.
+- Try `ng layout kDesktop` to restore the default layout.
+
+## System or combat stream not updating
+
+- Enable **System Stream** and **Combat Stream** in Game Options.
+- Confirm eventStream is running and GMCP events are flowing.
+
+## Message replacement not working
+
+- Install nexSys.
+- Enable **Msg Replace** in Game Options.
+
+## Infinite display not working
+
+- Enable **Override Nexus Display** in Experimental options.
+- Open the modal with `Ctrl+Shift+L` or Page Up.
+- Disable and re-enable the toggle if output is blank.
+
+## Player colors are missing
+
+- Wait for the character database to load (`nexGuiCdbLoaded`).
+- Ensure network access to the Achaea character API.

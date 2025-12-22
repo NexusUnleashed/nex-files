@@ -1,0 +1,56 @@
+---
+title: Quickstart
+---
+
+## 1. Install dependencies
+
+Install [eventStream](../eventStream/introduction.mdx) first, then install nexGui.
+
+## 2. Start nexGui
+
+Run one of the following in the console or a function block:
+
+```text
+ng load
+```
+
+```js
+nexGui.startUp();
+```
+
+## 3. Choose a layout
+
+nexGui ships with presets for common layouts:
+
+```text
+ng layout kDesktop
+```
+
+```text
+ng layout mobile
+```
+
+## 4. Open Game Options
+
+Open the **nexGameOptions** tab and configure:
+
+- Stream toggles (System Stream, Combat Stream)
+- Message replacement (requires nexSys)
+- Background image and opacity
+
+<!-- TODO: Add a screenshot of the Game Options tab. -->
+
+## 5. Confirm key tabs
+
+Make sure these tabs are visible and updating:
+
+- **nexRoomInv** (room items)
+- **nexRoomNpcs** (NPC list)
+- **nexRoomPlayers** (player list)
+- **nexTimers** (active timers)
+
+## 6. Optional features
+
+- Enable **Override Nexus Display** to switch to the infinite display.
+- Enable **Login Tracker** to watch player login events.
+- Enable **Download on Logout** to export logs.

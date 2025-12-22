@@ -5,14 +5,13 @@ import TabItem from "@theme/TabItem";
 title: Installation
 ---
 
-nexMap depends on eventStream. Install eventStream before installing nexMap.
+insight depends on eventStream. Install eventStream before installing insight.
 
 ## Download
 
 <Tabs>
-  <TabItem value="github" label="GitHub" default>
-    [Download from GitHub](https://github.com/NexusUnleashed/nexmap3/blob/master/dist/nexMap3.nxs)
-    <!-- TODO: Add a download button image. -->
+  <TabItem value="unpkg" label="Unpkg" default>
+    [Download from Unpkg](https://unpkg.com/nexsight/insight3.nxs)
   </TabItem>
   <TabItem value="dropbox" label="Dropbox">
     [Download from Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
@@ -25,10 +24,9 @@ nexMap depends on eventStream. Install eventStream before installing nexMap.
 
 1. Download the `.nxs` file.
 2. Drag and drop the file into the **Reflexes** panel in Nexus.
-3. Reload the client or relog if the nexMap tab does not appear.
+3. Reload the client or relog if you do not see insight events.
 
 ## Verify
 
-- Run `nm load`.
-- Confirm the **nexMap** tab appears and the map renders.
-- Run `nexMap.status.version` in the console to confirm the version.
+- Run `insight.version` in the console.
+- Run `insight.currentAffs()` after setting a target.

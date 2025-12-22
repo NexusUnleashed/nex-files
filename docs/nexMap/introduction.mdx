@@ -1,11 +1,40 @@
-# Introduction
+---
+title: nexMap
+sidebar_label: Overview
+---
 
-## Documentation topics TODO list
+nexMap is a full featured mapping, navigation, and pathfinding package for the Nexus client. It builds a live map from the Achaea Crowdmap dataset, renders it inside Nexus, and provides fast, configurable routing with support for special travel options like clouds, wormholes, and tarot.
 
-- [ ] Installation
-- [ ] Overview
-- [ ] User commands
-- [ ] API reference
-- [ ] npc database
-- [ ] configuration
-- [ ] Link to crowdmap repo
+<!-- TODO: Add a screenshot of the nexMap panel with a selected room and route. -->
+
+## What you get
+
+- Crowdmap based world map with high performance rendering and room labels.
+- Smart pathfinding with travel options (wormholes, clouds, sewer grates, tarot, urns, and more).
+- One click routing: click any room to path.
+- A configurable UI for travel options, command separator, and pathing speed.
+- NPC database lookups and tracking utilities.
+- EventStream integration for room, area, and pathing events.
+
+## Requirements
+
+- Nexus web client (official).
+- eventStream (required dependency; listed as `nexevent` in package metadata).
+- Network access to load the crowdmap data and optional NPC/wormhole services.
+
+## Architecture overview
+
+nexMap loads the crowdmap JSON, builds a Graphology graph for pathfinding, and a Cytoscape graph for display. GMCP and EventStream events drive room changes, while the walker module manages hybrid path tracking and special travel edges. Settings are stored in `nexMapSettings` under Nexus variables.
+
+Key modules:
+
+- `base/graph`: Graph construction, exit conversion, display graph generation.
+- `base/walker`: Pathfinding and hybrid path tracking for long routes.
+- `base/navigation`: GMCP driven room and area transitions.
+- `base/settings`: User preferences and travel toggles.
+- `base/wormholes`: Wormhole discovery and routing.
+- `base/tracking`: Highlighting and tracking targets, pets, and dopplegangers.
+
+## Version
+
+Current package version is `2.2.5` (see `nexMap.status.version`).

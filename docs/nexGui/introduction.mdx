@@ -1,36 +1,44 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import { FaDiscord } from "react-icons/fa6";
+---
+title: nexGui
+sidebar_label: Overview
+---
 
-# Introduction
+nexGui is a full visual UI package for the Nexus client. It adds a suite of custom tabs, live overlays, and stream panels that turn GMCP and eventStream data into a polished, usable combat HUD.
 
-## Download
+![nexGui tab layout overview](./images/exampleGui.png)
 
-You can download the nexMap `.nxs` file from the following sources:
+## What you get
 
-<Tabs>
-  <TabItem value="dropbox" label="Dropbox">
-    [Download from
-    Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
+- A full set of custom tabs for room inventory, NPCs, players, timers, streams, and stats.
+- A configurable theme engine with background images, opacity, hue shifts, and font sizing.
+- Live system and combat streams powered by eventStream.
+- Party management tools and target tracking visuals.
+- An optional infinite display renderer with virtualized logs and buffer search.
 
-  </TabItem>
-</Tabs>
+## Requirements
 
-## Example
+- Nexus web client (official).
+- eventStream (required dependency).
+- nexAction (required for triggers and replacements).
 
-![example GUI layout](./images/exampleGui.png)
+Optional integrations:
 
-# TODO documentation
+- nexSys for message replacement and damage number parsing.
+- nexMap for wormhole exit enhancements.
+- insight for target limb state display.
 
-- [ ] description of custom tabs
-- [ ] player database
-- [ ] message replacements
-- [ ] background colors/image configurations
-- [ ] Flyout borders / mouseover events
-- [ ] Ally enemy formating
-- [ ] QW / Who list formating
-- [ ] Custom colors
-- [ ] Custom room items colors
-- [ ] Room replacements legend
-- [ ] Class customizations (timers and defences)
-- [ ] Advanced configuration options. Likely just cover this under description of the options tab
+## Architecture overview
+
+nexGui injects custom React tabs into the Nexus flex layout. It maintains a global `nexGui` object that stores settings, streams, timers, and UI helpers. Tabs are defined in `base/tabs` and rendered with overrides in `base/startup`.
+
+Key modules:
+
+- `base/startup`: layout wiring, overrides, and initialization.
+- `base/tabs`: tab registry and React overrides.
+- `base/events`: eventStream integration and system streams.
+- `base/virtual`: infinite buffer and renderer override.
+- `base/colors`: ally/enemy formatting and room text replacement.
+
+## Version
+
+Current package version is `2.9.0x` (see `nexGui.version`).

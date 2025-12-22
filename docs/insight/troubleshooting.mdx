@@ -1,0 +1,28 @@
+---
+title: Troubleshooting
+---
+
+## No events firing
+
+- Confirm eventStream is installed and running.
+- Ensure insight is loaded and `insight.registerInsightEvents()` was called.
+
+## Target state not updating
+
+- Run `insight.setTarget("name")` for your current target.
+- Confirm GMCP target events are arriving (`IRE.Target.Set`).
+
+## Prompt display not showing
+
+- Set `insight.reporting.promptDisplay = true`.
+- Ensure `insight.reporting.shouldShow` is not stuck `false`.
+
+## Skill detections missing
+
+- Make sure nexAction is installed to emit `nexSkillMatch` events.
+- Verify your class skill triggers are enabled.
+
+## Cures not resolving affs
+
+- Check the cure table ordering in the reference pages.
+- Confirm required balances are not missing.

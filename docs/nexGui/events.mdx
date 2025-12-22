@@ -1,0 +1,39 @@
+---
+title: Events
+---
+
+nexGui relies on eventStream and emits a small number of custom events. Use these if you want to integrate scripts with the UI.
+
+## Emitted events
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `nexGuiLoaded` | none | Raised after initialization commands complete. |
+| `nexGuiCdbLoaded` | none | Character database loaded. |
+| `timerReset{timerId}` | none | Timer reset event from `Timer`. |
+| `timerStarted{timerId}` | none | Timer started event from `Timer`. |
+| `timerStopped{timerId}` | none | Timer stopped event from `Timer`. |
+
+## Internal UI events
+
+These are dispatched on `nexGui.evt` (not eventStream):
+
+- `nexGui-timer-update`
+- `nexGui-timer-<id>-start`
+- `nexGui-timer-<id>-reset`
+
+## Consumed events
+
+nexGui listens to the following eventStream events:
+
+- `Room.Info`, `Room.AddPlayer`, `Room.RemovePlayer`
+- `Char.Defences.Add`, `Char.Defences.Remove`
+- `Char.Afflictions.Add`, `Char.Afflictions.Remove`
+- `Char.Vitals`, `Char.Status`
+- `IRE.Target.Set`, `IRE.Target.Info`
+- `IRE.Misc.Achievement`, `IRE.Time.Update`, `IRE.Time.List`
+- `Comm.Channel.Players`, `Comm.Channel.Text`
+- `ClassChanged`
+- `nexSkillMatch`, `nexSkillNpcMatch`
+
+These drive stream entries, target color formatting, and message replacement.

@@ -1,0 +1,23 @@
+---
+title: Room Inventory
+---
+
+Room Inventory lists all non-NPC items in the current room and exposes quick actions.
+
+<!-- TODO: Add a screenshot of the Room Inventory tab. -->
+
+## What it shows
+
+- Items from `GMCP.Items.room` excluding NPC entries.
+- Item ID and name.
+- Color and label overrides from `nexGui.colors.room`.
+
+## Actions
+
+- Click an item to open the action menu.
+- `Probe` is always available.
+- `Get` appears when the item is takeable (`attrib` includes `t`).
+
+## Notes
+
+- Items are sorted with colored items and takeable items first.

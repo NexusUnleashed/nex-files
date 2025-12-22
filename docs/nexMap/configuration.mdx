@@ -1,0 +1,55 @@
+---
+title: Configuration
+---
+
+nexMap settings are stored under `nexusclient.variables().vars.nexMapSettings`. The configuration dialog updates these values and syncs the internal routing options.
+
+## Dialog settings
+
+| Setting | Default | Description | Notes |
+| --- | --- | --- | --- |
+| Load on login | `false` | Automatically load the map on login. | Calls `nm load` on startup. |
+| Use wormholes | `false` | Allow wormhole exits in routes. | Requires wormhole detection or stored wormholes. |
+| Use sewer grates | `false` | Allow sewer grate exits. | Adds sewer grates to routing. |
+| Use Universe tarot | `false` | Allow Universe tarot shortcuts. | Only available to Jester or Occultist. |
+| Vibrating stick | `false` | Enable wormhole probing support. | Useful for Serpent. |
+| Enchanted pebble | `false` | Enable the pebble shortcut. | Toggles the Rageteeth &lt;-&gt; Dark Forest edge. |
+| Air harness | `false` | Use air harness travel in the Western Isles. | Adds harness exits. |
+| Macbre Knocker | `false` | Use the Knocker shortcut. | Adds the knocker door edge. |
+| Eagle wings | `false` | Use low clouds (Duanathar). | Uses `duanatharCommand`. |
+| Atavian wings | `false` | Use high clouds (Duanatharan). | Uses `duanatharanCommand`. |
+| Command separator | `\` | Separator for multi-command sends. | Used for hybrid path tracking. |
+| Celerity | `3` | Movement speed multiplier. | Used to weight special exits. |
+| Eagle wings command | `say duanathar` | Command to enter low clouds. | Can be multiple commands separated by the separator. |
+| Atavian wings command | `say duanatharan` | Command to enter high clouds. | Can be multiple commands separated by the separator. |
+
+## City lockouts
+
+The dialog includes city lockouts that add room IDs to `excludeRooms` so routing avoids city guard rooms.
+
+- Ashtan (1284)
+- Cyrene (7985, 9562)
+- Eleusis (5730)
+- Hashan (47061)
+- Mhaldor (10577)
+- Targossas (51339)
+
+## Advanced settings
+
+These settings are not currently exposed in the dialog but can be modified in the console and saved with `nexMap.settings.save()`:
+
+- `currentRoomShape` (default `rectangle`) and `currentRoomBorder` (default `#ff1493`) control the highlight style.
+- `labelDisplay` controls what is shown in room labels (default `name`).
+- `landmarks` stores custom marks created with `nm mark`.
+- `disabledTravelOptions` is generated from your toggles (do not edit manually).
+- `antiWingAreas`, `antiGareAreas`, `antiUniverseAreas` are reserved for future constraints.
+
+## Saving manually
+
+```js
+nexMap.settings.save({
+  useWormholes: true,
+  celerity: 3,
+  commandSeparator: "\\",
+});
+```
