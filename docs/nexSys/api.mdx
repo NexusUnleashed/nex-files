@@ -1,21 +1,119 @@
-# Aliases
+﻿---
+title: API Reference
+---
 
-| Alias         | Command                                                                                                                                      |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pp`          | This will toggle on/off the pausing of nexSys                                                                                                |
-| `tt`          | Used to set your target both in nexSys and Achaea `tt khaseem`                                                                               |
-| `defup`       | Activate all defenses handled by nexSys and configured via the `ns config` menu                                                              |
-| `ma`          | Toggles upkeep of the mass defence                                                                                                           |
-| `br`          | Toggles upkeep of the breathing defence                                                                                                      |
-| `ss`          | Toggles upkeep of the rebounding defence                                                                                                     |
-| `cl`          | Toggles upkeep of the cloak defence (I never use this)                                                                                       |
-| `p<limb>`     | Used for intelligent parry swapping. `prl` for "parry right leg", `ptt` for "parry torso", `ph` for parry head, etc                          |
-| `block <dir>` | Block the specified direction. This will add blocking the direction as an upkeep defence and attempt to maintain blocking in that direction. |
-| `ub`          | "Unblock" toggles off the blocking defence                                                                                                   |
-| `inra`        | "In rift all" will (shocker) in rift all riftables                                                                                           |
-| `qp`          | `qp <command(s)>` "Queue prepend" to prepend a command or series of commands to your main queue.                                             |
-| `qa`          | `qa <command(s)>` "Queue Add" to addclear a command or series of commands to your main queue.                                                |
-| `qcp`         | `qcp <command(s)>` "Queue prepend" to prepend a command or series of commands to your class queue.                                           |
-| `dor`         | `dor <command(s)>` "Do repeat" to repeat a command or series of commands. `dor` alone will clear and toggle off the repeating function.      |
+The `nexSys` global is the primary API surface. It exposes state models, helpers, and queue utilities.
 
-nexSys.sys.wielded(\<optional: side\>)
+## Core
+
+```js
+nexSys.version; // "2.2.7"
+nexSys.evt; // EventTarget for UI events
+nexSys.component; // React dialog component
+```
+
+## System state
+
+```js
+nexSys.sys.isPaused();
+nexSys.sys.pause();
+nexSys.sys.unpause();
+nexSys.sys.slowOn();
+nexSys.sys.slowOff();
+
+nexSys.sys.setTarget("Kerrang");
+nexSys.sys.isTarget("Kerrang");
+```
+
+## Afflictions
+
+```js
+nexSys.getCurrentAffs();
+
+nexSys.haveAff("asthma");
+nexSys.haveAffs(["asthma", "slickness"]);
+nexSys.haveAnAff(["aeon", "paralysis"]);
+
+nexSys.affPrioSwap("asthma", 2);
+```
+
+Affliction state is also available via `nexSys.affs`, which contains instances of `Aff`, `AffTimed`, and `AffCountable`.
+
+## Defences
+
+```js
+nexSys.getCurrentDefs();
+
+nexSys.haveDef("shield");
+
+nexSys.defPrioSwap("shield", 5);
+
+nexSys.defup();
+nexSys.defoff();
+
+nexSys.parry("rl"); // right leg
+```
+
+## Balances
+
+```js
+nexSys.getCurrentBals();
+
+nexSys.haveBal("balance");
+nexSys.haveBals(["balance", "equilibrium"]);
+nexSys.haveABal(["balance", "equilibrium"]);
+```
+
+Balances are exposed via `nexSys.bals` and include timer information.
+
+## Queues
+
+```js
+nexSys.classQueue.add("queue add class attack");
+nexSys.freeQueue.prepend(["stand", "sip health"]);
+
+nexSys.fullQueue.clearQueue();
+```
+
+## Cache
+
+```js
+nexSys.getCacheOutputs(nexSys.getCurrentAffs());
+```
+
+Cache definitions and mapping tables are available via:
+
+- `nexSys.cacheTable`
+- `nexSys.tables.herb_name_to_herb`
+- `nexSys.tables.herb_to_mineral`
+- `nexSys.tables.mineral_to_herb`
+
+## Utilities
+
+```js
+nexSys.sendCmd("look");
+nexSys.sendInline(["score", "who"]);
+
+nexSys.replace("text", "white", "", "more", "green", "");
+
+nexSys.tabCompletion.tc();
+```
+
+## UI and settings
+
+```js
+nexSys.updateAndSaveModel("systemSettings", nexSys.sys.settings);
+
+nexSys.loadCustomSettings();
+```
+
+## Classes
+
+Core model classes are exposed at `nexSys.classes`:
+
+- `Aff`, `AffTimed`, `AffCountable`, `AffDef`
+- `Def`, `DefServerside`
+- `Balance`, `BalExtended`
+- `Cache`, `Queue`, `Trackable`, `Timer`, `Priority`, `Priorityqueue`
+
+Use these if you build extensions or integrate with other packages.

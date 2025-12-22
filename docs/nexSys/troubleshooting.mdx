@@ -1,0 +1,35 @@
+﻿---
+title: Troubleshooting
+---
+
+## Command separator not set
+
+If nexSys fails to start or prints a startup warning, set `sys.settings.sep` and save in the config dialog. The system will not send output without a separator.
+
+## Custom prompt not showing
+
+- Confirm `nexSys.sys.settings.customPrompt` is `true`.
+- Make sure another package is not overriding `nexusclient.buffer().add_block`.
+
+## Output appears stuck
+
+If output does not resume after death or reconnect:
+
+```js
+nexusclient.send_commands("echo SystemEvent SystemOutputCompleteEvent");
+```
+
+This forces the output scheduler to reset.
+
+## No events firing
+
+Ensure eventStream is installed and loaded before nexSys. You should be able to call `eventStream.registerEvent` without errors.
+
+## Update check fails
+
+The config dialog checks the NPM registry for updates. If your environment blocks network access, the version check will remain unchanged.
+
+## Known quirks
+
+- The `prepend_notice` utility depends on the same helper used by the prompt renderer. If you see errors, update to the latest build.
+- The affliction list includes several entries marked as TODO in the source. These are tracked but not fully tuned.

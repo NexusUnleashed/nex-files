@@ -1,0 +1,53 @@
+﻿---
+title: Quickstart
+---
+
+## 1. Install dependencies
+
+Install [eventStream](../eventStream/introduction.mdx) first, then install nexSys.
+
+## 2. Open the configuration dialog
+
+If the dialog does not open automatically, run this in the Nexus console or a function block:
+
+```js
+nexSys.evt.dispatchEvent(
+  new CustomEvent("nexSys-config-dialog", { detail: true })
+);
+```
+
+<!-- TODO: Add a screenshot of the config dialog. -->
+
+## 3. Set your command separator
+
+Set a separator that you do not use for normal commands. Most players use `|`.
+
+- Example: `|`
+- Avoid: `;` if you use it for alias syntax
+
+## 4. Confirm curing settings
+
+- Select **Transmutation** or **Concoctions** to match your curing method.
+- Set sip and moss thresholds.
+- Enable or disable focus and tree based on your preferences.
+
+## 5. Configure defences and aff priorities
+
+- Use the **Defence Priorities** tab to define keepup and static defences.
+- Use the **Curing Priorities** tab to reorder afflictions.
+
+## 6. Save and sync
+
+Click **Save** to persist settings and sync with the serverside curing system.
+
+If you want to force a reload later:
+
+```text
+ns load
+```
+
+## 7. Validate
+
+- Confirm `nexSys.sys.settings.sep` is set.
+- Run `nexSys.sys.isPaused()` to confirm system state.
+- Look for `SystemLoaded` events in the eventStream log if you have logging enabled.

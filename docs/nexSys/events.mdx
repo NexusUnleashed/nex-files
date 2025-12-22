@@ -1,404 +1,90 @@
----
+﻿---
 title: Events
 ---
 
-# Events
+nexSys builds on eventStream and emits events for state changes, output scheduling, and user actions. This page summarizes the most important events and naming patterns.
 
-nexSys relies on [eventStream](../eventStream/introduction.mdx) as the backend event handler. nexSys provides a variety of events that users may tap into for their own packages and uses.
+## Naming patterns
 
-# Events List
+- Afflictions: `${aff}GotAffEvent`, `${aff}LostAffEvent`
+- Defences: `${def}GotDefEvent`, `${def}LostDefEvent`
+- Balances: `${bal}GotBalEvent`, `${bal}LostBalEvent`
+- Trackables: `${name}GotTrackableEvent`, `${name}LostTrackableEvent`
 
-Here's a table of our events:
+## System events
 
-<!-- <affliction>AffCountAddEvent -->
-<!-- <affliction>AffCountSubtractEvent -->
+| Event | Payload | Description |
+| --- | --- | --- |
+| `SystemLoaded` | none | nexSys finished initial startup. |
+| `SystemPaused` | none | System paused. |
+| `SystemUnpaused` | none | System unpaused. |
+| `SystemSlowModeOn` | none | Slow mode enabled. |
+| `SystemSlowModeOff` | none | Slow mode disabled. |
+| `SystemStatusSetEvent` | `{ status, arg }` | Settings change propagated to serverside. |
+| `SystemCharVitalsUpdated` | `sys.char` | Vitals and stats updated. |
+| `SystemCharStatusUpdated` | `sys.char` | Status info updated (class, race, target). |
+| `RoomChangedEvent` | GMCP Room.Info | Room change detected. |
 
-| Event Name                                            | Description                                            |
-| ----------------------------------------------------- | ------------------------------------------------------ |
-| [AffGot](#affgot)                                     | Any affliction is gained                               |
-| [AffLost](#afflost)                                   | Any affliction is lost                                 |
-| [\<affliction\>GotAffEvent](#afflictiongotaffevent)   | Specific affliction is gained                          |
-| [\<affliction\>LostAffEvent](#afflictionlostaffevent) | Specific affliction is lost                            |
-| [DefGot](#defgot)                                     | A defense is gained                                    |
-| [DefLost](#deflost)                                   | A defense is lost                                      |
-| [\<defence\>GotDefEvent](#defencegotdefevent)         | Specific defense is gained                             |
-| [\<defence\>LostDefEvent](#defencelostdefevent)       | Specific defense is lost                               |
-| [BalanceGot](#balancegot)                             | Balance has been regained                              |
-| [BalanceLost](#balancelost)                           | Balance has been lost                                  |
-| [\<balance\>GotBalEvent](#balancegotbalevent)         | Specific balance state has been regained               |
-| [\<balance\>LostBalEvent](#balancelostbalevent)       | Specific balance state has been lost                   |
-| [eqBalRecoveredEvent](#eqbalrecoveredevent)           | Both Balance and Equilibrium have returned             |
-| [SystemPaused](#systempaused)                         | nexSys system is paused                                |
-| [SystemUnpaused](#systemunpaused)                     | nexSys system is unpaused                              |
-| [SystemSlowModeOn](#systemslowmodeon)                 | nexSys system slow mode is enabled                     |
-| [SystemSlowModeOff](#systemslowmodeoff)               | nexSys system slow mode is disabled                    |
-| [PromptEvent](#promptevent)                           | New prompt is received                                 |
-| [RoomChangedEvent](#roomchangedevent)                 | The player has moved to a different room               |
-| [ItemAddedToRoom](#itemaddedtoroom)                   | An item has been added to the current room             |
-| [ItemAddedToInv](#itemaddedtoinv)                     | An item has been added to the inventory                |
-| [ItemRemovedFromRoom](#itemremovedfromroom)           | An item has been removed from the current room         |
-| [ItemRemoveFromInv](#itemremovefrominv)               | An item has been removed from the inventory            |
-| [ItemUpdatedRoom](#itemupdatedroom)                   | An item in the room has been updated                   |
-| [ItemUpdatedInv](#itemupdatedinv)                     | An item in the inventory has been updated              |
-| [ItemListForRoom](#itemlistforroom)                   | The list of items in the current room has been updated |
-| [ItemListForInv](#itemlistforinv)                     | The list of items in the inventory has been updated    |
-| [TargetSetEvent](#targetsetevent)                     | A new target has been set                              |
-| [TargetChanged](#targetchanged)                       | The current target has been changed                    |
-| [ClassChanged](#classchanged)                         | The player’s class has changed                         |
-| [HealthUpdated](#healthupdated)                       | The player’s health has been updated                   |
-| [ManaUpdated](#manaupdated)                           | The player’s mana has been updated                     |
-| [RageUpdated](#rageupdated)                           | The player’s rage has been updated                     |
+## Affliction events
 
-## AffGot
+| Event | Payload | Description |
+| --- | --- | --- |
+| `AffGot` | `Aff` | Any affliction gained. |
+| `AffLost` | `Aff` | Any affliction lost. |
+| `${aff}GotAffEvent` | `Aff` | Specific affliction gained. |
+| `${aff}LostAffEvent` | `Aff` | Specific affliction lost. |
+| `${aff}AffCountAddEvent` | number | Countable aff increment. |
+| `${aff}AffCountSubtractEvent` | number | Countable aff decrement. |
+| `${aff}AffCountSetEvent` | number | Countable aff set. |
 
-**Description**: Triggered when any affliction is gained by the player.
+## Defence events
 
-**Returns**: nexSys Aff object, containing detailed information about the affliction.
+| Event | Payload | Description |
+| --- | --- | --- |
+| `DefGot` | `Def` | Any defence gained. |
+| `DefLost` | `Def` | Any defence lost. |
+| `${def}GotDefEvent` | `Def` | Specific defence gained. |
+| `${def}LostDefEvent` | `Def` | Specific defence lost. |
 
-**Example**:
+## Balance events
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `BalanceGot` | `Balance` | Any balance regained. |
+| `BalanceLost` | `Balance` | Any balance lost. |
+| `eqBalRecoveredEvent` | none | Balance and equilibrium recovered together. |
+
+## Trackables
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `TrackableGot` | `Trackable` | Trackable gained. |
+| `TrackableLost` | `Trackable` | Trackable lost. |
+
+## Limb tracking
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `nexSysLimbHit` | `Limb` | Limb damage recorded. |
+| `nexSysLimbBreak` | `Limb` | Limb break detected. |
+| `nexSysLimbReset` | `Limb` | Limb state reset. |
+
+## Output scheduling
+
+| Event | Payload | Description |
+| --- | --- | --- |
+| `SystemOutputAdd` | string or string[] | Add output commands. |
+| `OutputSentEvent` | string[] | Output sent to server. |
+| `SystemOutputCompleteEvent` | none | Output finished (echoed by server). |
+
+## Example
 
 ```js
-const example = function (args) {
-  if (args.name === "aeon") {
-    nexusclient.display_notice("I guess this is the end");
+const onAffGot = (aff) => {
+  if (aff.name === "aeon") {
+    nexusclient.display_notice("Aeon detected");
   }
 };
-eventStream.registerEvent("AffGot", example);
-```
 
----
-
-## AffLost
-
-**Description**: Triggered when any affliction is lost by the player.
-
-**Returns**: nexSys Aff object, containing detailed information about the lost affliction.
-
----
-
-## \<affliction\>GotAffEvent
-
-**Description**: Triggered when a specific affliction is gained by the player. Replace `<affliction>` with the actual affliction name.
-
-**Returns**: Specific nexSys Aff object for the gained affliction.
-
-**Example**:
-
-```js
-const example = function (args) {
-  nexusclient.display_notice("I guess this is the end");
-};
-eventStream.registerEvent("aeonGotAffEvent", example);
-```
-
----
-
-## \<affliction\>LostAffEvent
-
-**Description**: Triggered when a specific affliction is lost by the player. Replace `<affliction>` with the actual affliction name.
-
-**Returns**: Specific nexSys Aff object for the lost affliction.
-
-**Example**:
-
-```js
-const example = function (args) {
-  nexusclient.display_notice("I'm alive! Or maybe I'm dead...");
-};
-eventStream.registerEvent("aeonLostAffEvent", example);
-```
-
----
-
-## DefGot
-
-**Description**: Triggered when any defense is gained by the player.
-
-**Returns**: nexSys Def object, detailing the gained defense.
-
----
-
-## DefLost
-
-**Description**: Triggered when any defense is lost by the player.
-
-**Returns**: nexSys Def object, detailing the lost defense.
-
----
-
-## \<defence\>GotDefEvent
-
-**Description**: Triggered when a specific defense is gained by the player. Replace `<defence>` with the actual defense name.
-
-**Returns**: Specific nexSys Def object for the gained defense.
-
-**Example**:
-
-```js
-const example = function () {
-  nexSys.sys.pause();
-};
-eventStream.registerEvent("prismaticGotDefEvent", example);
-```
-
----
-
-## \<defence\>LostDefEvent
-
-**Description**: Triggered when a specific defense is lost by the player. Replace `<defence>` with the actual defense name.
-
-**Returns**: Specific nexSys Def object for the lost defense.
-
-**Example**:
-
-```js
-const example = function () {
-  nexSys.sys.unpause();
-};
-eventStream.registerEvent("prismaticLostDefEvent", example);
-```
-
----
-
-## BalanceGot
-
-**Description**: Triggered when balance is regained by the player.
-
-**Returns**: Boolean value indicating the new balance state.
-
----
-
-## BalanceLost
-
-**Description**: Triggered when balance is lost by the player.
-
-**Returns**: Boolean value indicating the lost balance state.
-
----
-
-## \<balance\>GotBalEvent
-
-**Description**: Triggered when a specific balance state is regained by the player. Replace `<balance>` with the actual balance type.
-
-**Returns**: Boolean or specific balance state object, depending on the balance type.
-
----
-
-## \<balance\>LostBalEvent
-
-**Description**: Triggered when a specific balance state is lost by the player. Replace `<balance>` with the actual balance type.
-
-**Returns**: Boolean or specific balance state object, depending on the balance type.
-
----
-
-## eqBalRecoveredEvent
-
-**Description**: Triggered when both balance and equilibrium have returned to the player.
-
-**Returns**: Object indicating that both balance and equilibrium are recovered.
-
----
-
-## SystemPaused
-
-**Description**: Triggered when the nexSys system is paused.
-
-**Returns**: Boolean indicating the system's paused state.
-
----
-
-## SystemUnpaused
-
-**Description**: Triggered when the nexSys system is unpaused.
-
-**Returns**: Boolean indicating the system's unpaused state.
-
----
-
-## SystemSlowModeOn
-
-**Description**: Triggered when the nexSys system slow mode is enabled.
-
-**Returns**: Boolean indicating that slow mode is active.
-
----
-
-## SystemSlowModeOff
-
-**Description**: Triggered when the nexSys system slow mode is disabled.
-
-**Returns**: Boolean indicating that slow mode is inactive.
-
----
-
-## PromptEvent
-
-**Description**: Triggered when a new prompt is received. Similar to the Nexus onBlock function.
-
-**Returns**: Object containing the details of the new prompt.
-
----
-
-## RoomChangedEvent
-
-**Description**: Triggered when the player has moved to a different room.
-
-**Returns**: GMCP Room.Info object containing information about the new room, such as room ID and description.
-
----
-
-## ItemAddedToRoom
-
-**Description**: Triggered when an item has been added to the current room.
-
-**Returns**: GMCP item object with details of the added item.
-
----
-
-## ItemAddedToInv
-
-**Description**: Triggered when an item has been added to the inventory.
-
-**Returns**: GMCP item object with details of the added item.
-
----
-
-## ItemRemovedFromRoom
-
-**Description**: Triggered when an item has been removed from the current room.
-
-**Returns**: GMCP item object with details of the removed item.
-
----
-
-## ItemRemoveFromInv
-
-**Description**: Triggered when an item has been removed from the inventory.
-
-**Returns**: GMCP item object with details of the removed item.
-
-**Example**:
-![ItemRemovedFromInv Example](./images/itemRemovedFromInv.png)
-
----
-
-## ItemUpdatedRoom
-
-**Description**: Triggered when an item in the room has been updated.
-
-**Returns**: GMCP item object with updated details of the item.
-
----
-
-## ItemUpdatedInv
-
-**Description**: Triggered when an item in the inventory has been updated.
-
-**Returns**: GMCP item object with updated details of the item.
-
----
-
-## ItemListForRoom
-
-**Description**: Triggered when the list of items in the current room has been updated.
-
-**Returns**: Array of GMCP item objects, representing the updated list of items.
-
----
-
-## ItemListForInv
-
-**Description**: Triggered when the list of items in the inventory has been updated.
-
-**Returns**: Array of GMCP item objects, representing the updated inventory.
-
----
-
-## TargetSetEvent
-
-**Description**: Triggered when a new target is set.
-
-**Returns**: String value of the new (current) target.
-
----
-
-## TargetChanged
-
-**Description**: Triggered when the current target has been changed.
-
-**Returns**: String value of the new (current) target.
-
----
-
-## ClassChanged
-
-**Description**: Triggered when the player's class changes.
-
-**Returns**: Object detailing the old and new class names.
-
-```js
-{
-  old: string,
-  new: string
-}
-```
-
----
-
-## HealthUpdated
-
-**Description**: Event is raised any time the player's health value changes.
-
-**Returns**: Object with health details.
-
-```js
-{
-  max: int,
-  current: int,
-  diff: int
-}
-```
-
-**Example**:
-
-```js
-const example = function (args) {
-  if (args.max / args.current < 0.5) {
-    nexusclient.send_commands("touch crystal|pt save me!");
-  }
-};
-eventStream.registerEvent("HealthUpdated", example);
-```
-
----
-
-## ManaUpdated
-
-**Description**: Event is raised any time the player's mana value changes.
-
-**Returns**: Object with mana details.
-
-```js
-{
-  max: int,
-  current: int,
-  diff: int
-}
-```
-
----
-
-## RageUpdated
-
-**Description**: Event is raised any time the player's rage value changes.
-
-**Returns**: Object with Rage details.
-
-```js
-{
-  max: int,
-  current: int,
-  diff: int
-}
+eventStream.registerEvent("AffGot", onAffGot);
 ```

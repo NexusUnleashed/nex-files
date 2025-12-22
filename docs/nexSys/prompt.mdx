@@ -1,1 +1,53 @@
-# Custom Prompt
+﻿---
+title: Custom Prompt
+---
+
+nexSys provides a custom prompt renderer that can replace the default Nexus prompt with a structured, colored prompt and affliction list.
+
+## Enable
+
+Toggle **Custom Prompt** in the configuration dialog, or set it manually:
+
+```js
+nexSys.sys.settings.customPrompt = true;
+```
+
+## Prompt pipeline
+
+- `promptEvents` tracks GMCP vitals, afflictions, and balances.
+- `prompt.getCustomPrompt()` assembles the prompt HTML.
+- `clientOverrides` injects the custom prompt into Nexus output when enabled.
+
+## Prompt helpers
+
+Key functions available on `nexSys.prompt`:
+
+- `add(text, fg, bg)` append a text chunk.
+- `addHTML(html)` append raw HTML.
+- `colorGradation(percentage)` returns a color based on percentage.
+- `addAffArray(affs)` build the aff list fragment.
+- `getCustomPrompt()` build the complete prompt string.
+
+## Affliction abbreviations
+
+Afflictions are abbreviated in `nexSys.prompt.affAbbrev`. Each entry can specify `text`, `fg`, and `bg`.
+
+Example:
+
+```js
+nexSys.prompt.affAbbrev.asthma = { text: "AST", fg: "gold", bg: "" };
+```
+
+## Variables
+
+Prompt variables are stored in `nexSys.prompt.vars`, including:
+
+- vitals: `h`, `m`, `e`, `w`, `ph`, `pm`
+- statuses: `eq`, `bal`, `c`, `k`, `d`, `b`
+- flags: `paused`, `aeon`, `retard`
+- target: `target`, `targetHP`
+
+## Notes
+
+- Prompt sorting uses aff priorities and the configured prio arrays.
+- Custom prompt output is suppressed when your line is gagged.

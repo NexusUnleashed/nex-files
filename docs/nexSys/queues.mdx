@@ -1,1 +1,52 @@
-# Queues
+﻿---
+title: Queues
+---
+
+nexSys provides several queue helpers to coordinate commands with server side balances and queue types.
+
+## Available queues
+
+| Queue | Type | Purpose |
+| --- | --- | --- |
+| `classQueue` | `c!p!t!w` | Class specific commands with pre commands. |
+| `freeQueue` | `free` | Free queue for non balance actions. |
+| `fullQueue` | `ebc!w!p!t` | Full queue for balance and equilibrium usage. |
+| `shieldQueue` | `eb!w!t` | Shield related actions. |
+| `shipQueue` | `s!w!t` | Ship actions. |
+| `bloodcloakQueue` | `!teb` | Bloodcloak actions. |
+| `battlerageQueue` | `!p!t!wu` | Battlerage actions. |
+| `stunQueue` | `!t` | Short duration stun queue. |
+
+Queues are configured with pre commands such as `touch soul` and `stand` and will clear conflicting queues when needed.
+
+## Queue API
+
+Each queue is an instance of `Queue` with the same API:
+
+```js
+nexSys.classQueue.add("queue add class attack target");
+
+nexSys.freeQueue.prepend(["stand", "sip health"]);
+
+if (nexSys.fullQueue.queued()) {
+  nexSys.fullQueue.clearQueue();
+}
+```
+
+Key methods:
+
+- `add(cmd)` adds commands and sends the queue.
+- `prepend(cmd)` prepends commands before existing items.
+- `queued()` returns whether queue content exists.
+- `clear()` clears internal queue state.
+- `clearQueue()` clears the server queue and local state.
+
+## Queue events
+
+Queues raise events in response to server side queue messages:
+
+- `${name}QueueAdded`
+- `${name}QueueFired`
+- `${name}QueueCleared`
+
+Use eventStream listeners to react to queue state transitions.

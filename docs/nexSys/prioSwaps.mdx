@@ -1,1 +1,38 @@
-# Prio Swaps
+﻿---
+title: Priority Swaps
+---
+
+nexSys includes a priority swapping module that adjusts affliction and cure priorities based on combat context. This runs on prompt and on key affliction or balance changes.
+
+## How it works
+
+- `serversidePrioritySwapping` registers listeners on `PromptEvent`, `AffGot`, `AffLost`, `BalanceGot`, `BalanceLost`, and `ClassChanged`.
+- The module checks combinations such as asthma + slickness, impatience windows, and class specific cures.
+- It updates priorities through `set_prio` and `reset_prio`, which trigger serverside priority updates.
+
+## Built in swaps
+
+Examples of built in logic:
+
+- AEON swap: reduces sip and batch thresholds and bumps asthma and paralysis priorities.
+- Focus swap: adjusts focus related priorities when focus is lost or regained.
+- Class specific cures: toggles priority for fitness, dragonheal, bloodboil, dwinnu, salt, shrugging, fool, alleviate.
+
+## Extending
+
+You can extend or override by registering your own listeners:
+
+```js
+const mySwap = () => {
+  if (nexSys.haveAff("asthma") && nexSys.haveAff("slickness")) {
+    nexSys.affs.asthma.set_prio(2);
+  }
+};
+
+eventStream.registerEvent("PromptEvent", mySwap);
+```
+
+## Notes
+
+- Priority swaps are intentionally conservative to avoid oscillation.
+- Use `reset_prio` when your special condition ends.

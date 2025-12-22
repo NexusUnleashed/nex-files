@@ -1,0 +1,42 @@
+﻿---
+title: Commands and Aliases
+---
+
+This page documents user facing aliases bundled with the nexSys package. These are defined in the packaged `.nxs` reflexes and may vary by release.
+
+## System
+
+| Alias | Description |
+| --- | --- |
+| `pp` | Toggle nexSys pause. |
+| `pp on` | Pause nexSys. |
+| `pp off` | Unpause nexSys. |
+| `tt <target>` | Set target in nexSys and Nexus. |
+| `hh` | Toggle sip priority between health and mana. |
+
+## Defences
+
+| Alias | Description |
+| --- | --- |
+| `defup` | Apply configured keepup defences. |
+| `defoff` | Clear defence priorities. |
+| `ma` | Toggle mass defence upkeep. |
+| `br` | Toggle breathing defence upkeep. |
+| `ss` | Toggle rebounding defence upkeep. |
+| `cl` | Toggle cloak defence upkeep. |
+| `p<limb>` | Intelligent parry swap. Example: `prl`, `ptt`, `ph`. |
+| `block <dir>` | Enable blocking in a direction. |
+| `ub` | Disable blocking. |
+
+## Utility
+
+| Alias | Description |
+| --- | --- |
+| `event <EventId>` | Raise an eventStream event manually. |
+| `loggingon` / `loggingoff` | Toggle event logging. |
+| `ns load` | Reload settings and trigger startup. |
+
+## Notes
+
+- The exact alias set depends on the packaged reflexes.
+- Use the API directly if a specific alias is not present in your build.

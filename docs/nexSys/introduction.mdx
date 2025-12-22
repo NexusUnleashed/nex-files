@@ -1,78 +1,38 @@
-# Introduction
+﻿---
+title: nexSys
+sidebar_label: Overview
+---
 
-In development.
-Dependency requirement: eventStream
+nexSys is a full featured combat systems package for the Nexus client. It provides event driven state tracking, server side curing orchestration, configurable priorities, queue management, and a configurable UI for advanced players who want a modern, maintainable combat stack.
 
-## History
+<!-- TODO: Add a screenshot of the nexSys configuration dialog. -->
 
-Credit to Jhui for the original 2016 version of Nexsys
-https://github.com/jhuiAchaea/Nexsys
+## What you get
 
-## API
+- Serverside curing management with dynamic priority updates for afflictions and defences.
+- A unified event model on top of GMCP and Nexus events (via eventStream).
+- A configurable prompt overlay with affliction abbreviations and colored vitals.
+- Queue helpers for class, free, and specialized queues.
+- Utility APIs for common client tasks (sending commands, line replacements, tab completion).
+- Built in config dialog with system, curing, defence, precache, and color tabs.
 
-TODO issues
+## Requirements
 
-- [ ] Don't use "\\" for a command separator
-- [ ] Refresh or new tab on relog / login
-- [ ] Lacking full support for "newer" classes (in progress): Depthswalker, Psion, Pariah, Unnamable, Elemental Lords
+- Nexus web client (official).
+- eventStream (required dependency).
 
-TODO topics
+## Architecture overview
 
-- [ ] Curing priorities
-- [ ] Defense priorities
-- [ ] Automatic Priority swapping
-- [ ] Balances
-- [ ] Queueing manager (freeQueue, classQueue, fullQueue, stunQueue)
-- [ ] Precache manager
-- [ ] Custom prompt strings
-- [ ] Tab completion
+nexSys exposes a global `nexSys` object and wires itself to GMCP and Nexus events. It maintains internal models for afflictions, defences, balances, caches, and trackables, then emits its own high level events that other packages can subscribe to.
 
-TODO API functions
+Key modules:
 
-- [ ] getCurrentAffs()
-- [ ] haveAff()
-- [ ] haveAffs()
-- [ ] haveAnAff()
-- [ ] affPrioSwap()
-- [ ] haveABal()
-- [ ] haveBal()
-- [ ] haveBals()
-- [ ] haveDef()
-- [ ] defPrioSwap()
-- [ ] defup()
-- [ ] defoff()
-- [ ] parry()
-- [ ] sendCmd()
-- [ ] sendInline()
-- [ ] psend()
-- [ ] rsend()
-- [ ] replace()
-- [ ] say()
+- `base/affs`, `base/defs`, `base/balances`: State models and priority logic.
+- `base/system`: Startup, server side sync, and output scheduling.
+- `base/queues`: Multi queue support and queue helpers.
+- `base/clientOverrides`: Prompt and input overrides.
+- `components`: Configuration UI and updater.
 
-TODO in game aliases
+## Version
 
-- [ ] pp (pause)
-- [ ] tt (target)
-- [ ] hh (hp/mana toggle)
-- [ ] defup
-- [ ] defoff
-- [ ] ma
-- [ ] br
-- [ ] ss
-- [ ] cl
-- [ ] p\* (parry)
-- [ ] ub
-- [ ] inra
-- [ ] event
-- [ ] logging
-- [ ] qcp (class queue prepend)
-- [ ] qp (free queue prepend)
-- [ ] qa (free queue add)
-
-TODO addons
-
-- [ ] prepend_notice()
-- [ ] say()
-- [ ] replace()
-- [ ] replaceWord()
-- [ ] replaceHTML()
+Current package version is defined in the bundle as `nexSys.version` and in the workspace as `2.2.7`.

@@ -1,24 +1,34 @@
-import Tabs from "@theme/Tabs";
+﻿import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { FaDiscord } from "react-icons/fa6";
 
-# Installation
+---
+title: Installation
+---
+
+nexSys depends on eventStream. Install eventStream before installing nexSys.
 
 ## Download
 
-You can download the eventStream `.nxs` file from the following sources:
-
 <Tabs>
-<TabItem value="dropbox" label="Dropbox" default>
-    [Download from
-    Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
-
-  </TabItem>
-  <TabItem value="github" label="GitHub">
-    [Download from
-    GitHub](https://github.com/NexusUnleashed/nexsys3/blob/master/dist/nexSys3.nxs)
+  <TabItem value="github" label="GitHub" default>
+    [Download from GitHub](https://github.com/NexusUnleashed/nexsys3/blob/master/dist/nexSys3.nxs)
 
     ![Github download button](./images/GithubDownloadButton.png)
+  </TabItem>
+  <TabItem value="dropbox" label="Dropbox">
+    [Download from Dropbox](https://www.dropbox.com/scl/fo/0zlqj0paorj6251q7eg64/AHXV_7he-x1s67unnevtycE?rlkey=zkf00szptvruwziqbji72q654&e=1&st=m6dk3yvv&dl=0)
 
+    The most current version should be located in the dropbox folder.
   </TabItem>
 </Tabs>
+
+## Install in Nexus
+
+1. Download the `.nxs` file.
+2. Drag and drop the file into the **Reflexes** panel in Nexus.
+3. Reload the client or relog if you do not see the config dialog.
+
+## Verify
+
+- In the developer console, run: `nexSys.version`.
+- Use the config dialog to set your command separator and confirm settings are saved.

@@ -1,0 +1,56 @@
+﻿---
+title: Curing System
+---
+
+nexSys is built around the Nexus serverside curing engine. It tracks your state locally and publishes updated priorities and actions back to the server.
+
+## Curing flow
+
+1. GMCP and triggers update afflictions, defences, balances, and trackables.
+2. nexSys recalculates priorities and output payloads.
+3. Commands are sent with your configured command separator.
+4. The server applies curing priorities and executes defences.
+
+## Priority ranges
+
+- `1` to `25` are active priorities.
+- `26` is reserved for ignored items in serverside curing.
+- `0` means ignore in local priorities (treated as ignored for serverside).
+
+## Output scheduling
+
+nexSys batches output for efficiency:
+
+- Output is chunked to avoid server limits.
+- Output pauses while the system is paused or in slow mode.
+- Output replays when pending state clears.
+
+Key events:
+
+- `ForcePopulateEvent` to rebuild output immediately.
+- `SystemOutputCompleteEvent` to signal completion.
+
+## Server side settings sync
+
+nexSys keeps a local mirror of serverside curing state in `nexSys.serversideSettings`:
+
+- `status` for current curing toggles and thresholds.
+- `affs` for affliction priority mappings.
+- `defs` for defence priority mappings.
+
+On startup, nexSys runs a sync sequence (curing status, priority list, defence list, rift, time) before resuming output.
+
+## Curing controls
+
+You can use `nexSys.sys.setSystemStatus` or update the config dialog to change curing settings. Changes are mapped to serverside commands through `serversideEvents`.
+
+```js
+nexSys.sys.setSystemStatus("sipPriority", "Mana");
+```
+
+## Best practices
+
+- Always set a command separator before enabling output.
+- Keep batching enabled unless you have a specific reason to disable it.
+- Avoid setting priority to `0` for live combat afflictions unless you truly want them ignored.
+- Use the priorities UI to keep aff ordering consistent for your class.
