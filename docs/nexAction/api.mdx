@@ -24,29 +24,6 @@ nexAction.triggers.add({ regex, action, id, tags, once });
 
 See `Reference -> Options` for the full options table.
 
-## handler.process(current_line)
-
-Evaluates one line against all enabled reflexes.
-
-```js
-nexAction.triggers.process(nexusclient.current_line);
-```
-
-`current_line` must provide a `parsed_line` object with `text()` and `chunks` (foreground/background colors). Example adapter:
-
-```js
-const line = {
-  parsed_line: {
-    chunks: [{ _fg: "#ffffff", _bg: "#000000" }],
-    text() {
-      return "A sample line.";
-    },
-  },
-};
-
-nexAction.triggers.process(line);
-```
-
 ## handler.remove(identifier)
 
 Removes reflexes by id, index, or tag set.
