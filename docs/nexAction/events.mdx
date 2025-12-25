@@ -1,0 +1,22 @@
+---
+title: Events
+---
+
+nexAction listens for one event from eventStream when prompt based cleanup is enabled.
+
+## PromptEvent
+
+If a trigger is created with `prompt: true`, nexAction registers a one time eventStream listener for `PromptEvent`. When the next prompt fires, the trigger is removed or disabled depending on `finalAction`.
+
+```js
+nexAction.triggers.add({
+  regex: /^The effect fades\.$/,
+  prompt: true,
+  finalAction: "remove",
+  action: () => {
+    console.log("Effect ended");
+  },
+});
+```
+
+If you do not use `prompt`, eventStream is optional.

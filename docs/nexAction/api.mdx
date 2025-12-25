@@ -1,0 +1,93 @@
+---
+title: API
+---
+
+## nexAction
+
+`nexAction` is a global object with two handler instances and a line counter:
+
+```js
+nexAction.triggers;
+nexAction.aliases;
+nexAction.lineCount;
+```
+
+Both handlers share the same API. Use `triggers` for incoming lines and `aliases` for command or custom text matching.
+
+## handler.add(options)
+
+Registers a new trigger or alias.
+
+```js
+nexAction.triggers.add({ regex, action, id, tags, once });
+```
+
+See `Reference -> Options` for the full options table.
+
+## handler.process(current_line)
+
+Evaluates one line against all enabled reflexes.
+
+```js
+nexAction.triggers.process(nexusclient.current_line);
+```
+
+`current_line` must provide a `parsed_line` object with `text()` and `chunks` (foreground/background colors). Example adapter:
+
+```js
+const line = {
+  parsed_line: {
+    chunks: [{ _fg: "#ffffff", _bg: "#000000" }],
+    text() {
+      return "A sample line.";
+    },
+  },
+};
+
+nexAction.triggers.process(line);
+```
+
+## handler.remove(identifier)
+
+Removes reflexes by id, index, or tag set.
+
+```js
+nexAction.triggers.remove("fishNibble");
+nexAction.triggers.remove(0); // array index
+nexAction.triggers.remove(["fishing", "alerts"]); // tag set
+```
+
+## handler.enable(identifier)
+
+Enables reflexes by id or by tag set.
+
+```js
+nexAction.triggers.enable("fishNibble");
+nexAction.triggers.enable(["fishing"]);
+```
+
+## handler.disable(identifier)
+
+Disables reflexes by id or by tag set.
+
+```js
+nexAction.triggers.disable("fishNibble");
+nexAction.triggers.disable(["fishing"]);
+```
+
+## handler.find(identifier)
+
+Finds a single reflex by id (enabled only) or returns an array when searching by tag set.
+
+```js
+const reflex = nexAction.triggers.find("fishNibble");
+const tagged = nexAction.triggers.find(["fishing"]);
+```
+
+## handler.clear()
+
+Removes all reflexes and clears internal timers.
+
+```js
+nexAction.triggers.clear();
+```

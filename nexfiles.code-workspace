@@ -1,0 +1,29 @@
+{
+  "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../nexmap3"
+		},
+		{
+			"path": "../nexgui3"
+		},
+		{
+			"path": "../nexsys3"
+		},
+		{
+			"path": "../eventstream3"
+		},
+		{
+			"path": "../insight3"
+		},
+		{
+			"path": "../nexbash3"
+		},
+		{
+			"path": "../nexaction3"
+		}
+	],
+  "settings": {}
+}

@@ -66,6 +66,33 @@ const sidebars = {
       ],
     },
   ],
+  nexActionSidebar: [
+    {
+      type: "category",
+      label: "nexAction",
+      link: { type: "doc", id: "nexAction/introduction" },
+      items: [
+        "nexAction/introduction",
+        "nexAction/installation",
+        "nexAction/quickstart",
+        "nexAction/triggers",
+        "nexAction/api",
+        "nexAction/events",
+        "nexAction/troubleshooting",
+        {
+          type: "category",
+          label: "Reference",
+          link: {
+            type: "generated-index",
+            title: "nexAction Reference",
+            description: "Options and usage reference for nexAction.",
+            keywords: ["nexAction", "reference"],
+          },
+          items: ["nexAction/reference/options"],
+        },
+      ],
+    },
+  ],
   nexSysSidebar: [
     {
       type: "category",

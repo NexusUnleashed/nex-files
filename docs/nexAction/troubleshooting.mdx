@@ -1,0 +1,32 @@
+---
+title: Troubleshooting
+---
+
+## Trigger does not fire
+
+- Confirm your line handler calls `nexAction.triggers.process` for every line.
+- Check that the trigger is enabled (`enabled` defaults to true).
+- If using `fg` or `bg`, confirm the hex colors match the parsed line.
+- For regex patterns, verify you escaped punctuation correctly.
+
+## Trigger fires once then disappears
+
+- You may have set `once: true`.
+- `duration` removes or disables the trigger after the timeout.
+- `prompt: true` removes or disables the trigger on the next prompt.
+
+## Multi-step sequences never complete
+
+- Patterns must match in order with no gaps.
+- Use `lines` or `duration` to control how long the sequence stays active.
+- If you need a longer window, increase `lines` or `duration`.
+
+## `crypto.randomUUID` is undefined
+
+- This happens in older browsers or restricted environments.
+- Provide a UUID polyfill or pass a custom `id` for every trigger.
+
+## Known limitations
+
+- `remove` by RegExp does not match the current reflex format.
+- Re-enabling triggers does not fully restore `duration`, `lines`, or `prompt` timers. Remove and re-add if you need fresh timers.

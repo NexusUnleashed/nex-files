@@ -1,0 +1,65 @@
+---
+title: Trigger patterns
+---
+
+nexAction supports three pattern styles: strings, regular expressions, and ordered arrays for multi-step sequences.
+
+## String patterns
+
+String patterns require an exact text match. They are fast and bypass regex overhead.
+
+```js
+nexAction.triggers.add({
+  regex: "You feel a fish nibbling on your hook.",
+  once: true,
+  action: () => {
+    nexusclient.display_notice("String match", "cyan");
+  },
+});
+```
+
+## RegExp patterns
+
+Regex patterns allow capture groups and partial matching. nexAction automatically derives a literal prefix gate when possible, using a fast `startsWith` check before running the regex.
+
+Tips for better gating:
+
+- Start patterns with literal text when you can: `/^You pay the 1500 gold/`.
+- Avoid token-leading patterns like `/^\w+ says/` if you want gating.
+- Literal prefixes are capped at 30 characters.
+
+## Multi-step sequences
+
+Pass an array to `regex` to create ordered, multi-line sequences. Each entry must match in order before the action fires.
+
+```js
+nexAction.triggers.add({
+  regex: [/^You blink\.$/, /^You cough softly\.$/, /^You sneeze\.$/],
+  lines: 5,
+  action: () => {
+    nexusclient.display_notice("Sequence complete", "lime");
+  },
+});
+```
+
+Use `lines` or `duration` to limit how long the sequence stays active. If the sequence times out, the index resets (or the trigger is removed if `once` is true).
+
+## Color matching
+
+Use `fg` and `bg` to require specific foreground or background colors. These are compared against the first non-reset parsed line chunk.
+
+```js
+nexAction.triggers.add({
+  regex: /^A warning flashes\.$/,
+  fg: "#ff0000",
+  action: () => {
+    nexusclient.display_notice("Red warning", "red");
+  },
+});
+```
+
+## Performance notes
+
+- String patterns are fastest for exact lines.
+- Regex patterns with literal prefixes skip most lines before running the regex.
+- Group related triggers with `tags` so you can quickly enable or disable them.

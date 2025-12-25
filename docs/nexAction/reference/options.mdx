@@ -1,0 +1,26 @@
+---
+title: Options reference
+sidebar_label: Options
+---
+
+Use these options with `nexAction.triggers.add` or `nexAction.aliases.add`.
+
+| Option | Type | Default | Notes |
+| --- | --- | --- | --- |
+| `regex` | `RegExp` \| `string` \| `Array<RegExp \| string>` | Required | Use arrays for ordered, multi-step sequences. |
+| `action` | `function` | Required | Receives the regex match array (or `{}` for string patterns). |
+| `id` | `string` | `crypto.randomUUID()` | Unique identifier; duplicates are reassigned. |
+| `tags` | `string[]` | `[]` | Used for group operations like remove or disable. |
+| `enabled` | `boolean` | `true` | Disabled triggers are skipped during processing. |
+| `once` | `boolean` | `false` | Removes the trigger after a complete match. |
+| `duration` | `number` | `false` | Milliseconds before applying `finalAction`; also used as a sequence timeout. |
+| `fg` | `string` | `false` | Hex foreground color to match. |
+| `bg` | `string` | `false` | Hex background color to match. |
+| `lines` | `number` | `0` | Line count window before the trigger resets or removes. |
+| `prompt` | `boolean` | `false` | Applies `finalAction` on the next `PromptEvent`. |
+| `finalAction` | `"remove" \| "disable"` | `"remove"` | Action used by `duration` and `prompt`. |
+| `onRemove` | `function` | Optional | Runs before the trigger is removed. |
+| `onDisable` | `function` | Optional | Runs when the trigger is disabled. |
+| `onEnable` | `function` | Optional | Runs when the trigger is enabled. |
+
+Tip: If you need access to the reflex object inside `action`, use `function () {}` instead of an arrow function so `this` is set to the reflex.

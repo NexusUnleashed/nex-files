@@ -1,0 +1,38 @@
+---
+title: nexAction
+sidebar_label: Overview
+---
+
+nexAction is a lightweight trigger and alias engine for the Nexus client. It evaluates incoming lines against fast, gated patterns and fires actions when matches complete, including multi-line sequences.
+
+<!-- TODO: Add a flow diagram of the trigger pipeline (gate -> match -> action -> finalAction). -->
+
+## What you get
+
+- A unified trigger and alias API (`nexAction.triggers` and `nexAction.aliases`).
+- Regex, string, and multi-step pattern support.
+- Lifecycle controls for once, duration, prompt, and line-limited triggers.
+- Tag-based grouping for bulk enable, disable, and removal.
+- Optional color matching for foreground and background text.
+
+## Requirements
+
+- Nexus web client (official).
+- `crypto.randomUUID` (available in modern browsers).
+- eventStream if you use `prompt` actions.
+
+## Architecture overview
+
+`nexAction` exposes two handlers: `triggers` for incoming lines and `aliases` for command or custom text handling. Each handler maintains a `reflexes` list and provides add, remove, enable, disable, and process helpers.
+
+During processing, nexAction:
+
+1. Increments a global line counter (`nexAction.lineCount`).
+2. Applies optional color filters.
+3. Applies a literal prefix gate (when possible) to avoid unnecessary regex work.
+4. Evaluates the active pattern and advances multi-step sequences.
+5. Executes actions and handles lifecycle cleanup.
+
+## Version
+
+Current package version is `1.1.7` (see `nexaction3/package.json`).

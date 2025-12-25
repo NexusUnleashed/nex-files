@@ -83,6 +83,12 @@ const config = {
           },
           {
             type: "docSidebar",
+            sidebarId: "nexActionSidebar",
+            position: "left",
+            label: "nexAction",
+          },
+          {
+            type: "docSidebar",
             sidebarId: "nexSysSidebar",
             position: "left",
             label: "nexSys",

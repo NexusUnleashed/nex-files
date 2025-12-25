@@ -1,6 +1,6 @@
 # Introduction
 
-Clientside trigger handler
+Clientside trigger handler. For the full reference, see the nexAction section.
 
 ```js
 add = ({
@@ -32,6 +32,8 @@ add = ({
 | `bg`        | `hex`          | Optional     | Background color to match in form of hex color code   |
 | `lines`     | `int`          | Optional     | Number of lines for action to remain active           |
 | `tags`      | `string array` | Optional     | String identifiers for filtering and searching        |
+| `prompt`    | `boolean`      | `false`      | Remove or disable the trigger on the next prompt      |
+| `finalAction` | `string`     | `remove`     | `remove` or `disable` when `prompt` or `duration` ends |
 | `onRemove`  | `function`     | Optional     | Callback function to fire when action is **removed**  |
 | `onDisable` | `function`     | Optional     | Callback function to fire when action is **disabled** |
 | `onEnable`  | `function`     | Optional     | Callback function to fire when action is **enabled**  |

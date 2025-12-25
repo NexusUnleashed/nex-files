@@ -1,0 +1,70 @@
+---
+title: Quickstart
+---
+
+## 1. Feed lines into nexAction
+
+nexAction does not attach to line processing automatically. Hook it into your line handler or add a catch-all trigger that passes lines through.
+
+Example Nexus trigger script:
+
+```js
+nexAction.triggers.process(nexusclient.current_line);
+```
+
+## 2. Add a basic trigger
+
+```js
+nexAction.triggers.add({
+  regex: /^You feel a fish nibbling on your hook\.$/,
+  id: "fishNibble",
+  action: () => {
+    nexusclient.display_notice("Nibble!", "cyan");
+  },
+});
+```
+
+## 3. Group and manage triggers
+
+```js
+nexAction.triggers.add({
+  regex: /^You stop fishing\.$/,
+  tags: ["fishing"],
+  action: () => {
+    nexusclient.display_notice("Fishing done.", "yellow");
+  },
+});
+
+nexAction.triggers.disable(["fishing"]);
+```
+
+## 4. Multi-line sequences
+
+```js
+nexAction.triggers.add({
+  regex: [/^You begin chanting\.$/, /^You release the spell\.$/],
+  lines: 3,
+  action: () => {
+    nexusclient.display_notice("Spell complete.", "lime");
+  },
+});
+```
+
+## 5. Prompt based cleanup
+
+```js
+nexAction.triggers.add({
+  regex: /^The gate flickers out\.$/,
+  prompt: true,
+  finalAction: "disable",
+  action: () => {
+    nexusclient.display_notice("Gate ended.", "orange");
+  },
+});
+```
+
+`prompt` actions require eventStream so the `PromptEvent` can be raised.
+
+## 6. Aliases use the same API
+
+`nexAction.aliases` mirrors the trigger API. Use it to match command text or custom strings with the same patterns and lifecycle rules.
