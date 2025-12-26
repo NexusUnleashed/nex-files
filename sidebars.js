@@ -43,12 +43,6 @@ const sidebars = {
         "eventStream/examples",
         {
           type: "category",
-          label: "nexAction",
-          link: { type: "doc", id: "eventStream/nexAction/introduction" },
-          items: ["eventStream/nexAction/introduction"],
-        },
-        {
-          type: "category",
           label: "nexSkills",
           link: { type: "doc", id: "eventStream/nexSkills/introduction" },
           items: [
