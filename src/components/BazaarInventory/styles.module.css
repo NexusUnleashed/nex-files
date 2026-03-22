@@ -115,7 +115,7 @@
   background: rgba(46, 133, 85, 0.08);
 }
 
-.itemTable tbody td {
+.itemTable > tbody > tr > td {
   padding: 0;
   border-top: 1px solid var(--ifm-color-emphasis-200);
   vertical-align: top;
@@ -123,6 +123,15 @@
 
 .itemRowOpen {
   background: rgba(46, 133, 85, 0.06);
+}
+
+.detailRow {
+  background: linear-gradient(180deg, rgba(46, 133, 85, 0.05), rgba(46, 133, 85, 0.015));
+}
+
+.detailRowCell {
+  padding: 0.25rem 1rem 1.1rem !important;
+  border-top: 0 !important;
 }
 
 .itemCell {
@@ -157,75 +166,65 @@
   color: var(--ifm-color-emphasis-700);
 }
 
-.detailPanel {
-  margin: 0 1rem 1rem;
-  padding: 1rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 1rem;
-  background:
-    linear-gradient(180deg, rgba(46, 133, 85, 0.08), rgba(46, 133, 85, 0.02)),
-    var(--ifm-card-background-color);
+.detailTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 
-.detailGrid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.detailTable th,
+.detailTable td {
+  padding: 1.05rem 1.3rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  text-align: left;
+  vertical-align: top;
 }
 
-.detailCard {
-  padding: 1rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 0.95rem;
-  background: rgba(255, 255, 255, 0.02);
+.detailTable tr:first-child th,
+.detailTable tr:first-child td {
+  border-top: 0;
 }
 
-.detailTitle {
-  margin-bottom: 0.7rem;
-  font-size: 1rem;
-}
-
-.metaList {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-}
-
-.metaList div {
-  display: grid;
-  gap: 0.2rem;
-}
-
-.metaList dt {
+.detailTable th {
+  width: 180px;
   font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ifm-color-emphasis-700);
+  border-right: 1px solid var(--ifm-color-emphasis-200);
+  background: transparent;
 }
 
-.metaList dd {
-  margin: 0;
+.detailTable td {
+  padding-left: 1.45rem;
 }
 
 .interactionsBlock {
   margin-top: 1rem;
 }
 
-.interactionTableWrap {
-  overflow-x: auto;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 0.95rem;
+.sectionLabel {
+  margin-bottom: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
 }
 
 .interactionTable {
   width: 100%;
-  min-width: 720px;
   border-collapse: collapse;
+  table-layout: fixed;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 
 .interactionTable th,
 .interactionTable td {
-  padding: 0.85rem 0.95rem;
+  padding: 0.95rem 1.15rem;
   border-top: 1px solid var(--ifm-color-emphasis-200);
   text-align: left;
   vertical-align: top;
@@ -234,10 +233,25 @@
 .interactionTable thead th {
   border-top: 0;
   font-size: 0.78rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ifm-color-emphasis-700);
-  background: rgba(46, 133, 85, 0.08);
+  background: transparent;
+}
+
+.interactionTable th:nth-child(1),
+.interactionTable td:nth-child(1) {
+  width: 14%;
+}
+
+.interactionTable th:nth-child(2),
+.interactionTable td:nth-child(2) {
+  width: 56%;
+}
+
+.interactionTable td:last-child,
+.interactionTable th:last-child {
+  width: 30%;
 }
 
 .priceCell,
@@ -275,6 +289,7 @@
 .preWrap {
   white-space: pre-line;
   word-break: break-word;
+  line-height: 1.6;
 }
 
 .muted {
@@ -291,8 +306,41 @@
     font-size: 1.45rem;
   }
 
-  .detailPanel {
-    margin: 0 0.75rem 0.75rem;
+  .detailRowCell {
+    padding: 0.2rem 0.75rem 0.75rem !important;
+  }
+
+  .detailTable th,
+  .detailTable td {
+    padding: 0.9rem 1rem;
+  }
+
+  .detailTable th {
+    width: 145px;
+  }
+
+  .detailTable td {
+    padding-left: 1.15rem;
+  }
+
+  .interactionTable th,
+  .interactionTable td {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .interactionTable th:nth-child(1),
+  .interactionTable td:nth-child(1) {
+    width: 16%;
+  }
+
+  .interactionTable th:nth-child(2),
+  .interactionTable td:nth-child(2) {
+    width: 52%;
+  }
+
+  .interactionTable td:last-child,
+  .interactionTable th:last-child {
+    width: 32%;
   }
 }
 
@@ -313,9 +361,13 @@
   background: rgba(212, 193, 140, 0.08);
 }
 
+[data-theme="dark"] .detailRow {
+  background: linear-gradient(180deg, rgba(212, 193, 140, 0.08), rgba(212, 193, 140, 0.02));
+}
+
+[data-theme="dark"] .detailTable th,
 [data-theme="dark"] .itemTable thead th,
-[data-theme="dark"] .interactionTable thead th,
-[data-theme="dark"] .detailPanel {
+[data-theme="dark"] .interactionTable thead th {
   background-color: rgba(212, 193, 140, 0.06);
 }
 

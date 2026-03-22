@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Heading from "@theme/Heading";
 import bazaarItems from "@site/docs/bazaar/items1000.json";
 
@@ -68,11 +68,6 @@ function normalizeItem(item, index) {
     price,
     tags,
     interactions,
-    source: {
-      year: item?.source?.year ?? null,
-      igYear: item?.source?.igYear ?? null,
-      type: normalizeText(item?.source?.type),
-    },
   };
 }
 
@@ -111,18 +106,10 @@ const merchantGroups = Array.from(
     anchorId: `merchant-${slugify(merchant) || "unspecified"}`,
     itemCount: items.length,
     pricedItemCount: items.filter((item) => item.price !== null).length,
-    totalRecordedPrice: items.reduce(
-      (sum, item) => sum + (typeof item.price === "number" ? item.price : 0),
-      0
-    ),
     items,
   }))
   .sort(sortMerchantGroups);
 
-const recordedPriceTotal = inventoryItems.reduce(
-  (sum, item) => sum + (typeof item.price === "number" ? item.price : 0),
-  0
-);
 const incompleteItemCount = inventoryItems.filter(
   (item) => item.merchant === MERCHANT_FALLBACK || item.price === null
 ).length;
@@ -148,10 +135,6 @@ export default function BazaarInventory() {
         <article className={styles.summaryCard}>
           <span className={styles.summaryLabel}>Merchants</span>
           <strong className={styles.summaryValue}>{numberFormatter.format(merchantGroups.length)}</strong>
-        </article>
-        <article className={styles.summaryCard}>
-          <span className={styles.summaryLabel}>Recorded Price</span>
-          <strong className={styles.summaryValue}>{formatPrice(recordedPriceTotal)}</strong>
         </article>
         <article className={styles.summaryCard}>
           <span className={styles.summaryLabel}>Needs Metadata</span>
@@ -184,7 +167,6 @@ export default function BazaarInventory() {
               </Heading>
               <p className={styles.sectionMeta}>
                 {numberFormatter.format(group.itemCount)} items | {numberFormatter.format(group.pricedItemCount)} priced
-                | {formatPrice(group.totalRecordedPrice)} total
               </p>
             </div>
           </div>
@@ -203,122 +185,83 @@ export default function BazaarInventory() {
                   const isOpen = openItemId === item.id;
 
                   return (
-                    <tr key={item.id} className={isOpen ? styles.itemRowOpen : undefined}>
-                      <td className={styles.itemCell}>
-                        <button
-                          type="button"
-                          className={styles.itemButton}
-                          aria-expanded={isOpen}
-                          aria-controls={`${item.id}-details`}
-                          onClick={() => setOpenItemId(isOpen ? null : item.id)}
-                        >
-                          <span className={styles.itemName}>{item.name}</span>
-                          {item.shortName && item.shortName !== item.name ? (
-                            <span className={styles.shortName}>Short name: {item.shortName}</span>
-                          ) : null}
-                        </button>
+                    <Fragment key={item.id}>
+                      <tr className={isOpen ? styles.itemRowOpen : undefined}>
+                        <td className={styles.itemCell}>
+                          <button
+                            type="button"
+                            className={styles.itemButton}
+                            aria-expanded={isOpen}
+                            aria-controls={`${item.id}-details`}
+                            onClick={() => setOpenItemId(isOpen ? null : item.id)}
+                          >
+                            <span className={styles.itemName}>{item.name}</span>
+                            {item.shortName && item.shortName !== item.name ? (
+                              <span className={styles.shortName}>Short name: {item.shortName}</span>
+                            ) : null}
+                          </button>
+                        </td>
+                        <td className={styles.priceCell}>{formatPrice(item.price)}</td>
+                        <td className={styles.tagsCell}>
+                          {item.tags.length ? (
+                            <span className={styles.tagList}>
+                              {item.tags.map((tag) => (
+                                <span key={tag} className={styles.tag}>
+                                  {tag}
+                                </span>
+                              ))}
+                            </span>
+                          ) : (
+                            <span className={styles.muted}>{EMPTY_VALUE}</span>
+                          )}
+                        </td>
+                      </tr>
 
-                        {isOpen ? (
-                          <div id={`${item.id}-details`} className={styles.detailPanel}>
-                            <div className={styles.detailGrid}>
-                              <article className={styles.detailCard}>
-                                <h3 className={styles.detailTitle}>Description</h3>
-                                {renderTextBlock(item.description)}
-                              </article>
+                      {isOpen ? (
+                        <tr className={styles.detailRow}>
+                          <td id={`${item.id}-details`} colSpan={3} className={styles.detailRowCell}>
+                            <table className={styles.detailTable}>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">Description</th>
+                                  <td>{renderTextBlock(item.description)}</td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Notes</th>
+                                  <td>{renderTextBlock(item.notes)}</td>
+                                </tr>
+                              </tbody>
+                            </table>
 
-                              <article className={styles.detailCard}>
-                                <h3 className={styles.detailTitle}>Notes</h3>
-                                {renderTextBlock(item.notes)}
-                              </article>
-
-                              <article className={styles.detailCard}>
-                                <h3 className={styles.detailTitle}>Item Details</h3>
-                                <dl className={styles.metaList}>
-                                  <div>
-                                    <dt>Merchant</dt>
-                                    <dd>{item.merchant}</dd>
-                                  </div>
-                                  <div>
-                                    <dt>Price</dt>
-                                    <dd>{formatPrice(item.price)}</dd>
-                                  </div>
-                                  <div>
-                                    <dt>In-Game Year</dt>
-                                    <dd>{item.source.igYear ?? EMPTY_VALUE}</dd>
-                                  </div>
-                                  <div>
-                                    <dt>Recorded Year</dt>
-                                    <dd>{item.source.year ?? EMPTY_VALUE}</dd>
-                                  </div>
-                                  <div>
-                                    <dt>Type</dt>
-                                    <dd>{item.source.type || EMPTY_VALUE}</dd>
-                                  </div>
-                                  <div>
-                                    <dt>Tags</dt>
-                                    <dd>
-                                      {item.tags.length ? (
-                                        <span className={styles.tagList}>
-                                          {item.tags.map((tag) => (
-                                            <span key={tag} className={styles.tag}>
-                                              {tag}
-                                            </span>
-                                          ))}
-                                        </span>
-                                      ) : (
-                                        EMPTY_VALUE
-                                      )}
-                                    </dd>
-                                  </div>
-                                </dl>
-                              </article>
-                            </div>
-
-                            <div className={styles.interactionsBlock}>
-                              <h3 className={styles.detailTitle}>Interactions</h3>
+                            <section className={styles.interactionsBlock} aria-label={`${item.name} interactions`}>
+                              <div className={styles.sectionLabel}>Interactions</div>
                               {item.interactions.length ? (
-                                <div className={styles.interactionTableWrap}>
-                                  <table className={styles.interactionTable}>
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Command</th>
-                                        <th scope="col">Response</th>
-                                        <th scope="col">Notes</th>
+                                <table className={styles.interactionTable}>
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Command</th>
+                                      <th scope="col">Response</th>
+                                      <th scope="col">Notes</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {item.interactions.map((interaction, interactionIndex) => (
+                                      <tr key={`${item.id}-interaction-${interactionIndex + 1}`}>
+                                        <td>{interaction.command || EMPTY_VALUE}</td>
+                                        <td>{renderTextBlock(interaction.response)}</td>
+                                        <td>{renderTextBlock(interaction.notes)}</td>
                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                      {item.interactions.map((interaction, interactionIndex) => (
-                                        <tr key={`${item.id}-interaction-${interactionIndex + 1}`}>
-                                          <td>{interaction.command || EMPTY_VALUE}</td>
-                                          <td>{renderTextBlock(interaction.response)}</td>
-                                          <td>{renderTextBlock(interaction.notes)}</td>
-                                        </tr>
-                                      ))}
-                                    </tbody>
-                                  </table>
-                                </div>
+                                    ))}
+                                  </tbody>
+                                </table>
                               ) : (
                                 <p className={styles.emptyState}>No recorded interactions yet.</p>
                               )}
-                            </div>
-                          </div>
-                        ) : null}
-                      </td>
-                      <td className={styles.priceCell}>{formatPrice(item.price)}</td>
-                      <td className={styles.tagsCell}>
-                        {item.tags.length ? (
-                          <span className={styles.tagList}>
-                            {item.tags.map((tag) => (
-                              <span key={tag} className={styles.tag}>
-                                {tag}
-                              </span>
-                            ))}
-                          </span>
-                        ) : (
-                          <span className={styles.muted}>{EMPTY_VALUE}</span>
-                        )}
-                      </td>
-                    </tr>
+                            </section>
+                          </td>
+                        </tr>
+                      ) : null}
+                    </Fragment>
                   );
                 })}
               </tbody>
