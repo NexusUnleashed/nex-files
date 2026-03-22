@@ -93,6 +93,8 @@
 
 .tableWrap {
   overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 1.25rem;
   background: var(--ifm-background-surface-color);
@@ -100,9 +102,25 @@
 }
 
 .itemTable {
+  display: table;
   width: 100%;
   min-width: 780px;
   border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+.itemColumn {
+  width: 62%;
+}
+
+.priceColumn {
+  width: 18%;
+}
+
+.tagsColumn {
+  width: 20%;
 }
 
 .itemTable thead th {
@@ -134,10 +152,6 @@
   border-top: 0 !important;
 }
 
-.itemCell {
-  width: 60%;
-}
-
 .itemButton {
   width: 100%;
   display: flex;
@@ -167,11 +181,14 @@
 }
 
 .detailTable {
+  display: table;
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   border-top: 1px solid var(--ifm-color-emphasis-300);
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  margin-bottom: 0;
+  overflow: visible;
 }
 
 .detailTable th,
@@ -215,11 +232,14 @@
 }
 
 .interactionTable {
+  display: table;
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   border-top: 1px solid var(--ifm-color-emphasis-300);
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  margin-bottom: 0;
+  overflow: visible;
 }
 
 .interactionTable th,
@@ -260,13 +280,8 @@
 }
 
 .priceCell {
-  width: 16%;
   white-space: nowrap;
   font-weight: 600;
-}
-
-.tagsCell {
-  width: 24%;
 }
 
 .tagList {

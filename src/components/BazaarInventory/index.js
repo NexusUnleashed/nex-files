@@ -173,6 +173,11 @@ export default function BazaarInventory() {
 
           <div className={styles.tableWrap}>
             <table className={styles.itemTable}>
+              <colgroup>
+                <col className={styles.itemColumn} />
+                <col className={styles.priceColumn} />
+                <col className={styles.tagsColumn} />
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col">Item</th>
