@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "prestart": "node ./scripts/generate-classleads.mjs",
+    "prestart": "node ./scripts/generate-classleads.mjs && node ./scripts/generate-bazaar-json.mjs",
     "start": "docusaurus start",
-    "prebuild": "node ./scripts/generate-classleads.mjs",
+    "prebuild": "node ./scripts/generate-classleads.mjs && node ./scripts/generate-bazaar-json.mjs",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -14,7 +14,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "gen-classleads": "node ./scripts/generate-classleads.mjs"
+    "gen-classleads": "node ./scripts/generate-classleads.mjs",
+    "gen-bazaar": "node ./scripts/generate-bazaar-json.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",

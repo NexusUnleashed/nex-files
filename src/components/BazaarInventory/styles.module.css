@@ -1,0 +1,325 @@
+.inventoryPage {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.summaryGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.summaryCard {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(160deg, rgba(46, 133, 85, 0.18), rgba(46, 133, 85, 0.06)),
+    var(--ifm-card-background-color);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+}
+
+.summaryLabel {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.summaryValue {
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+
+.notice {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(191, 143, 0, 0.35);
+  border-radius: 1rem;
+  background: rgba(191, 143, 0, 0.08);
+}
+
+.merchantNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.merchantPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.merchantPill:hover {
+  border-color: var(--ifm-color-primary);
+  background: rgba(46, 133, 85, 0.08);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.section {
+  display: grid;
+  gap: 0.85rem;
+  scroll-margin-top: 5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  margin-bottom: 0.25rem;
+}
+
+.sectionMeta {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 1.25rem;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.06);
+}
+
+.itemTable {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+}
+
+.itemTable thead th {
+  padding: 0.95rem 1rem;
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  background: rgba(46, 133, 85, 0.08);
+}
+
+.itemTable tbody td {
+  padding: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  vertical-align: top;
+}
+
+.itemRowOpen {
+  background: rgba(46, 133, 85, 0.06);
+}
+
+.itemCell {
+  width: 60%;
+}
+
+.itemButton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 1rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.itemButton:hover .itemName {
+  color: var(--ifm-color-primary);
+}
+
+.itemName {
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.shortName {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.detailPanel {
+  margin: 0 1rem 1rem;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(46, 133, 85, 0.08), rgba(46, 133, 85, 0.02)),
+    var(--ifm-card-background-color);
+}
+
+.detailGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.detailCard {
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.detailTitle {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+}
+
+.metaList {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.metaList div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.metaList dt {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.metaList dd {
+  margin: 0;
+}
+
+.interactionsBlock {
+  margin-top: 1rem;
+}
+
+.interactionTableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.95rem;
+}
+
+.interactionTable {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.interactionTable th,
+.interactionTable td {
+  padding: 0.85rem 0.95rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  text-align: left;
+  vertical-align: top;
+}
+
+.interactionTable thead th {
+  border-top: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
+  background: rgba(46, 133, 85, 0.08);
+}
+
+.priceCell,
+.tagsCell {
+  padding: 1rem !important;
+}
+
+.priceCell {
+  width: 16%;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.tagsCell {
+  width: 24%;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(46, 133, 85, 0.12);
+  color: var(--ifm-color-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.preWrap {
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.muted {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media screen and (max-width: 996px) {
+  .summaryValue {
+    font-size: 1.45rem;
+  }
+
+  .detailPanel {
+    margin: 0 0.75rem 0.75rem;
+  }
+}
+
+[data-theme="dark"] .summaryCard {
+  background:
+    linear-gradient(160deg, rgba(212, 193, 140, 0.18), rgba(212, 193, 140, 0.05)),
+    rgba(18, 24, 28, 0.92);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+[data-theme="dark"] .notice {
+  border-color: rgba(212, 193, 140, 0.32);
+  background: rgba(212, 193, 140, 0.08);
+}
+
+[data-theme="dark"] .merchantPill:hover,
+[data-theme="dark"] .itemRowOpen {
+  background: rgba(212, 193, 140, 0.08);
+}
+
+[data-theme="dark"] .itemTable thead th,
+[data-theme="dark"] .interactionTable thead th,
+[data-theme="dark"] .detailPanel {
+  background-color: rgba(212, 193, 140, 0.06);
+}
+
+[data-theme="dark"] .tag {
+  background: rgba(212, 193, 140, 0.12);
+  color: #f0ddb0;
+}

@@ -1,0 +1,968 @@
+// JSONC allows comments! Use // for single-line or /* */ for multi-line comments
+// TODO - terrarium
+[
+  {
+    "name": "",
+    "shortName": "",
+    "description": "",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar"
+    }
+  },
+  {
+    "name": "a colourful countdown calendar",
+    "shortName": "calendar",
+    "description": "Colourful wood blocks, hand-painted with a variety of letters and numbers in bold chirography, sit neatly stacked in a lacquered display tray. Each of the pieces is stored with meticulous care, awaiting proper arrangement to display a countdown to the next special occasion. A label inside the box states: \"PUSH CALENDAR SET [days/months/years], PUSH CALENDAR OCCASION [whatever occasion], PUSH CALENDAR NUMBER [1-365], PUSH CALENDAR BEGIN, PUSH CALENDAR DOWN, and SHAKE CALENDAR to reset.\"",
+    "tags": ["readable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "read",
+        "response": "",
+        "notes": "Calendar command reference text shown in-game (timestamps omitted)."
+      },
+      {
+        "command": "shake",
+        "response": "",
+        "notes": "Old observed room response: You vigorously shake a colourful countdown calendar, causing all the pieces to fall back into the storage tray."
+      },
+      {
+        "command": "push calendar set [days/months/years]",
+        "response": "",
+        "notes": "Set the countdown increment by days, months, or years."
+      },
+      {
+        "command": "push calendar occasion [whatever occasion]",
+        "response": "",
+        "notes": "Set the occasion for the countdown display."
+      },
+      {
+        "command": "push calendar number [number]",
+        "response": "",
+        "notes": "Set the starting countdown value."
+      },
+      {
+        "command": "push calendar begin",
+        "response": "",
+        "notes": "Starts the countdown."
+      },
+      {
+        "command": "push calendar down",
+        "response": "",
+        "notes": "Stores the calendar back with you."
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar"
+    }
+  },
+  {
+    "name": "a fractured marble shard",
+    "shortName": "shard",
+    "description": "Interlocking rings decorate the outer edges of this tablet fragment, the pale marble dusted with a light coating of royal blue paint which lurks in errant flecks despite the ravages of time. Evidently part of a much larger whole, the stone is both cool and finely grained, but some of its edges remain jagged where fracture and rupture take hold. Grains of sand and soil dwell within the deep grooves carved into its front side, where large chiselled lettering remains barely legible in the remnant ruin of a once grand and public proclamation.",
+    "tags": ["readable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "read",
+        "response": [
+          "In the sight of the Logos, in the witness of the Church...",
+          "...and may Seleucar be whole once more."
+        ],
+        "notes": "There are multiple shards with different text lines"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 4000
+    }
+  },
+  {
+    "name": "a philosopher's calendar",
+    "shortName": "calendar",
+    "description": "Cream-coloured vellum fills this calendar with dozens upon dozens of wafer-thin sheets, the smell of fresh parchment long surrendered to the faint must of age and decrepitude. Twin holes pierce the top of each page, bound together by a pair of faux bronze bands which gleam with a dull lustre. Thread of flaxen hue loops through and wraps around these punched rings, holding the item together while allowing the top sheaf to be flipped over and returned to the back of the stack when desired. Glossy images decorate each leaf and lend protection through resilient varnish, oilpaint renditions of the Mnemosyme, the Imperial City, and other Seleucarian landmarks providing a charming backdrop to the existential script spilling across the bottom in black ink.",
+    "tags": ["readable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "read",
+        "response": "To chase the future is to surrender the present.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 8750
+    }
+  },
+  {
+    "name": "a justiciar's writ of criminal condemnation",
+    "shortName": "writ",
+    "description": "Riddled with the countless creases of extreme age and stained to near-yellow by exposure to time and element alike, this weathered poster joins to a narrow wooden board to resist curling or other peeling that would render it illegible. The seal of Imperial Seleucar gleams brazen in the bottom right corner, stamped on the opposite side by the mark of the Empire's Justice. Together, the staff and gavel symbology lend the authority of Empire to the piece, the sigils slightly smudged but retaining all of their pomp regardless of defacement. Bold ink spills across the page in variegated colours, combining to render the head and shoulders of the day's miscreant in unfortunate and highly unflattering caricature. Beneath the portrait, black lettering unfolds in the neat script of a stern, bureaucratic hand, the declaration enumerating the crimes and infamy of an individual deemed worthy not only of public scorn but immediate arrest, trial, and punishment for defying the law.",
+    "tags": ["readable"],
+    "notes": "You may try to ADJUST WRIT <name> to fill in a justiciar's writ of criminal condemnation's blank spaces, then PUSH it into place or PULL it down.",
+    "interactions": [
+      {
+        "command": "read",
+        "response": "By the authority vested in the Hall of the Judiciary and under the watchful judgement of both law and Imperial Crown, the individual known as [name] is hereby condemned as a criminal of ill repute and public concern.\nThe aforementioned stands accused of conduct most unlawful, including a litany of high crimes, misdemeanours, and other acts disruptive to the peace, dignity, and stability of the Seleucarian Empire.\nAll loyal citizens, officials, public servants, and visitors to the Imperial City are therefore advised most strongly to treat [name] with suspicion and extreme caution, and to report any knowledge of their whereabouts to the nearest magistrate or appointed officer of the law.\nDo not attempt to take the law into your own hands. The criminal so named is extremely dangerous and Imperial Law does not recognise vigilanteism.\nSo mote it be.",
+        "notes": ""
+      },
+      {
+        "command": "adjust writ [name]",
+        "response": "You scrawl the name of [name] upon a justiciar's writ of criminal condemnation, identifying them as a criminal of extreme disrepute.",
+        "notes": ""
+      },
+      {
+        "command": "push writ",
+        "response": "You quickly pin up a justiciar's writ of criminal condemnation and smooth out the edges.",
+        "notes": "places writ in the room"
+      },
+      {
+        "command": "pull writ",
+        "response": "You tear a justiciar's writ of criminal condemnation down and take it for your own.",
+        "notes": "removes writ from the room and adds it to inventory"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 17500
+    }
+  },
+  {
+    "name": "a pair of weathered pilgrim's boots",
+    "shortName": "boots",
+    "description": "Crafted from toughened leather lacking embellishment or flourish, the rough style of these boots identify them as peasant wear, ill-suited to high courts or grand halls. The brown material bears patches of sweat, dust, and other detritus, stained and wizened by long exposure to the elements and the unmistakeable ravages of extended travel. Yellowed laces crisscross in haphazard loops about the front and culminate in sturdy knots. Wrapping the ankles, broad straps join to simple iron buckles, they too dulled by time and bearing signs of rust. While the toes show scuffs and shallow abrasions, the soles remain layered and thick, their hobnailed undersides built for endurance and eschewing all notions of style or elegance in the process. Some few errant threads hang loose from the outer edge yet most remain firm in a testament to garb made to last.",
+    "tags": ["wearable", "footwear"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "wear",
+        "response": "You pull a pair of weathered pilgrim's boots onto your feet, the leather settling around your calves with the familiarity and ease of long travel.",
+        "notes": ""
+      },
+      {
+        "command": "remove",
+        "response": "You slip free of a pair of weathered pilgrim's boots, your feet lighter without the remembered weight of the road.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Ordruin",
+      "price": 8500
+    }
+  },
+  {
+    "name": "a reptilian scabbard",
+    "shortName": "scabbard",
+    "description": "Masterfully crafted from a sinuous length of scaled leather hide, this scabbard is pieced together with seamless precision. Its origin is a mystery, the luminous scales resembling those of a dragon, smooth to the touch with a mirror-like surface, but are soft and flexible unlike the armour-like plates of its brethren. Tough leather comprises the scabbard's inner lining, and a row of rubies glitters within an abstract pattern on the finely-tooled shoulder strap.",
+    "tags": ["scabbard"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 7500
+    }
+  },
+  {
+    "name": "a carved wooden sheath",
+    "shortName": "sheath",
+    "description": "Split from the dense wood of a mighty oak, this sheath is carved with the images of sprawling trees, their branches interlocking to form an uninterrupted pattern. Between the leaves peek the watchful faces of dryads, and squirrels and birds hide among the limbs. Aromatic oil is rubbed over the surface of the wood to give it a dark sheen, and a lining of lambswool within the sheath protects the edge of the blade from dulling.",
+    "tags": ["sheath"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 7500
+    }
+  },
+  {
+    "name": "a Seleucarian Saboteur's wrist sheath",
+    "shortName": "sheath",
+    "description": "Worn beneath the patina of centuries come and gone, this sheath yet boasts a sleek and dignified form, easily concealed up the sleeve or cuff to evade the notice of prying eyes. The confines themselves remain suitable for only the most clandestine of blades, the entirety of the piece little more than a handspan in length. A single raised image holds pride of place undiminished by the fall of its age, the undeniable emblem of Nicator's staff swathed in laurels made dread portent by dint of bountiful vegetation become ensnaring serpents coiled tight about Seleucarian authority.",
+    "tags": ["sheath"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "sheathe",
+        "response": "You slide a steel stiletto into the narrow confines of a Seleucarian Saboteur's wrist sheath and adjust for comfort.",
+        "notes": ""
+      },
+      {
+        "command": "draw",
+        "response": "You draw a steel stiletto from a Seleucarian Saboteur's wrist sheath, the blade glinting as it is set free from concealment.",
+        "notes": ""
+      },
+      {
+        "command": "touch",
+        "response": "You run your fingers across a Seleucarian Saboteur's wrist sheath, carefully tracing the raised crest of Nicator's staff.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Ordruin",
+      "price": 9500
+    }
+  },
+  {
+    "name": "a Mnemosynian backstrap",
+    "shortName": "backstrap",
+    "description": "Fashioned from thick leather long since softened by use, this backstrap bears all the wear of centuries in its cracked surface and wizened features. Muted pigment of blue-grey depicts the meandering course of the Mnemosyne on the front side, the line wavering deliberately from shoulder to hip in a faithful portrayal of the water's sinuous path. Some few blemishes impede the river's journey in the form of pockmarks and stains, veined obsidian carved to form narrow bands holding the piece in place. Bronze loops join with dulled rivets at measured intervals, scuffed but nevertheless retaining cohesion sufficient to bear weapon or shield in their grasp. Flattened in places, the reverse bears a lining of rough suede to prevent slippage, the seams held together with strands of royal blue thread.",
+    "tags": ["backstrap"],
+    "notes": "",
+    //TODO "lash" and "unlash" commands for backstrap, which can be used to hold a weapon or shield on the back
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "Your fingers trace the painted river along a Mnemosynian backstrap, following its wavering course toward the dark bands of the obsidian weir.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Ordruin",
+      "price": 8500
+    }
+  },
+  {
+    "name": "a gecko-skin pouch embroidered with stars",
+    "shortName": "pouch",
+    "description": "",
+    "tags": ["container", "pouch"],
+    "notes": "Constellation changes on each 'touch' randomly",
+    "interactions": [
+      {
+        "command": "put",
+        "response": "Starlight flickers across nebulous black as the scaled pouch adjusts to the addition of its new, precious treasure.",
+        "notes": ""
+      },
+      {
+        "command": "get",
+        "response": "Starlight flickers across nebulous black as the scaled pouch adjusts to the loss of one of its treasures.",
+        "notes": ""
+      },
+      {
+        "command": "touch",
+        "response": "In response to your touch, the stars on the gecko-skin pouch glow and others dim, re-arranging the luminous pattern into a constellation of the Bull.",
+        "notes": [
+          "Hourglass",
+          "Third Eye",
+          "Quadrant",
+          "Dove",
+          "Hierophant",
+          "Bull",
+          "Warrior",
+          "Abyss",
+          "Coin",
+          "Ring",
+          "Dragon",
+          "Sundered Star",
+          "Eagle",
+          "Septagram",
+          "Ouroboros",
+          "Owl",
+          "Hammer",
+          "Serpent",
+          "Lovers",
+          "Phoenix",
+          "Vulture",
+          "Scales of Justice",
+          "Tear",
+          "Fish",
+          "Scroll",
+          "Mailed Fist",
+          "Spade",
+          "Spider",
+          "Wolf",
+          "Split Yew",
+          "Winged Lion",
+          "Quill",
+          "Hand",
+          "Eternal Path",
+          "Crow",
+          "Rose",
+          "Leopard",
+          "Dolphin"
+        ]
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 15000
+    }
+  },
+  {
+    "name": "a coin collector's pouch",
+    "shortName": "pouch",
+    "description": "",
+    "tags": ["container", "pouch"],
+    "notes": "Holds various coins for collection",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 13500
+    }
+  },
+  {
+    "name": "an ossiferous deck of tarot cards",
+    "shortName": "deck",
+    "description": "This deck of tarot cards lies bound between thin plates of yellow-aged bone, with blackened cords of sinew threading its corners in tight, severe stitching to form a casket etched with cadaverous renditions of the Arcana. Expertly carved into shallow grooves and darkened with soot is a skeletal Emperor wearing a crown of finger-bones, lounging upon a throne of ribs alongside a Tower of stacked vertebrae. Afore him lies the Wheel, spokes of femur and tibia leading towards a leering skull in place of its central hub. He is surrounded by ghastly hierophants and marrow-crowed tyrants, the macabre imagery capable of arresting even the most phlegmatic eye.",
+    "tags": ["deck"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "The skeletal Emperor shifts slightly upon his throne in response to your touch, the finger-bone crown upon his head tilting a fraction before going still.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 12500
+    }
+  },
+  {
+    "name": "an elaborate paper crown",
+    "shortName": "crown",
+    "description": "Crumpled cutaways of patchwork and pressed flowers line this elaborate paper crown, reinforcing the thin material beneath. Torn in several places around its border, hastily cut triangles coloured in a prismatic rainbow of gemstones aim upwards, excepting only the occasional dog-eared points scuffed with dirt and stains. A scrawled image traces across the top of a pressed flower meant to cover the forehead, forming what might be described as an attempt at drawing an open eye save for the complete lack of an iris and eyelashes extending straight down from the bottom.",
+    "tags": ["wearable", "headwear"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "wear",
+        "response": "Donning an elaborate paper crown, you feel buoyed by a new sensation of confidence in your regal appearance.",
+        "notes": ""
+      },
+      {
+        "command": "remove",
+        "response": "With a sigh, you remove an elaborate paper crown and relegate yourself once more to the ranks of the peasantry.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 2500
+    }
+  },
+  {
+    "name": "a sun-bleached bone gemshorn",
+    "shortName": "gemshorn",
+    "description": "Plucked from the scorched sands of Garash's Grief, a curved handful of bone sunscoured to a pristine white hue bears itself as the body of a pastoral instrument, seven uniform holes punched into its length in a graceful crescent. The wide end of the horn bears a petrified wooden fipple plug encompassed by a broad band of twisted silver thread, a simple leather loop tucked underneath to allow easy carrying. Etched across the back of the piece, a beautiful trailing motif of the sun and moon intertwining runs all the way from the browned tip of the horn to terminate just before the tuning ring, a homage to the beliefs of those who call the desolate reach of the Earth Plane their home.",
+    "tags": ["wearable", "instrument"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "play",
+        "response": "",
+        "notes": "Musical instrument proficiency"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 20000
+    }
+  },
+  {
+    "name": "a set of archaic prayerbeads",
+    "shortName": "prayerbeads",
+    "description": "A set of sixteen wooden beads, measured for the members of the Seleucarian Pantheon, run along a cord of tightly braided rope, alternating in a measured sequence between painted blues and golds. Each bead bears its own subtle variation of those two colours, the tones drifting from rich cobalt to tepid azure and from warm gilt to dimmed brass, time and handling taking their tithe in varying degrees. Simple bronze hooks serve as clasps on either end, attached to a slender ring from which several frayed and straggly tassels hang precariously. When laid end-to-end, these beads are long enough to fit generously around the neck or to be wrapped around the wearer's wrist.",
+    "tags": ["wearable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "pull",
+        "response": "",
+        "notes": "PULL on these beads while standing before a shrine to one of the Seleucarian Divine."
+      },
+      {
+        "command": "brush",
+        "response": "",
+        "notes": "BRUSH them along with your prayer to communicate with the Gods."
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Lindire",
+      "price": 12500
+    }
+  },
+  {
+    "name": "some brass judiciary scales",
+    "shortName": "scales",
+    "description": "Though rendered dull by the encroaching centuries since the Fall, these scales of Imperial Seleucar nevertheless retain much of their refulgent gleam, the high calibre metal polished in defiance of obsolescence it cannot quite fully resist. The sturdy frame arises like a pyramid around a foot from the ground, narrowing to a tapered point at the apex where a smithed laurel-staff symbol presides. Lengths of twinkling chain links descend from the peak and fasten to twin plates of thin brass which in turn connect to the central mechanism in an elaborate rivet. Heavy weights stand upon each side beside a pair of small plaques, the names of trangressors and miscreants aplenty etched and erased in a crisscross pattern of justice measured and meted.",
+    "tags": [],
+    "notes": "You may attempt to ADJUST some brass judiciary scales LEFT|RIGHT <text> in order to inscribe its weights. If both weights are inscribed, PUSH SCALES to render judgement.",
+    "interactions": [
+      {
+        "command": "adjust scales left|right [word]",
+        "response": "You wipe clean the leftmost weight of some brass judiciary scales and engrave upon it: [word].",
+        "notes": "Only a single word is allowed"
+      },
+      {
+        "command": "push scales",
+        "response": "With some brass judiciary scales's weights set, you give it a gentle nudge and hope for justice to prevail.\nThe weights within some brass judiciary scales finally settle, the burden of justice causing the leftmost side to descend more noticecably.\nThe scales of justice declare [word] to be guilty.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 12000
+    }
+  },
+  {
+    "name": "a scroll of imperial proclamation",
+    "shortName": "scroll",
+    "description": "Creamy vellum forms the basis of this scroll, the thick parchment spooling about a pair of polished alder wood rods. Weighty with the authority of Imperial Seleucar, the rollers gleam with carved laurel-crown symbols bookending a miniature depiction of the Staff of Nicator, their handles tapering to narrow points for ease of storage and use. Broad margins frame a wide expanse upon the unblemished and as-yet-unmarked page, the surface smooth and carefully prepared to receive ink. Blue silk completes the piece in the form of a narrow ribbon, looping around the centre in an elaborate knot to bind the contents closed.",
+    "tags": ["writable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 7500
+    }
+  },
+  {
+    "name": "a brass officer's whistle",
+    "shortName": "whistle",
+    "description": "Irregular patches of tarnish darken and dull the metal of this whistle, solid brass shaped into a cylinder whose shine and shimmer both lie dulled by the advance of age. Scratch and dent conspire toward further signs of degradation, most notably along the mouthpiece and outer chamber. Through a narrow ring at one end threads a frayed length of braided cord, flexibility now consigned to stiff recalcitrance from myriad years of disuse. Remnants of imperial engraving circles the body, the laurel-crowned staff identifying it as the property of the Seleucarian military.",
+    "tags": [],
+    "notes": "You may wish to BLOW a brass officer's whistle, and specify a command type. 3.5s balance for blown commands",
+    "interactions": [
+      {
+        "command": "blow",
+        "response": "You lift a brass officer's whistle to your lips and blow a clear, solitary note."
+      },
+      {
+        "command": "blow [id] attention",
+        "response": "You lift a brass officer's whistle to your lips and blow a clear, solitary note.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] advance",
+        "response": "You lift a brass officer's whistle to your lips and blow a clear, solitary note.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] wheel",
+        "response": "You bring a brass officer's whistle to your lips and draw out a long, rising note, ending it with a short, clipped chirp.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] salute",
+        "response": "You lift a brass officer's whistle and sound three measured notes, evenly spaced and deliberate.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] reform",
+        "response": "You press a brass officer's whistle to your lips and release a rapid, staccato trill.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] ease",
+        "response": "You press a brass officer's whistle to your lips and release a rapid, staccato trill.",
+        "notes": ""
+      },
+      {
+        "command": "blow [id] turn",
+        "response": "You raise a brass officer's whistle and sound two long, sustained notes that hang in the air.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Therine",
+      "price": 6500
+    }
+  },
+  {
+    "name": "a minotaur calfskin scroll",
+    "shortName": "scroll",
+    "description": "A thin, rough sheet of minotaur calfskin provides the basis of this scroll. Its edges, torn rather than cut, are wrapped tightly over two weighted dowels of tiger maplewood, providing an unrefined, yet entirely acceptable writing surface.",
+    "tags": ["writable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Eldephor",
+      "price": 10000
+    }
+  },
+  {
+    "name": "an ink-smudged scroll",
+    "shortName": "scroll",
+    "description": "Rolled neatly, this scroll is heavily smudged with various inks. Heavily ingrained fingerprints stain the surface and colour the parchment. Showing signs of wear and tear, the once-sharp sharp corners are now bent, while several of the edges show tiny splits from constant use.",
+    "tags": ["writable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar"
+    }
+  },
+  {
+    "name": "a dulkurio-ma manuscript",
+    "shortName": "manuscript",
+    "description": "Bound between rigid covers of scorched hide stretched taut over blackened, warped boards, this harsh manuscript bears a weight far outstripping its size. Scarred leather puckers where once iron clasps sealed the tome shut, faint impressions still visible along the edges. Dried blood clings to the spine amidst a patina of dust and grime, the environmental viscera of Anzari-tarin rendering the surface both coarse and unpleasant to the touch. Thick sheets of similarly rough vellum dwell within, spots of dark ink and half-torn parchment evincing an air of secrets kept then hastily discarded. A faint metallic tang arises from the leaves and clings to the air, the strange musk of a bygone people a legacy persisting even through extinction.",
+    "tags": ["writable"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "You press a hand against a dulkurio-ma manuscript and feel its coarse surface and rough edges respond in kind, the poignant weight of history settling over you like a physical burden.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 22500
+    }
+  },
+  {
+    "name": "a burnished cryptex",
+    "shortName": "cryptex",
+    "description": "Bronze rings, each engraved with a precise row of letters and symbols, encircle a polished oak cylinder at the heart of the device, turning with a smooth, deliberate resistance. The wood beneath is darkly varnished, its grain catching the ambient light in fine amber striations between the metal bands. At one end, a fitted brazen cap may be drawn outward and pressed back into place to conceal or set the hidden inscription within, its rim etched with subtle geometric patterns. Opposite it, a twin cap bears four narrow viewing slits marked by delicate positional indicators, awaiting a cipher code to bring the device's message into coherence.",
+    "tags": [],
+    "notes": "Use PUSH CRYPTEX MESSAGE <message> and PUSH CRYPTEX CODE <####> for setup, TURN CRYPTEX POSITION <1-4> <1-9> to set dials, PULL CRYPTEX to decipher, and SHAKE CRYPTEX to clear settings.",
+    "interactions": [
+      {
+        "command": "push cryptex message [message]",
+        "response": "You have set the cryptex to encode the following message: [message].",
+        "notes": "Sets a new encoded message."
+      },
+      {
+        "command": "push cryptex code [####]",
+        "response": "You have set the cipher code to: [####].\nYou pull gently on the endcap, setting your code selection.",
+        "notes": "Sets a four-digit numerical code. None of the digits can be zero. PULL to lock in."
+      },
+      {
+        "command": "shake cryptex",
+        "response": "A mechanical clatter and rattle emanates from a burnished cryptex as you reset it completely with a vigourous shake.",
+        "notes": "Clears the cryptex settings entirely."
+      },
+      {
+        "command": "turn cryptex position [1-4] [1-9]",
+        "response": "You turn position [1-4] on a burnished cryptex to read: [1-9].",
+        "notes": "Sets one dial position at a time. First value is dial number (1-4), second is digit (1-9). 15 second balance for turn"
+      },
+      {
+        "command": "pull cryptex",
+        "response": "A series of satisfying \"clicks\" resonate from a burnished cryptex as the encoded bands shift and turn into position, revealing a decoded message.",
+        "notes": "Deciphers the message once the code is set."
+      },
+      {
+        "command": "read",
+        "response": "A randomised permutation of vowels and consonants offer no semblance of meaning. The bands of script forming no discernable words known to tongue or tome, yet offer the hope of potential in some hidden message if brought into proper lexical alignment.",
+        "notes": "Encoded message"
+      },
+      {
+        "command": "read",
+        "response": "Turning a burnished cryptex slowly in your hands, you study the symbols and letters upon the device and see: [message]",
+        "notes": "Decoded message"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 15000
+    }
+  },
+  {
+    "name": "a mahogany music box",
+    "shortName": "box",
+    "description": "Carved by hand from richly grained mahogany, the exquisite detail of this music box remains evident despite the ebb and flow of time and tides uncounted. The wood shines with the uncanny lustre of subtle magic, an enchanted treasure whose delicate mechanisms and elegant design command a timeless grace and luxurious style. Bronze filigree gleams in bands of dainty laurel motifs about the edges, framing a hinged top to which specks of dust and bygone debris cling in minute patches. Miniature roses sweep in a spiral pattern across and around the exterior, each bud, stem, and petal rendered with meticulous precision. Etched into the lid and near-faded in the sole concession to advancing centuries is a smooth engraving, the remnant flourish of its script bespeaking precious gifts given and a lover's promise kept eternal. A single disc of finely tooled silver sits within, teeth poised to play a melody of halcyon days and nostalgia for an era long abandoned to mere memory.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "Your fingers drift across the faded engraving upon a mahogany music box, impressions of lost lovers and ancient promises filling your thoughts.",
+        "notes": ""
+      },
+      {
+        "command": "turn",
+        "response": "You wind the delicate handle of a mahogany music box, the silver mechanism answering with a soft, anticipatory click.",
+        "notes": "Plays a series of musical performances. Different on each turn."
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Lindire",
+      "price": 12500
+    }
+  },
+  {
+    "name": "an elegant courtier's fan",
+    "shortName": "fan",
+    "description": "Midnight-black silk stretches between the mahogany ribs of this elegant courtier's fan. Opened, the laurel motif embroidered in gold spreads in a striking crescent upon the luxurious ebon material. Inlaid with fine gold filigree, the wooden guards catch the light in brief, glimmering flashes. Closing it emits the soft whisper of silk brushing wood, a discreet sound suited to crowded courts and careful conversations. From the pivot hangs a tassel that completes the piece's quiet extravagance: a braided cord of black thread descending from a small gilt cap, its strands tightly twisted in an intricate knot. It is currently closed.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "flip",
+        "response": "The gentle whisper of silk gliding over wood reaches your ear as you deftly flip an elegant courtier's fan open with a flick of your wrist.",
+        "notes": "Flipping open"
+      },
+      {
+        "command": "flip",
+        "response": "You twirl an elegant courtier's fan in a graceful circle and flip it closed.",
+        "notes": "Flipping closed"
+      },
+      {
+        "command": "push",
+        "response": "You twirl an elegant courtier's fan in a graceful circle and flip it closed.",
+        "notes": "When open"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 8500
+    }
+  },
+  {
+    "name": "an antique armillary sphere",
+    "shortName": "sphere",
+    "description": "Multiple rings of polished bronze interlock and overlap to form this armillary sphere, each of its bands turning with measured precision about a miniature depiction of Achaea set at the centre. What gleam remains in the metal is little more than a dull lustre worn down by time, age and Seleucarian provenance rendering is as much an antique as a functional instrument. The known continents and islands of the world are etched in fine detail upon the globe, while surrounding halos and discs chart the motions of the heavens according to an austere, imperial-derived cosmology. Above the world proper lurks the greater architecture of the Prime firmament: stars, sun, and moon eddying in gentle, enchantment-inspired motion while three darkly regal gem-settings mark the presence of the Supernal Triad in precious stones of shimmering silver, inscrutable black, and dusky, ethereal grey. Set into the top of a polished pedestal, the astronomer's trinket sits above a square plaque inlaid with laurel filigree, whatever message it may have held long lost to the ages.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "You brush your fingers across the Triad upon an antique armillary sphere, cool bronze rings shifting slightly beneath your touch.",
+        "notes": ""
+      },
+      {
+        "command": "turn",
+        "response": "As you turn an antique armillary sphere, the rings glide smoothly around the tiny globe of Achaea.",
+        "notes": ""
+      },
+      {
+        "command": "push",
+        "response": "You gently nudge one of an antique armillary sphere's bronze rings, sending the tiny firmament wheeling.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 17500
+    }
+  },
+  {
+    "name": "a textured map of Seleucar City",
+    "shortName": "map",
+    "description": "A fine frame of polished mahogany shapes a rectangular border about the perimeter of this large map, the wood defying dust, debris, and all that might diminish its splendour with glossy varnish lending it a resplendent sheen. Rendered upon stretched canvas rather than parchment, layered pigment and raised relief marry to craft a textured portrayal of Seleucar City at the height of the Succession Wars. Exquisite detail defines the piece as priceless antique, modern treasure, and historical curiosity in equal measure, oil and ink accentuating the already precise work with an array of variegated colour and shades to lend verisimillitude. The Royal Palace lords at the centre in pale tones of ivory and yields to avenues and streets fanning outward like spokes on a great wheel. Strongholds and guild halls join the tiered ensemble and meet many more roads, landmarks, and points of interest as the city sprawls yet further out from the palatial heart. Meandering in a serpentine path from east to west, the crystalline waters of the Mnemosyne unfurl in blue-white brushstrokes, passing the King's Tomb in stark grey and the Heroes' Park in bright viridian before it ends in a northward curl.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "The ordered geometry of the Selicande Lycaeum glides easily beneath your touch, ordered wings of scholarly eminence no less impressive in microcosm.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Rakdra",
+      "price": 15000
+    }
+  },
+  {
+    "name": "an enormous bronze bell",
+    "shortName": "bell",
+    "description": "Cast from a single mould of thick bronze, this massive bell commands attention through sheer mass alone and teems with the incontrovertible gravitas of great age married to sacred purpose. Its flared mouth yawns open, vast enough to swallow a troll's upper half with ease. The once-lustrous surface now gleams with a dull umber hue, the lower lip and surface veined with myriad streaks of green verdigris creeping along the engravings encircling the body. Remnant holy symbols and laurel motifs decorate the shoulders in neat spirals, identifying the monstrous instrument as salvage from an ancient temple or other holy site. Looped arches form the crown and allow the piece to be suspended, faint hammer marks visible along the inner throat even centuries after its forging. Hanging from the underside, chain links descend to meet an iron-bound clapper and reinforced yoke, the lightest breeze kindling hints of a voice yearning to sound once again.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "ring",
+        "response": "Grasping at the chain fastened to an enormous bronze bell's clapper, you begin focusing your strength on ringing the massive instrument.\nAn enormous bronze bell shudders faintly, releasing a weak, barely audible note.",
+        "notes": "Must be on the ground. Strength doesn't seem to affect the sound."
+      },
+      {
+        "command": "get",
+        "response": "ou bring all of your strength to bear, managing to heft an enormous bronze bell.",
+        "notes": "10s balance"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 15000
+    }
+  },
+  {
+    "name": "a tarnished coin",
+    "shortName": "coin",
+    "description": "",
+    "tags": [],
+    "notes": [
+      "King Valerias deSangre",
+      "Queen Catarin deSangre",
+      "Lucaine Pyramides"
+    ],
+    "interactions": [
+      {
+        "command": "polish",
+        "response": "You turn a tarnished coin over in your hands, lifting the polishing cloth dangling from a coin collector's pouch, and begin the meticulous task of unveiling the brilliance hidden beneath the coin's aged patina.\nYour careful work pays off as a tarnished coin's full argent lustre slowly returns. Every ridge and engraving is revealed in sharp relief.\nAs the coin shimmers in the palm of your hand, you find the proud visage of [various] revealed upon it.",
+        "notes": "Requires a coin collector's pouch from the bazaar"
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 5000
+    }
+  },
+  {
+    "name": "a deadly dessert fork of solid silver",
+    "shortName": "dagger",
+    "description": "Part of a dinner set now long bereft of its gastronomical siblings, this ornate fork bears the hallmarks of expert silversmithing, the fine metal losing little of its lustre despite obviously advanced age. Laurel scrollwork chases the handle and lends texture, the relief style decorating the piece in homage to the noblesse of Imperial Selecuar. Four narrow tines taper to needle-sharp precision at the opposite end, equally suited to skewering sugared fruit and honeyed confections as flesh and muscle should need arise. Only minimal scuffs show up amidst the polish, a sole concession to antiquity otherwise denied by aristocratic lethality.",
+    "tags": ["weapon", "dagger"],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "As your fingers brush against a deadly dessert fork of solid silver, the sudden impression of a vast dining hall fills your mind.",
+        "notes": ""
+      },
+      {
+        "command": "wield",
+        "response": "You raise a deadly dessert fork of solid silver with a courtly flourish, its needle-sharp tines glinting with quiet, aristocratic menace.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 20000
+    }
+  },
+  {
+    "name": "a claque's baton",
+    "shortName": "baton",
+    "description": "Slender and immaculately balanced, this claque's baton is carved from a single length of pale ivory, its surface polished to a dignified, satin lustre. The shaft remains largely unadorned, smooth and straight, tapering with deliberate subtlety toward its tip. At the base rests a decorative handle of dark, lacquered wood, capped with a weighty pommel of brushed gold. The grip is encircled by fine relief work depicting layered laurel wreaths and stylised sunbursts, their rays fanning outward in disciplined symmetry. Narrow bands of gilt separate each motif, the ornamentation unabashed in its imperial regality.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "wield",
+        "response": "As you take a claque's baton into your hands, the air tightens with expectant acclaim.",
+        "notes": ""
+      },
+      {
+        "command": "turn baton up",
+        "response": "With a deft and subtle flick of the wrist, you direct a claque's baton upwards.\nJubilant cheers swell in a tempest of enthusiastic acclaim!",
+        "notes": ""
+      },
+      {
+        "command": "turn baton down",
+        "response": "With a deft and subtle flick of the wrist, you direct a claque's baton downwards.\nScattered boos crescendo into a chorus of ridicule and contempt as the jeers unite and rise as one.",
+        "notes": ""
+      },
+      {
+        "command": "turn baton left",
+        "response": "With a deft and subtle flick of the wrist, you direct a claque's baton to the left.\nRestless muttering ripples into disgruntled grumbling as voices stir in dissent.",
+        "notes": ""
+      },
+      {
+        "command": "turn baton right",
+        "response": "With a deft and subtle flick of the wrist, you direct a claque's baton to the right.\nSatisfied whispers murmur in a gentle susurrus of affirmation.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 12500
+    }
+  },
+  {
+    "name": "a Seleucarian snowglobe",
+    "shortName": "snowglobe",
+    "description": "Stained glass shapes the outline of this aged sphere, its surface a paradigm of expert craftsmanship left to falter amidst the unforgiving union of time, element, and tide. Striking colour shades the transpent exterior, the prestige of its variegated hues marred only by the occasional fleck of dust or sand clinging with determined abandon to the edge. Tiny fractures allow air to pass through the underside, a keen whistle heralding its passage. Light bends to a spectrum of flickering fronds as it passes inside, throwing the sprawling city of Imperial Seleucar into enlightened miniature within the stately dome. Streets and parks unfurl in detail around the Royal Palace and the halls of long-closed guilds, while tiny soldiers of the succession march down narrow roads in pairs.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch",
+        "response": "Your fingers gently brush the stained glass of a Seleucarian snowglobe, light diffusing into soft colour as the miniature city gleams beneath your hand.",
+        "notes": ""
+      },
+      {
+        "command": "shake",
+        "response": "You jostle a Seleucarian snowglobe firmly, and a sudden storm of shimmering motes swirls through the dome, blanketing palace and soldiers alike.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Quaen'a",
+      "price": 10000
+    }
+  },
+  {
+    "name": "an antique obsidian bowl",
+    "shortName": "bowl",
+    "description": "Tarnished brass supports the underside of this aged bowl, four stout legs smithed and shaped to exquisite detail evident even in antiquity. Crisscrossing the dark obsidian, grey veins marry with fine scratches to both decorate and degrade the basin in equal measure. Long handling dulls much of the striated black stone, its surface polished to a muted sheen of stark, unyielding austerity. The interior curves in a smooth, unbroken decline, descending to the centre and meeting the carved arms of Nikolas-then-Nicator etched with meticulous care into the bottom.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "touch ",
+        "response": "You run your fingers slowly around the rim of an antique obsidian bowl, tracing its worn edge before brushing your thumb across the carved arms set into its base.",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Lindire",
+      "price": 4000
+    }
+  },
+  {
+    "name": "terrarium",
+    "shortName": "terrarium",
+    "description": "Slender planks of alder wood join to panes of clear glass to form this terrarium, its sanded frame and delicate size ideal for the confines of a domestic kitchen. Subtle laurel tracery loops at the corners, the wood mellowed by years of basking upon sunlit sills. Dark soil lies in a bed behind the angled glass, the interior arranged with deliberate care and an even, level spread throughout. A simple hinge fastens to the top side, the lid fit with a transparent ceiling for easy monitoring from all angles.",
+    "tags": [],
+    "notes": "",
+    "interactions": [
+      {
+        "command": "",
+        "response": "",
+        "notes": ""
+      }
+    ],
+    "source": {
+      "year": 2026,
+      "igYear": 1000,
+      "type": "Bazaar",
+      "merchant": "Gilrain",
+      "price": 15000
+    }
+  }
+]

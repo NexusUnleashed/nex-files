@@ -247,6 +247,14 @@ const sidebars = {
       ],
     },
   ],
+  bazaarSidebar: [
+    {
+      type: "category",
+      label: "Bazaar",
+      link: { type: "doc", id: "bazaar/inventory" },
+      items: ["bazaar/inventory"],
+    },
+  ],
   classleadsSidebar: [
     { type: "doc", id: classSkillsDocId },
     ...classleadsSidebarItems,

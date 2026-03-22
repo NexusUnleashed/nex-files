@@ -125,6 +125,12 @@ const config = {
             position: "left",
             label: "Classleads",
           },
+          {
+            type: "docSidebar",
+            sidebarId: "bazaarSidebar",
+            position: "left",
+            label: "Bazaar",
+          },
           { to: "/blog", label: "Blog", position: "right" },
           {
             href: "https://github.com/NexusUnleashed/nex-files",
