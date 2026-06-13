@@ -22,9 +22,7 @@
     "name": "a colourful countdown calendar",
     "shortName": "calendar",
     "description": "Colourful wood blocks, hand-painted with a variety of letters and numbers in bold chirography, sit neatly stacked in a lacquered display tray. Each of the pieces is stored with meticulous care, awaiting proper arrangement to display a countdown to the next special occasion. A label inside the box states: \"PUSH CALENDAR SET [days/months/years], PUSH CALENDAR OCCASION [whatever occasion], PUSH CALENDAR NUMBER [1-365], PUSH CALENDAR BEGIN, PUSH CALENDAR DOWN, and SHAKE CALENDAR to reset.\"",
-    "tags": [
-      "readable"
-    ],
+    "tags": ["readable"],
     "notes": "",
     "interactions": [
       {
@@ -73,9 +71,7 @@
     "name": "a fractured marble shard",
     "shortName": "shard",
     "description": "Interlocking rings decorate the outer edges of this tablet fragment, the pale marble dusted with a light coating of royal blue paint which lurks in errant flecks despite the ravages of time. Evidently part of a much larger whole, the stone is both cool and finely grained, but some of its edges remain jagged where fracture and rupture take hold. Grains of sand and soil dwell within the deep grooves carved into its front side, where large chiselled lettering remains barely legible in the remnant ruin of a once grand and public proclamation.",
-    "tags": [
-      "readable"
-    ],
+    "tags": ["readable"],
     "notes": "",
     "interactions": [
       {
@@ -99,9 +95,7 @@
     "name": "a philosopher's calendar",
     "shortName": "calendar",
     "description": "Cream-coloured vellum fills this calendar with dozens upon dozens of wafer-thin sheets, the smell of fresh parchment long surrendered to the faint must of age and decrepitude. Twin holes pierce the top of each page, bound together by a pair of faux bronze bands which gleam with a dull lustre. Thread of flaxen hue loops through and wraps around these punched rings, holding the item together while allowing the top sheaf to be flipped over and returned to the back of the stack when desired. Glossy images decorate each leaf and lend protection through resilient varnish, oilpaint renditions of the Mnemosyme, the Imperial City, and other Seleucarian landmarks providing a charming backdrop to the existential script spilling across the bottom in black ink.",
-    "tags": [
-      "readable"
-    ],
+    "tags": ["readable"],
     "notes": "",
     "interactions": [
       {
@@ -122,9 +116,7 @@
     "name": "a justiciar's writ of criminal condemnation",
     "shortName": "writ",
     "description": "Riddled with the countless creases of extreme age and stained to near-yellow by exposure to time and element alike, this weathered poster joins to a narrow wooden board to resist curling or other peeling that would render it illegible. The seal of Imperial Seleucar gleams brazen in the bottom right corner, stamped on the opposite side by the mark of the Empire's Justice. Together, the staff and gavel symbology lend the authority of Empire to the piece, the sigils slightly smudged but retaining all of their pomp regardless of defacement. Bold ink spills across the page in variegated colours, combining to render the head and shoulders of the day's miscreant in unfortunate and highly unflattering caricature. Beneath the portrait, black lettering unfolds in the neat script of a stern, bureaucratic hand, the declaration enumerating the crimes and infamy of an individual deemed worthy not only of public scorn but immediate arrest, trial, and punishment for defying the law.",
-    "tags": [
-      "readable"
-    ],
+    "tags": ["readable"],
     "notes": "You may try to ADJUST WRIT <name> to fill in a justiciar's writ of criminal condemnation's blank spaces, then PUSH it into place or PULL it down.",
     "interactions": [
       {
@@ -160,10 +152,7 @@
     "name": "a pair of weathered pilgrim's boots",
     "shortName": "boots",
     "description": "Crafted from toughened leather lacking embellishment or flourish, the rough style of these boots identify them as peasant wear, ill-suited to high courts or grand halls. The brown material bears patches of sweat, dust, and other detritus, stained and wizened by long exposure to the elements and the unmistakeable ravages of extended travel. Yellowed laces crisscross in haphazard loops about the front and culminate in sturdy knots. Wrapping the ankles, broad straps join to simple iron buckles, they too dulled by time and bearing signs of rust. While the toes show scuffs and shallow abrasions, the soles remain layered and thick, their hobnailed undersides built for endurance and eschewing all notions of style or elegance in the process. Some few errant threads hang loose from the outer edge yet most remain firm in a testament to garb made to last.",
-    "tags": [
-      "wearable",
-      "footwear"
-    ],
+    "tags": ["wearable", "footwear"],
     "notes": "",
     "interactions": [
       {
@@ -189,9 +178,7 @@
     "name": "a reptilian scabbard",
     "shortName": "scabbard",
     "description": "Masterfully crafted from a sinuous length of scaled leather hide, this scabbard is pieced together with seamless precision. Its origin is a mystery, the luminous scales resembling those of a dragon, smooth to the touch with a mirror-like surface, but are soft and flexible unlike the armour-like plates of its brethren. Tough leather comprises the scabbard's inner lining, and a row of rubies glitters within an abstract pattern on the finely-tooled shoulder strap.",
-    "tags": [
-      "scabbard"
-    ],
+    "tags": ["scabbard"],
     "notes": "",
     "interactions": [
       {
@@ -212,9 +199,7 @@
     "name": "a carved wooden sheath",
     "shortName": "sheath",
     "description": "Split from the dense wood of a mighty oak, this sheath is carved with the images of sprawling trees, their branches interlocking to form an uninterrupted pattern. Between the leaves peek the watchful faces of dryads, and squirrels and birds hide among the limbs. Aromatic oil is rubbed over the surface of the wood to give it a dark sheen, and a lining of lambswool within the sheath protects the edge of the blade from dulling.",
-    "tags": [
-      "sheath"
-    ],
+    "tags": ["sheath"],
     "notes": "",
     "interactions": [
       {
@@ -235,9 +220,7 @@
     "name": "a Seleucarian Saboteur's wrist sheath",
     "shortName": "sheath",
     "description": "Worn beneath the patina of centuries come and gone, this sheath yet boasts a sleek and dignified form, easily concealed up the sleeve or cuff to evade the notice of prying eyes. The confines themselves remain suitable for only the most clandestine of blades, the entirety of the piece little more than a handspan in length. A single raised image holds pride of place undiminished by the fall of its age, the undeniable emblem of Nicator's staff swathed in laurels made dread portent by dint of bountiful vegetation become ensnaring serpents coiled tight about Seleucarian authority.",
-    "tags": [
-      "sheath"
-    ],
+    "tags": ["sheath"],
     "notes": "",
     "interactions": [
       {
@@ -268,9 +251,7 @@
     "name": "a Mnemosynian backstrap",
     "shortName": "backstrap",
     "description": "Fashioned from thick leather long since softened by use, this backstrap bears all the wear of centuries in its cracked surface and wizened features. Muted pigment of blue-grey depicts the meandering course of the Mnemosyne on the front side, the line wavering deliberately from shoulder to hip in a faithful portrayal of the water's sinuous path. Some few blemishes impede the river's journey in the form of pockmarks and stains, veined obsidian carved to form narrow bands holding the piece in place. Bronze loops join with dulled rivets at measured intervals, scuffed but nevertheless retaining cohesion sufficient to bear weapon or shield in their grasp. Flattened in places, the reverse bears a lining of rough suede to prevent slippage, the seams held together with strands of royal blue thread.",
-    "tags": [
-      "backstrap"
-    ],
+    "tags": ["backstrap"],
     "notes": "",
     "interactions": [
       {
@@ -291,10 +272,7 @@
     "name": "a gecko-skin pouch embroidered with stars",
     "shortName": "pouch",
     "description": "",
-    "tags": [
-      "container",
-      "pouch"
-    ],
+    "tags": ["container", "pouch"],
     "notes": "Constellation changes on each 'touch' randomly",
     "interactions": [
       {
@@ -364,10 +342,7 @@
     "name": "a coin collector's pouch",
     "shortName": "pouch",
     "description": "",
-    "tags": [
-      "container",
-      "pouch"
-    ],
+    "tags": ["container", "pouch"],
     "notes": "Holds various coins for collection",
     "interactions": [
       {
@@ -388,9 +363,7 @@
     "name": "an ossiferous deck of tarot cards",
     "shortName": "deck",
     "description": "This deck of tarot cards lies bound between thin plates of yellow-aged bone, with blackened cords of sinew threading its corners in tight, severe stitching to form a casket etched with cadaverous renditions of the Arcana. Expertly carved into shallow grooves and darkened with soot is a skeletal Emperor wearing a crown of finger-bones, lounging upon a throne of ribs alongside a Tower of stacked vertebrae. Afore him lies the Wheel, spokes of femur and tibia leading towards a leering skull in place of its central hub. He is surrounded by ghastly hierophants and marrow-crowed tyrants, the macabre imagery capable of arresting even the most phlegmatic eye.",
-    "tags": [
-      "deck"
-    ],
+    "tags": ["deck"],
     "notes": "",
     "interactions": [
       {
@@ -411,10 +384,7 @@
     "name": "an elaborate paper crown",
     "shortName": "crown",
     "description": "Crumpled cutaways of patchwork and pressed flowers line this elaborate paper crown, reinforcing the thin material beneath. Torn in several places around its border, hastily cut triangles coloured in a prismatic rainbow of gemstones aim upwards, excepting only the occasional dog-eared points scuffed with dirt and stains. A scrawled image traces across the top of a pressed flower meant to cover the forehead, forming what might be described as an attempt at drawing an open eye save for the complete lack of an iris and eyelashes extending straight down from the bottom.",
-    "tags": [
-      "wearable",
-      "headwear"
-    ],
+    "tags": ["wearable", "headwear"],
     "notes": "",
     "interactions": [
       {
@@ -440,10 +410,7 @@
     "name": "a sun-bleached bone gemshorn",
     "shortName": "gemshorn",
     "description": "Plucked from the scorched sands of Garash's Grief, a curved handful of bone sunscoured to a pristine white hue bears itself as the body of a pastoral instrument, seven uniform holes punched into its length in a graceful crescent. The wide end of the horn bears a petrified wooden fipple plug encompassed by a broad band of twisted silver thread, a simple leather loop tucked underneath to allow easy carrying. Etched across the back of the piece, a beautiful trailing motif of the sun and moon intertwining runs all the way from the browned tip of the horn to terminate just before the tuning ring, a homage to the beliefs of those who call the desolate reach of the Earth Plane their home.",
-    "tags": [
-      "wearable",
-      "instrument"
-    ],
+    "tags": ["wearable", "instrument"],
     "notes": "",
     "interactions": [
       {
@@ -464,9 +431,7 @@
     "name": "a set of archaic prayerbeads",
     "shortName": "prayerbeads",
     "description": "A set of sixteen wooden beads, measured for the members of the Seleucarian Pantheon, run along a cord of tightly braided rope, alternating in a measured sequence between painted blues and golds. Each bead bears its own subtle variation of those two colours, the tones drifting from rich cobalt to tepid azure and from warm gilt to dimmed brass, time and handling taking their tithe in varying degrees. Simple bronze hooks serve as clasps on either end, attached to a slender ring from which several frayed and straggly tassels hang precariously. When laid end-to-end, these beads are long enough to fit generously around the neck or to be wrapped around the wearer's wrist.",
-    "tags": [
-      "wearable"
-    ],
+    "tags": ["wearable"],
     "notes": "",
     "interactions": [
       {
@@ -518,9 +483,7 @@
     "name": "a scroll of imperial proclamation",
     "shortName": "scroll",
     "description": "Creamy vellum forms the basis of this scroll, the thick parchment spooling about a pair of polished alder wood rods. Weighty with the authority of Imperial Seleucar, the rollers gleam with carved laurel-crown symbols bookending a miniature depiction of the Staff of Nicator, their handles tapering to narrow points for ease of storage and use. Broad margins frame a wide expanse upon the unblemished and as-yet-unmarked page, the surface smooth and carefully prepared to receive ink. Blue silk completes the piece in the form of a narrow ribbon, looping around the centre in an elaborate knot to bind the contents closed.",
-    "tags": [
-      "writable"
-    ],
+    "tags": ["writable"],
     "notes": "",
     "interactions": [
       {
@@ -596,9 +559,7 @@
     "name": "a minotaur calfskin scroll",
     "shortName": "scroll",
     "description": "A thin, rough sheet of minotaur calfskin provides the basis of this scroll. Its edges, torn rather than cut, are wrapped tightly over two weighted dowels of tiger maplewood, providing an unrefined, yet entirely acceptable writing surface.",
-    "tags": [
-      "writable"
-    ],
+    "tags": ["writable"],
     "notes": "",
     "interactions": [
       {
@@ -619,9 +580,7 @@
     "name": "an ink-smudged scroll",
     "shortName": "scroll",
     "description": "Rolled neatly, this scroll is heavily smudged with various inks. Heavily ingrained fingerprints stain the surface and colour the parchment. Showing signs of wear and tear, the once-sharp sharp corners are now bent, while several of the edges show tiny splits from constant use.",
-    "tags": [
-      "writable"
-    ],
+    "tags": ["writable"],
     "notes": "",
     "interactions": [
       {
@@ -640,9 +599,7 @@
     "name": "a dulkurio-ma manuscript",
     "shortName": "manuscript",
     "description": "Bound between rigid covers of scorched hide stretched taut over blackened, warped boards, this harsh manuscript bears a weight far outstripping its size. Scarred leather puckers where once iron clasps sealed the tome shut, faint impressions still visible along the edges. Dried blood clings to the spine amidst a patina of dust and grime, the environmental viscera of Anzari-tarin rendering the surface both coarse and unpleasant to the touch. Thick sheets of similarly rough vellum dwell within, spots of dark ink and half-torn parchment evincing an air of secrets kept then hastily discarded. A faint metallic tang arises from the leaves and clings to the air, the strange musk of a bygone people a legacy persisting even through extinction.",
-    "tags": [
-      "writable"
-    ],
+    "tags": ["writable"],
     "notes": "",
     "interactions": [
       {
@@ -874,10 +831,7 @@
     "name": "a deadly dessert fork of solid silver",
     "shortName": "dagger",
     "description": "Part of a dinner set now long bereft of its gastronomical siblings, this ornate fork bears the hallmarks of expert silversmithing, the fine metal losing little of its lustre despite obviously advanced age. Laurel scrollwork chases the handle and lends texture, the relief style decorating the piece in homage to the noblesse of Imperial Selecuar. Four narrow tines taper to needle-sharp precision at the opposite end, equally suited to skewering sugared fruit and honeyed confections as flesh and muscle should need arise. Only minimal scuffs show up amidst the polish, a sole concession to antiquity otherwise denied by aristocratic lethality.",
-    "tags": [
-      "weapon",
-      "dagger"
-    ],
+    "tags": ["weapon", "dagger"],
     "notes": "",
     "interactions": [
       {
