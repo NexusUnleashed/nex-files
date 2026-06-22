@@ -221,6 +221,7 @@ const config = {
     mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "warn",
     },
   },
 };
