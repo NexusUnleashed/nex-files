@@ -1,34 +1,39 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { themes as prismThemes } from "prism-react-renderer";
+
+const siteDir = path.dirname(fileURLToPath(import.meta.url));
+const repositoriesRoot = process.env.NEX_REPOS_ROOT ?? path.resolve(siteDir, "..");
+
+const packageDocsPath = (repository) =>
+  path.join(repositoriesRoot, repository, "docs", "docusaurus-content");
+
+const packageDocsPlugin = ({ id, repository, route, sidebar }) => [
+  "@docusaurus/plugin-content-docs",
+  {
+    id,
+    path: packageDocsPath(repository),
+    routeBasePath: `docs/${route}`,
+    sidebarPath: `./sidebars/${sidebar}.js`,
+    exclude: ["README.md"],
+    editUrl: `https://github.com/NexusUnleashed/${repository}/edit/main/docs/docusaurus-content/`,
+  },
+];
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "neX-Files",
-  tagline: "The documentation is out there",
+  title: "nex*",
+  tagline: "A modern package ecosystem for Achaea on Nexus",
   favicon: "img/favicon.ico",
-
-  // Set the production url of your site here
-  url: "https://nexusunleashed.github.io/",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: "https://nexusunleashed.github.io",
   baseUrl: "/nex-files/",
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "NexusUnleashed", // Usually your GitHub org/user name.
-  projectName: "nex-files", // Usually your repo name.
-
+  organizationName: "NexusUnleashed",
+  projectName: "nex-files",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  trailingSlash: true,
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -40,120 +45,135 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: "docs",
+          routeBasePath: "docs",
           sidebarPath: "./sidebars.js",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/NexusUnleashed/nex-files/tree/main/",
+          editUrl: "https://github.com/NexusUnleashed/nex-files/edit/main/",
+          showLastUpdateTime: true,
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/NexusUnleashed/nex-files/tree/main/",
-        },
+        blog: false,
         theme: {
           customCss: "./src/css/custom.css",
         },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+        },
       }),
+    ],
+  ],
+
+  plugins: [
+    packageDocsPlugin({
+      id: "nexsys",
+      repository: "nexsys4",
+      route: "nexsys",
+      sidebar: "nexsys",
+    }),
+    packageDocsPlugin({
+      id: "nexmap",
+      repository: "nexmap4",
+      route: "nexmap",
+      sidebar: "nexmap",
+    }),
+    packageDocsPlugin({
+      id: "nexgui",
+      repository: "nexgui4",
+      route: "nexgui",
+      sidebar: "nexgui",
+    }),
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "compendium",
+        path: "compendium",
+        routeBasePath: "compendium",
+        sidebarPath: "./sidebars/compendium.js",
+        editUrl: "https://github.com/NexusUnleashed/nex-files/edit/main/compendium/",
+      },
+    ],
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          { from: "/docs/classleads/class-skills-tree", to: "/compendium/classleads" },
+          { from: "/docs/bazaar/inventory", to: "/compendium/bazaar" },
+        ],
+      },
     ],
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: "img/GeminiLogo.jpg",
+      metadata: [
+        { name: "theme-color", content: "#0b0f17" },
+        {
+          name: "keywords",
+          content: "Achaea, Nexus, nexSys, nexMap, nexGui, JavaScript packages",
+        },
+      ],
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: "Home",
+        title: "nex*",
+        hideOnScroll: true,
         logo: {
-          alt: "My Site Logo",
-          src: "img/GeminiLogo.jpg",
+          alt: "nex star mark",
+          src: "img/nex-mark.svg",
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "eventStreamSidebar",
+            type: "doc",
+            docId: "index",
             position: "left",
-            label: "eventStream",
+            label: "Docs",
           },
-          {
-            type: "docSidebar",
-            sidebarId: "nexActionSidebar",
-            position: "left",
-            label: "nexAction",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "nexSysSidebar",
-            position: "left",
-            label: "nexSys",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "nexMapSidebar",
-            position: "left",
-            label: "nexMap",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "nexGuiSidebar",
-            position: "left",
-            label: "nexGui",
-          },
-
-          {
-            type: "docSidebar",
-            sidebarId: "insightSidebar",
-            position: "left",
-            label: "insight",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "nexusSidebar",
-            position: "left",
-            label: "Nexus",
-          },
-
-          {
-            type: "docSidebar",
-            sidebarId: "classleadsSidebar",
-            position: "left",
-            label: "Classleads",
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "bazaarSidebar",
-            position: "left",
-            label: "Bazaar",
-          },
-          { to: "/blog", label: "Blog", position: "right" },
-          {
-            href: "https://github.com/NexusUnleashed/nex-files",
-            label: "GitHub",
-            position: "right",
-          },
-
           {
             type: "dropdown",
-            label: "Mini Packages",
+            label: "Packages",
             position: "left",
             items: [
-              {
-                type: "doc",
-                label: "nexWorld",
-                docId: "miniPackages/nexWorld",
-              },
-              {
-                type: "doc",
-                label: "nexGear",
-                docId: "miniPackages/nexGear",
-              },
+              { label: "All packages", to: "/docs/packages" },
+              { label: "nexSys4", to: "/docs/nexsys/introduction" },
+              { label: "nexMap4", to: "/docs/nexmap/introduction" },
+              { label: "nexGui4", to: "/docs/nexgui/introduction" },
+              { label: "nexBash4 · docs soon", to: "/docs/packages#nexbash4" },
+              { label: "insight", to: "/docs/insight/introduction" },
+              { label: "eventStream", to: "/docs/eventStream/introduction" },
+              { label: "nexAction", to: "/docs/nexAction/introduction" },
             ],
+          },
+          {
+            type: "dropdown",
+            label: "Compendium",
+            position: "left",
+            items: [
+              { label: "Compendium home", to: "/compendium" },
+              { label: "Classleads", to: "/compendium/classleads" },
+              { label: "Year 1000 Bazaar", to: "/compendium/bazaar" },
+            ],
+          },
+          {
+            type: "dropdown",
+            label: "Labs",
+            position: "left",
+            className: "navbar-labs-link",
+            items: [
+              { label: "Labs overview", to: "/docs/labs" },
+              { label: "nexGear · alpha", to: "/docs/labs/nexgear" },
+              { label: "nexWorld · early", to: "/docs/labs/nexworld" },
+            ],
+          },
+          {
+            href: "https://github.com/NexusUnleashed",
+            label: "GitHub",
+            position: "right",
+            "aria-label": "Nexus Unleashed on GitHub",
           },
         ],
       },
@@ -161,53 +181,47 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Links",
+            title: "Explore",
             items: [
-              {
-                label: "Achaea",
-                href: "https://www.achaea.com/front",
-              },
-              {
-                label: "Nexus Wiki",
-                href: "https://nexus.ironrealms.com/Main_Page",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/log-wall/nex-files",
-              },
+              { label: "Documentation", to: "/docs" },
+              { label: "Packages", to: "/docs/packages" },
+              { label: "Compendium", to: "/compendium" },
+              { label: "Labs", to: "/docs/labs" },
+            ],
+          },
+          {
+            title: "Packages",
+            items: [
+              { label: "nexSys4", to: "/docs/nexsys/introduction" },
+              { label: "nexMap4", to: "/docs/nexmap/introduction" },
+              { label: "nexGui4", to: "/docs/nexgui/introduction" },
+              { label: "insight", to: "/docs/insight/introduction" },
             ],
           },
           {
             title: "Community",
             items: [
-              {
-                label: "Achaea Discord",
-                href: "https://discord.gg/achaea",
-              },
-              {
-                label: "Nexus Discord",
-                href: "https://discord.gg/M5spRjAw",
-              },
+              { label: "Nexus Unleashed", href: "https://github.com/NexusUnleashed" },
+              { label: "Achaea", href: "https://www.achaea.com/" },
+              { label: "Nexus Wiki", href: "https://nexus.ironrealms.com/Main_Page" },
             ],
           },
-          {
-            title: "Authors",
-            items: [{ label: "Khaseem (Achaea)", to: "/" }],
-          },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Nexus Unleashed, Inc. Built with Docusaurus.`,
+        copyright: `Built for Achaea's Nexus client · ${new Date().getFullYear()} Nexus Unleashed`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ["bash", "json"],
       },
     }),
 
   themes: ["@docusaurus/theme-mermaid"],
-  // In order for Mermaid code blocks in Markdown to work,
-  // you also need to enable the Remark plugin with this option
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
 };
 

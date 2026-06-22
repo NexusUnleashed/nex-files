@@ -14,7 +14,7 @@
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 1.1rem;
   background:
-    linear-gradient(160deg, rgba(46, 133, 85, 0.18), rgba(46, 133, 85, 0.06)),
+    linear-gradient(160deg, color-mix(in srgb, var(--ifm-color-primary) 16%, transparent), transparent),
     var(--ifm-card-background-color);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
 }
@@ -64,7 +64,7 @@
 
 .merchantPill:hover {
   border-color: var(--ifm-color-primary);
-  background: rgba(46, 133, 85, 0.08);
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
   text-decoration: none;
   transform: translateY(-1px);
 }
@@ -130,7 +130,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ifm-color-emphasis-700);
-  background: rgba(46, 133, 85, 0.08);
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
 }
 
 .itemTable > tbody > tr > td {
@@ -140,11 +140,11 @@
 }
 
 .itemRowOpen {
-  background: rgba(46, 133, 85, 0.06);
+  background: color-mix(in srgb, var(--ifm-color-primary) 6%, transparent);
 }
 
 .detailRow {
-  background: linear-gradient(180deg, rgba(46, 133, 85, 0.05), rgba(46, 133, 85, 0.015));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--ifm-color-primary) 6%, transparent), transparent);
 }
 
 .detailRowCell {
@@ -295,7 +295,7 @@
   align-items: center;
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
-  background: rgba(46, 133, 85, 0.12);
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
   color: var(--ifm-color-primary);
   font-size: 0.84rem;
   font-weight: 600;
@@ -361,32 +361,32 @@
 
 [data-theme="dark"] .summaryCard {
   background:
-    linear-gradient(160deg, rgba(212, 193, 140, 0.18), rgba(212, 193, 140, 0.05)),
+    linear-gradient(160deg, rgba(184, 255, 91, 0.14), rgba(184, 255, 91, 0.03)),
     rgba(18, 24, 28, 0.92);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
 }
 
 [data-theme="dark"] .notice {
-  border-color: rgba(212, 193, 140, 0.32);
-  background: rgba(212, 193, 140, 0.08);
+  border-color: rgba(247, 171, 74, 0.32);
+  background: rgba(247, 171, 74, 0.08);
 }
 
 [data-theme="dark"] .merchantPill:hover,
 [data-theme="dark"] .itemRowOpen {
-  background: rgba(212, 193, 140, 0.08);
+  background: rgba(184, 255, 91, 0.07);
 }
 
 [data-theme="dark"] .detailRow {
-  background: linear-gradient(180deg, rgba(212, 193, 140, 0.08), rgba(212, 193, 140, 0.02));
+  background: linear-gradient(180deg, rgba(184, 255, 91, 0.07), rgba(184, 255, 91, 0.01));
 }
 
 [data-theme="dark"] .detailTable th,
 [data-theme="dark"] .itemTable thead th,
 [data-theme="dark"] .interactionTable thead th {
-  background-color: rgba(212, 193, 140, 0.06);
+  background-color: rgba(184, 255, 91, 0.05);
 }
 
 [data-theme="dark"] .tag {
-  background: rgba(212, 193, 140, 0.12);
-  color: #f0ddb0;
+  background: rgba(184, 255, 91, 0.11);
+  color: #c8ff82;
 }

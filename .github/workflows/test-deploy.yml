@@ -4,23 +4,51 @@ on:
   pull_request:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
+permissions:
+  contents: read
 
 jobs:
   test-deploy:
-    name: Test deployment
+    name: Test production build
     runs-on: ubuntu-latest
+    env:
+      NEX_REPOS_ROOT: ${{ github.workspace }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out nexFiles
+        uses: actions/checkout@v4
         with:
+          path: nex-files
           fetch-depth: 0
+
+      - name: Check out nexSys4 documentation
+        uses: actions/checkout@v4
+        with:
+          repository: NexusUnleashed/nexsys4
+          path: nexsys4
+
+      - name: Check out nexMap4 documentation
+        uses: actions/checkout@v4
+        with:
+          repository: NexusUnleashed/nexmap4
+          path: nexmap4
+
+      - name: Check out nexGui4 documentation
+        uses: actions/checkout@v4
+        with:
+          repository: NexusUnleashed/nexgui4
+          path: nexgui4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: npm
+          cache-dependency-path: nex-files/package-lock.json
 
       - name: Install dependencies
+        working-directory: nex-files
         run: npm ci
-      - name: Test build website
+
+      - name: Test production build
+        working-directory: nex-files
         run: npm run build

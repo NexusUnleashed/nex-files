@@ -3,8 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const sourcePath = path.join(rootDir, "docs", "bazaar", "items1000.jsonc");
-const outputPath = path.join(rootDir, "docs", "bazaar", "items1000.json");
+const sourcePath = path.join(rootDir, "compendium", "bazaar", "items1000.jsonc");
+const outputPath = path.join(rootDir, "compendium", "bazaar", "items1000.json");
 
 function stripJsonComments(input) {
   let output = "";
@@ -95,7 +95,7 @@ async function main() {
     ? data.filter((item) => typeof item?.name === "string" && item.name.trim()).length
     : 0;
 
-  console.log(`Generated docs/bazaar/items1000.json (${itemCount} Bazaar items).`);
+  console.log(`Generated compendium/bazaar/items1000.json (${itemCount} Bazaar items).`);
 }
 
 main().catch((error) => {

@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import Heading from "@theme/Heading";
-import bazaarItems from "@site/docs/bazaar/items1000.json";
+import bazaarItems from "@site/compendium/bazaar/items1000.json";
 
 import styles from "./styles.module.css";
 

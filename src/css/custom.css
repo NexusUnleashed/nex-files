@@ -1,45 +1,435 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
+@import "@fontsource/source-sans-3/400.css";
+@import "@fontsource/source-sans-3/600.css";
+@import "@fontsource/source-sans-3/700.css";
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-primary: #7b4038;
+  --ifm-color-primary-dark: #6e3932;
+  --ifm-color-primary-darker: #66342e;
+  --ifm-color-primary-darkest: #522823;
+  --ifm-color-primary-light: #8d4b42;
+  --ifm-color-primary-lighter: #9a564c;
+  --ifm-color-primary-lightest: #ad6b60;
+  --ifm-background-color: #e9dfc8;
+  --ifm-background-surface-color: #f3ead7;
+  --ifm-navbar-background-color: rgba(235, 224, 201, 0.94);
+  --ifm-footer-background-color: #1d1d19;
+  --ifm-font-family-base: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --ifm-font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --ifm-heading-font-family: "Cormorant Garamond", Georgia, serif;
+  --ifm-heading-font-weight: 600;
+  --ifm-code-font-size: 92%;
+  --ifm-global-radius: 0.3rem;
+  --ifm-container-width-xl: 1320px;
+  --docusaurus-highlighted-code-line-bg: rgba(123, 64, 56, 0.1);
+
+  --nex-page-background: #e9dfc8;
+  --nex-hero-background: #ddd0b4;
+  --nex-band-background: #292822;
+  --nex-card-background: #f4ead4;
+  --nex-surface-translucent: rgba(245, 236, 217, 0.82);
+  --nex-heading: #2d2922;
+  --nex-muted-heading: #655d50;
+  --nex-copy: #443d33;
+  --nex-copy-muted: #72695b;
+  --nex-border: rgba(71, 57, 41, 0.2);
+  --nex-border-strong: rgba(71, 57, 41, 0.36);
+  --nex-brass: #a77f42;
+  --nex-brass-strong: #795728;
+  --nex-oxblood: #7b4038;
+  --nex-verdigris: #55766e;
+  --nex-parchment: #eadfc6;
+  --nex-ink: #2d2922;
+  --nex-shadow: rgba(54, 42, 29, 0.18);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #d4c18c; /*#25c2a0*/
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+[data-theme="dark"] {
+  --ifm-color-primary: #d0ab68;
+  --ifm-color-primary-dark: #c3974f;
+  --ifm-color-primary-darker: #b88b43;
+  --ifm-color-primary-darkest: #91692e;
+  --ifm-color-primary-light: #dbbc82;
+  --ifm-color-primary-lighter: #e3c995;
+  --ifm-color-primary-lightest: #f0dfbc;
+  --ifm-background-color: #191a17;
+  --ifm-background-surface-color: #24241f;
+  --ifm-navbar-background-color: rgba(24, 25, 22, 0.95);
+  --ifm-footer-background-color: #12130f;
+  --ifm-font-color-base: #ddd3bd;
+  --ifm-heading-color: #eee4cd;
+  --ifm-toc-border-color: rgba(208, 171, 104, 0.16);
+  --ifm-code-background: #292923;
+  --docusaurus-highlighted-code-line-bg: rgba(208, 171, 104, 0.1);
+
+  --nex-page-background: #191a17;
+  --nex-hero-background: #1d1e19;
+  --nex-band-background: #12130f;
+  --nex-card-background: #24241f;
+  --nex-surface-translucent: rgba(37, 37, 31, 0.86);
+  --nex-heading: #eee4cd;
+  --nex-muted-heading: #aaa18d;
+  --nex-copy: #d3cab6;
+  --nex-copy-muted: #9d9481;
+  --nex-border: rgba(208, 171, 104, 0.16);
+  --nex-border-strong: rgba(208, 171, 104, 0.3);
+  --nex-brass: #c8a25e;
+  --nex-brass-strong: #dfc17e;
+  --nex-oxblood: #9c554b;
+  --nex-verdigris: #75958c;
+  --nex-parchment: #dfd1b2;
+  --nex-ink: #25241f;
+  --nex-shadow: rgba(0, 0, 0, 0.38);
 }
 
-/* Hide the generated h2 headings in the Classleads page while keeping them in the ToC */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--nex-page-background);
+  background-image:
+    radial-gradient(circle at 13% 7%, rgba(167, 127, 66, 0.06), transparent 24%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(55, 43, 29, 0.013) 4px);
+  color: var(--nex-copy);
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+::selection {
+  background: rgba(167, 127, 66, 0.33);
+  color: var(--nex-heading);
+}
+
+a {
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--nex-border-strong);
+  box-shadow: 0 5px 20px rgba(35, 29, 20, 0.1);
+  backdrop-filter: blur(16px);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nex-brass), transparent);
+  opacity: 0.42;
+}
+
+.navbar__inner {
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.navbar__brand {
+  gap: 0.55rem;
+  margin-right: 1.5rem;
+}
+
+.navbar__logo {
+  width: 33px;
+  height: 33px;
+}
+
+.navbar__title {
+  color: var(--nex-heading);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navbar__link {
+  color: var(--nex-copy);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+.navbar-labs-link::before {
+  content: "β";
+  display: inline-grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-right: 0.35rem;
+  place-items: center;
+  border: 1px solid var(--nex-brass);
+  border-radius: 50%;
+  color: var(--nex-brass-strong);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.72rem;
+}
+
+.dropdown__menu {
+  min-width: 224px;
+  padding: 0.55rem;
+  border: 1px solid var(--nex-border-strong);
+  border-radius: 0.25rem;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 20px 50px var(--nex-shadow), inset 0 0 0 3px var(--ifm-background-surface-color), inset 0 0 0 4px var(--nex-border);
+}
+
+.dropdown__link {
+  border-radius: 0.15rem;
+  font-size: 0.9rem;
+}
+
+.footer {
+  position: relative;
+  border-top: 1px solid rgba(208, 171, 104, 0.2);
+  background:
+    radial-gradient(circle at 14% 0%, rgba(208, 171, 104, 0.09), transparent 28%),
+    linear-gradient(rgba(18, 19, 15, 0.95), rgba(18, 19, 15, 0.98));
+}
+
+.footer::before {
+  content: "✦";
+  position: absolute;
+  top: -0.8rem;
+  left: 50%;
+  width: 2rem;
+  transform: translateX(-50%);
+  background: #151612;
+  color: #c8a25e;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.footer__title {
+  color: #eee4cd;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+.footer__link-item,
+.footer__copyright {
+  color: #a99f89;
+  font-size: 0.88rem;
+}
+
+.footer__link-item:hover {
+  color: #d0ab68;
+}
+
+.theme-doc-markdown {
+  --ifm-heading-color: var(--nex-heading);
+  font-size: 1.02rem;
+  line-height: 1.76;
+}
+
+.theme-doc-markdown h1 {
+  position: relative;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.75rem;
+  font-size: clamp(2.7rem, 5vw, 4.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.theme-doc-markdown h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(280px, 60%);
+  height: 3px;
+  background: linear-gradient(90deg, var(--nex-oxblood), var(--nex-brass), transparent);
+}
+
+.theme-doc-markdown h2 {
+  position: relative;
+  margin-top: 3rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--nex-border);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.theme-doc-markdown h2::before {
+  content: "◆";
+  margin-right: 0.55rem;
+  color: var(--nex-brass);
+  font-size: 0.54em;
+  vertical-align: 0.18em;
+}
+
+.theme-doc-markdown h3 {
+  margin-top: 2rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.theme-doc-markdown > p:first-of-type {
+  color: var(--nex-copy-muted);
+  font-size: 1.08rem;
+}
+
+.theme-doc-sidebar-container {
+  border-right-color: var(--nex-border) !important;
+  background: color-mix(in srgb, var(--ifm-background-color) 90%, var(--nex-brass) 10%);
+}
+
+.menu {
+  padding: 1.5rem 0.8rem !important;
+  font-size: 0.88rem;
+}
+
+.menu__link {
+  border-radius: 0.16rem;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  border-left: 2px solid var(--nex-oxblood);
+  background: color-mix(in srgb, var(--ifm-color-primary) 9%, transparent);
+  font-weight: 700;
+}
+
+.breadcrumbs__link {
+  border-radius: 0.15rem;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.92rem;
+}
+
+.table-of-contents {
+  font-size: 0.8rem;
+}
+
+.pagination-nav__link {
+  position: relative;
+  border-color: var(--nex-border-strong);
+  border-radius: 0.2rem;
+  background: var(--nex-card-background);
+  box-shadow: inset 0 0 0 3px var(--nex-card-background), inset 0 0 0 4px var(--nex-border);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--nex-brass);
+  transform: translateY(-2px);
+}
+
+.pagination-nav__sublabel {
+  font-family: var(--ifm-heading-font-family);
+  letter-spacing: 0.05em;
+}
+
+.pagination-nav__label {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.1rem;
+}
+
+.alert {
+  border: 1px solid var(--nex-border-strong);
+  border-left-width: 4px;
+  border-radius: 0.2rem;
+  box-shadow: inset 0 0 22px rgba(167, 127, 66, 0.045);
+}
+
+pre,
+.prism-code {
+  border: 1px solid var(--nex-border-strong);
+  border-radius: 0.25rem;
+  box-shadow: 0 10px 28px var(--nex-shadow);
+}
+
+code {
+  border-color: var(--nex-border);
+}
+
+table {
+  display: table;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(54, 42, 29, 0.07);
+}
+
+table th {
+  background: color-mix(in srgb, var(--nex-brass) 12%, var(--ifm-background-surface-color));
+  color: var(--nex-heading);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1rem;
+}
+
+table th,
+table td {
+  border-color: var(--nex-border);
+}
+
+/* Classleads uses semantic headings for anchors and a compact details UI. */
 #classleads-skilltree h2 {
+  height: 0;
   margin: 0;
   padding: 0;
+  border: 0;
+  overflow: hidden;
   font-size: 0;
   line-height: 0;
-  color: transparent;
 }
 
-/* Styling for the small class label next to each skill name */
+#classleads-skilltree h2::before {
+  content: none;
+}
+
+#classleads-skilltree details {
+  margin-bottom: 0.7rem;
+  border: 1px solid var(--nex-border-strong);
+  border-radius: 0.2rem;
+  background: var(--nex-card-background);
+  box-shadow: inset 0 0 0 3px var(--nex-card-background), inset 0 0 0 4px var(--nex-border);
+  overflow: hidden;
+}
+
+#classleads-skilltree summary {
+  padding: 0.95rem 1.05rem;
+  color: var(--nex-heading);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.12rem;
+  cursor: pointer;
+}
+
+#classleads-skilltree details > ul,
+#classleads-skilltree details > p {
+  margin: 0;
+  padding: 0.3rem 2.5rem 1.1rem;
+}
+
 .skill-classes {
   margin-left: 0.5rem;
+  color: var(--nex-copy-muted);
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.88rem;
   font-weight: 400;
+}
+
+@media screen and (max-width: 996px) {
+  .navbar__items--right .navbar__item {
+    display: none;
+  }
+
+  .theme-doc-markdown h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

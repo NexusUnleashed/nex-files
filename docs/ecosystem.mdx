@@ -1,0 +1,36 @@
+---
+title: Ecosystem architecture
+description: How nex packages share events and state without becoming one monolith.
+---
+
+# Ecosystem architecture
+
+Version 4 is a collection of cooperating packages rather than one indivisible
+system. Each package owns a focused domain and exposes a deliberately small
+public boundary.
+
+```mermaid
+flowchart LR
+  Nexus[Nexus client] --> ES[eventStream]
+  Nexus --> NA[nexAction]
+  ES --> NS[nexSys4]
+  ES --> NM[nexMap4]
+  ES --> IN[insight]
+  NS --> NG[nexGui4]
+  NM --> NG
+  IN --> NG
+  NS --> NB[nexBash4]
+  IN --> NB
+```
+
+## Design principles
+
+- **Own one domain.** Character state belongs to nexSys; mapping belongs to nexMap.
+- **Communicate through contracts.** Public events and APIs are integration boundaries.
+- **Keep dependencies explicit.** Optional integrations should remain optional.
+- **Prefer snapshots over internals.** Consumers read published state rather than reaching into stores.
+- **Document with the code.** Each Version 4 repository owns its public documentation content.
+
+The nexFiles site supplies navigation and presentation. Package documentation
+is loaded directly from each package repository so it can evolve in the same
+change as the code it describes.

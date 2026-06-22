@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(process.cwd());
-const dataPath = path.join(root, "docs", "classleads", "classleads_data.json");
-const outPath = path.join(root, "docs", "classleads", "class_skills_tree.mdx");
+const dataPath = path.join(root, "compendium", "classleads", "classleads_data.json");
+const outPath = path.join(root, "compendium", "classleads", "class_skills_tree.mdx");
 
 function skillSlug(value = "") {
   return String(value)
@@ -124,7 +124,7 @@ function buildDoc(data) {
     `id: class-skills-tree\n` +
     `title: Class Skills Tree with Changes\n` +
     `sidebar_label: Class Skills Tree\n` +
-    `sidebar: classleadsSidebar\n` +
+    `slug: /classleads\n` +
     `---\n\n`;
 
   return frontMatter + body;
