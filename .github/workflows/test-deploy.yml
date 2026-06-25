@@ -39,6 +39,13 @@ jobs:
           repository: NexusUnleashed/nexgui4
           path: nexgui4
 
+      - name: Check out nexBash4 documentation
+        uses: actions/checkout@v4
+        with:
+          repository: NexusUnleashed/nexbash3
+          ref: nexBash4
+          path: nexbash3
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22

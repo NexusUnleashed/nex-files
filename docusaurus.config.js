@@ -10,15 +10,41 @@ const repositoriesRoot = process.env.NEX_REPOS_ROOT ?? path.resolve(siteDir, "..
 const packageDocsPath = (repository) =>
   path.join(repositoriesRoot, repository, "docs", "docusaurus-content");
 
-const packageDocsPlugin = ({ id, repository, route, sidebar }) => [
+const visitLinks = (node, visitor) => {
+  if (!node || typeof node !== "object") return;
+  if (node.type === "link") visitor(node);
+  if (Array.isArray(node.children)) {
+    for (const child of node.children) visitLinks(child, visitor);
+  }
+};
+
+const rewriteMarkdownLinks = (rewrites) => () => (tree) => {
+  visitLinks(tree, (node) => {
+    if (Object.hasOwn(rewrites, node.url)) {
+      node.url = rewrites[node.url];
+    }
+  });
+};
+
+const packageDocsPlugin = ({
+  id,
+  repository,
+  route,
+  sidebar,
+  editBranch = "main",
+  markdownLinkRewrites,
+}) => [
   "@docusaurus/plugin-content-docs",
   {
     id,
     path: packageDocsPath(repository),
     routeBasePath: `docs/${route}`,
     sidebarPath: `./sidebars/${sidebar}.js`,
-    exclude: ["README.md"],
-    editUrl: `https://github.com/NexusUnleashed/${repository}/edit/main/docs/docusaurus-content/`,
+    exclude: ["README.md", "**/README.md"],
+    editUrl: `https://github.com/NexusUnleashed/${repository}/edit/${editBranch}/docs/docusaurus-content/`,
+    beforeDefaultRemarkPlugins: markdownLinkRewrites
+      ? [rewriteMarkdownLinks(markdownLinkRewrites)]
+      : [],
   },
 ];
 
@@ -82,6 +108,18 @@ const config = {
       route: "nexgui",
       sidebar: "nexgui",
     }),
+    packageDocsPlugin({
+      id: "nexbash",
+      repository: "nexbash3",
+      route: "nexbash",
+      sidebar: "nexbash",
+      editBranch: "nexBash4",
+      markdownLinkRewrites: {
+        "../nexSys/introduction.md": "/docs/nexsys/introduction",
+        "../../nexSys/getting-started/installation.md":
+          "/docs/nexsys/getting-started/installation",
+      },
+    }),
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -111,7 +149,8 @@ const config = {
         { name: "theme-color", content: "#0b0f17" },
         {
           name: "keywords",
-          content: "Achaea, Nexus, nexSys, nexMap, nexGui, JavaScript packages",
+          content:
+            "Achaea, Nexus, nexSys, nexMap, nexGui, nexBash, JavaScript packages",
         },
       ],
       colorMode: {
@@ -142,7 +181,7 @@ const config = {
               { label: "nexSys4", to: "/docs/nexsys/introduction" },
               { label: "nexMap4", to: "/docs/nexmap/introduction" },
               { label: "nexGui4", to: "/docs/nexgui/introduction" },
-              { label: "nexBash4 · docs soon", to: "/docs/packages#nexbash4" },
+              { label: "nexBash4", to: "/docs/nexbash/introduction" },
               { label: "insight", to: "/docs/insight/introduction" },
               { label: "eventStream", to: "/docs/eventStream/introduction" },
               { label: "nexAction", to: "/docs/nexAction/introduction" },
@@ -195,6 +234,7 @@ const config = {
               { label: "nexSys4", to: "/docs/nexsys/introduction" },
               { label: "nexMap4", to: "/docs/nexmap/introduction" },
               { label: "nexGui4", to: "/docs/nexgui/introduction" },
+              { label: "nexBash4", to: "/docs/nexbash/introduction" },
               { label: "insight", to: "/docs/insight/introduction" },
             ],
           },

@@ -12,6 +12,7 @@ and Labs. Version 4 packages own their public documentation beside their code:
 nexsys4/docs/docusaurus-content
 nexmap4/docs/docusaurus-content
 nexgui4/docs/docusaurus-content
+nexbash3/docs/docusaurus-content
 ```
 
 Docusaurus mounts those directories directly. Do not copy package-owned
@@ -26,7 +27,8 @@ workspace/
 ├── nex-files/
 ├── nexsys4/
 ├── nexmap4/
-└── nexgui4/
+├── nexgui4/
+└── nexbash3/
 ```
 
 Set `NEX_REPOS_ROOT` when the repositories live somewhere else.

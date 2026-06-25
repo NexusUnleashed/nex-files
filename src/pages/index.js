@@ -53,10 +53,10 @@ const primaryPackages = [
     name: "nexBash4",
     eyebrow: "Hunting engine",
     description: "Decision support for hunting routines, target selection, and battlerage actions.",
-    href: "/docs/packages#nexbash4",
+    href: "/docs/nexbash/introduction",
     icon: LuSwords,
     accent: "orange",
-    status: "Docs coming soon",
+    status: "Documented",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Home() {
                 <span> wrought for Achaea.</span>
               </Heading>
               <p className={styles.heroLead}>
-                A collection of carefully wrought Nexus packages—each built for
+                A collection of honed Nexus packages—each built for
                 a single purpose, all speaking a common language.
               </p>
               <div className={styles.heroActions}>
