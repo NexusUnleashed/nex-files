@@ -12,7 +12,9 @@ const reposRoot = process.env.NEX_REPOS_ROOT
   ? path.resolve(process.env.NEX_REPOS_ROOT)
   : path.resolve(repoRoot, "..");
 
-const siblingRepos = (process.env.NEX_DOC_REPOS || "nexsys4,nexgui4,nexmap4,nexbash3")
+const siblingRepos = (
+  process.env.NEX_DOC_REPOS || "nexsys4,nexgui4,nexmap4,nexbash3"
+)
   .split(",")
   .map((name) => name.trim())
   .filter(Boolean);
@@ -29,7 +31,9 @@ const run = (command, args, cwd) => {
   });
 
   if (result.error) {
-    console.error(`[refresh] failed to run ${command}: ${result.error.message}`);
+    console.error(
+      `[refresh] failed to run ${command}: ${result.error.message}`,
+    );
     process.exit(1);
   }
 
