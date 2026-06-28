@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "refresh:siblings": "node ./scripts/refresh-siblings.mjs",
+    "refresh:siblings:fetch": "node ./scripts/refresh-siblings.mjs --fetch-only",
+    "refresh:rebuild": "node ./scripts/refresh-siblings.mjs --rebuild",
     "prestart": "node ./scripts/generate-classleads.mjs && node ./scripts/generate-bazaar-json.mjs",
     "start": "docusaurus start",
     "prebuild": "node ./scripts/generate-classleads.mjs && node ./scripts/generate-bazaar-json.mjs",

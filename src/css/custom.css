@@ -188,6 +188,23 @@ a {
   font-size: 0.9rem;
 }
 
+.packages-dropdown__section {
+  margin: 0.45rem 0 0.15rem;
+  padding: 0.45rem 0.75rem 0.2rem;
+  border-top: 1px solid var(--nex-border);
+  color: var(--nex-copy-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.menu__list .packages-dropdown__section {
+  margin: 0.35rem 0 0.1rem;
+  padding-left: 1rem;
+}
+
 .footer {
   position: relative;
   border-top: 1px solid rgba(208, 171, 104, 0.2);

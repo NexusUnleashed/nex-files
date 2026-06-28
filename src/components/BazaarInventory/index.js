@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import Heading from "@theme/Heading";
 import bazaarItems from "@site/compendium/bazaar/items1000.json";
+import { LuChevronDown } from "react-icons/lu";
 
 import styles from "./styles.module.css";
 
@@ -200,10 +201,16 @@ export default function BazaarInventory() {
                             aria-controls={`${item.id}-details`}
                             onClick={() => setOpenItemId(isOpen ? null : item.id)}
                           >
-                            <span className={styles.itemName}>{item.name}</span>
-                            {item.shortName && item.shortName !== item.name ? (
-                              <span className={styles.shortName}>Short name: {item.shortName}</span>
-                            ) : null}
+                            <span className={styles.itemText}>
+                              <span className={styles.itemName}>{item.name}</span>
+                              {item.shortName && item.shortName !== item.name ? (
+                                <span className={styles.shortName}>Short name: {item.shortName}</span>
+                              ) : null}
+                            </span>
+                            <span className={styles.expandCue} aria-hidden="true">
+                              <span className={styles.expandCueText}>{isOpen ? "Hide" : "Details"}</span>
+                              <LuChevronDown className={styles.expandIcon} />
+                            </span>
                           </button>
                         </td>
                         <td className={styles.priceCell}>{formatPrice(item.price)}</td>

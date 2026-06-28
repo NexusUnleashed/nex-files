@@ -155,9 +155,9 @@
 .itemButton {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1rem;
   border: 0;
   background: transparent;
@@ -166,8 +166,20 @@
   cursor: pointer;
 }
 
-.itemButton:hover .itemName {
+.itemButton:hover .itemName,
+.itemButton:focus-visible .itemName {
   color: var(--ifm-color-primary);
+}
+
+.itemButton:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: -2px;
+}
+
+.itemText {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
 }
 
 .itemName {
@@ -178,6 +190,49 @@
 .shortName {
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-700);
+}
+
+.expandCue {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ifm-color-primary) 6%, transparent);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.expandCueText {
+  white-space: nowrap;
+}
+
+.expandIcon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.itemButton[aria-expanded="true"] .expandIcon {
+  transform: rotate(180deg);
+}
+
+.itemButton:hover .expandCue,
+.itemButton:focus-visible .expandCue,
+.itemButton[aria-expanded="true"] .expandCue {
+  border-color: var(--ifm-color-primary);
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  color: var(--ifm-color-primary);
 }
 
 .detailTable {
