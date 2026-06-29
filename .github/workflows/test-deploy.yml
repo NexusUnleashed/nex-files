@@ -16,37 +16,54 @@ jobs:
       NEX_REPOS_ROOT: ${{ github.workspace }}
     steps:
       - name: Check out nexFiles
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: nex-files
           fetch-depth: 0
 
+      - name: Verify private documentation checkout token
+        env:
+          NEX_DOCS_REPO_TOKEN: ${{ secrets.NEX_DOCS_REPO_TOKEN }}
+        run: |
+          if [ -z "$NEX_DOCS_REPO_TOKEN" ]; then
+            echo "::error title=Missing NEX_DOCS_REPO_TOKEN::Create a repository secret named NEX_DOCS_REPO_TOKEN with read access to the private documentation repositories."
+            exit 1
+          fi
+
       - name: Check out nexSys4 documentation
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: NexusUnleashed/nexsys4
+          token: ${{ secrets.NEX_DOCS_REPO_TOKEN }}
+          persist-credentials: false
           path: nexsys4
 
       - name: Check out nexMap4 documentation
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: NexusUnleashed/nexmap4
+          token: ${{ secrets.NEX_DOCS_REPO_TOKEN }}
+          persist-credentials: false
           path: nexmap4
 
       - name: Check out nexGui4 documentation
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: NexusUnleashed/nexgui4
+          token: ${{ secrets.NEX_DOCS_REPO_TOKEN }}
+          persist-credentials: false
           path: nexgui4
 
       - name: Check out nexBash4 documentation
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: NexusUnleashed/nexbash3
           ref: nexBash4
+          token: ${{ secrets.NEX_DOCS_REPO_TOKEN }}
+          persist-credentials: false
           path: nexbash3
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
