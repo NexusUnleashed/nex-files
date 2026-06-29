@@ -15,8 +15,17 @@ nexgui4/docs/docusaurus-content
 nexbash3/docs/docusaurus-content
 ```
 
-Docusaurus mounts those directories directly. Do not copy package-owned
-documentation into this repository.
+Docusaurus builds from committed snapshots in this repository:
+
+```text
+package-docs/nexsys4
+package-docs/nexmap4
+package-docs/nexgui4
+package-docs/nexbash3
+```
+
+Do not edit `package-docs` by hand. Edit the owning package repository, then
+refresh the snapshot with `npm run sync:package-docs`.
 
 ## Local workspace
 
@@ -32,6 +41,12 @@ workspace/
 ```
 
 Set `NEX_REPOS_ROOT` when the repositories live somewhere else.
+
+Refresh the committed documentation snapshot after package docs change:
+
+```bash
+npm run sync:package-docs
+```
 
 ## Development
 
@@ -49,13 +64,8 @@ npm run build
 npm run serve
 ```
 
-GitHub Actions reproduces the sibling checkout layout before building and
-deploying to GitHub Pages.
-
-The sibling documentation repositories are private. Add a repository secret
-named `NEX_DOCS_REPO_TOKEN` with read access to `nexsys4`, `nexmap4`,
-`nexgui4`, and `nexbash3`; the built-in `GITHUB_TOKEN` only covers this
-repository.
+GitHub Actions builds the committed `package-docs` snapshot. It does not need
+access to the private sibling package repositories.
 
 ## Published site
 

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "sync:package-docs": "node ./scripts/sync-package-docs.mjs",
     "refresh:siblings": "node ./scripts/refresh-siblings.mjs",
     "refresh:siblings:fetch": "node ./scripts/refresh-siblings.mjs --fetch-only",
     "refresh:rebuild": "node ./scripts/refresh-siblings.mjs --rebuild",

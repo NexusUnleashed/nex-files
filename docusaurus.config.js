@@ -5,10 +5,10 @@ import { fileURLToPath } from "node:url";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const siteDir = path.dirname(fileURLToPath(import.meta.url));
-const repositoriesRoot = process.env.NEX_REPOS_ROOT ?? path.resolve(siteDir, "..");
+const packageDocsRoot = path.join(siteDir, "package-docs");
 
 const packageDocsPath = (repository) =>
-  path.join(repositoriesRoot, repository, "docs", "docusaurus-content");
+  path.join(packageDocsRoot, repository);
 
 const visitLinks = (node, visitor) => {
   if (!node || typeof node !== "object") return;

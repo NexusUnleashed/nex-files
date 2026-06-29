@@ -57,6 +57,11 @@ for (const repoName of siblingRepos) {
   refreshRepo(repoName);
 }
 
+if (!fetchOnly) {
+  console.log("\n[refresh] syncing package documentation snapshot");
+  run(process.execPath, [path.join(scriptDir, "sync-package-docs.mjs")], repoRoot);
+}
+
 console.log("\n[refresh] clearing Docusaurus cache");
 run("npm", ["run", "clear"], repoRoot);
 
