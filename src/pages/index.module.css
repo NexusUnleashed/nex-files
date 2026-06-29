@@ -193,8 +193,8 @@
 .plateImage {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  aspect-ratio: 1672 / 941;
+  object-fit: contain;
   filter: saturate(0.88) contrast(1.02) sepia(0.06);
 }
 
@@ -263,7 +263,7 @@
   font-family: var(--ifm-heading-font-family);
   font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -329,6 +329,7 @@
 }
 
 .packageCard:hover::after { transform: scaleX(1); }
+.brass { --card-accent: var(--nex-brass); }
 .cyan { --card-accent: var(--nex-verdigris); }
 .violet { --card-accent: var(--nex-oxblood); }
 .orange { --card-accent: #9a683e; }
@@ -354,20 +355,27 @@
 }
 
 .status {
-  color: var(--nex-copy-muted);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--card-accent) 38%, var(--nex-border));
+  border-radius: 0.18rem;
+  background: color-mix(in srgb, var(--card-accent) 8%, transparent);
+  color: color-mix(in srgb, var(--card-accent) 60%, var(--nex-copy-muted));
   font-family: var(--ifm-heading-font-family);
-  font-size: 0.78rem;
-  font-style: italic;
-  text-align: right;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .eyebrow {
   color: var(--card-accent);
   font-family: var(--ifm-heading-font-family);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .packageCard h3 {

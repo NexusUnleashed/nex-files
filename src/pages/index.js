@@ -28,8 +28,8 @@ const primaryPackages = [
     description: "Authoritative character state, curing, defences, priorities, queues, and precache.",
     href: "/docs/nexsys/introduction",
     icon: LuShieldCheck,
-    accent: "lime",
-    status: "Documented",
+    accent: "brass",
+    status: "Complete reference",
   },
   {
     name: "nexMap4",
@@ -38,7 +38,7 @@ const primaryPackages = [
     href: "/docs/nexmap/introduction",
     icon: LuMap,
     accent: "cyan",
-    status: "Docs in progress",
+    status: "Reference in progress",
   },
   {
     name: "nexGui4",
@@ -47,7 +47,7 @@ const primaryPackages = [
     href: "/docs/nexgui/introduction",
     icon: LuPanelsTopLeft,
     accent: "violet",
-    status: "Docs in progress",
+    status: "Reference in progress",
   },
   {
     name: "nexBash4",
@@ -56,7 +56,7 @@ const primaryPackages = [
     href: "/docs/nexbash/introduction",
     icon: LuSwords,
     accent: "orange",
-    status: "Documented",
+    status: "Complete reference",
   },
 ];
 
@@ -108,7 +108,7 @@ function InstrumentPlate() {
       <div className={styles.plateFrame}>
         <img
           className={styles.plateImage}
-          src={require("@site/static/img/hero-instrumentarium.webp").default}
+          src={require("@site/static/img/hero-instrumentarium-2.png").default}
           alt="An illuminated manuscript showing an arcane brass astrolabe, maps, alchemical vessels, and a ballista sketch"
         />
         <span className={styles.plateNumber}>Folio IV</span>
@@ -146,7 +146,7 @@ export default function Home() {
               </p>
               <div className={styles.heroActions}>
                 <Link className={styles.primaryButton} to="/docs/getting-started">
-                  Start building <LuArrowRight aria-hidden="true" />
+                  Choose your first package <LuArrowRight aria-hidden="true" />
                 </Link>
                 <Link className={styles.secondaryButton} to="/docs/packages">
                   Browse packages
@@ -154,7 +154,7 @@ export default function Home() {
               </div>
               <div className={styles.heroMeta}>
                 <span><LuBoxes aria-hidden="true" /> Separate works</span>
-                <span><LuBraces aria-hidden="true" /> Written contracts</span>
+                <span><LuBraces aria-hidden="true" /> Stable contracts</span>
                 <span><LuRadioTower aria-hidden="true" /> Shared signals</span>
               </div>
             </div>

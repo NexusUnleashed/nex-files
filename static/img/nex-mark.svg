@@ -1,10 +1,10 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="32" cy="32" r="29" fill="#25231E" stroke="#C5A15F" stroke-width="3"/>
   <circle cx="32" cy="32" r="23" stroke="#7E453E" stroke-width="2"/>
-  <path d="M32 12L35.5 27L51 22L39 32L51 42L35.5 37L32 52L28.5 37L13 42L25 32L13 22L28.5 27L32 12Z" fill="#C5A15F"/>
+  <path d="M 32 12 L 34.49 25.99 L 41.55 22.45 L 38.01 29.51 L 52 32 L 38.01 34.49 L 41.55 41.55 L 34.49 38.01 L 32 52 L 29.51 38.01 L 22.45 41.55 L 25.99 34.49 L 12 32 L 25.99 29.51 L 22.45 22.45 L 29.51 25.99 Z" fill="#C5A15F"/>
   <circle cx="32" cy="32" r="6.5" fill="#7E453E" stroke="#E7DCC3" stroke-width="2"/>
-  <circle cx="32" cy="7" r="1.5" fill="#E7DCC3"/>
-  <circle cx="57" cy="32" r="1.5" fill="#E7DCC3"/>
-  <circle cx="32" cy="57" r="1.5" fill="#E7DCC3"/>
-  <circle cx="7" cy="32" r="1.5" fill="#E7DCC3"/>
+  <circle cx="32" cy="6.25" r="1.5" fill="#E7DCC3"/>
+  <circle cx="57.75" cy="32" r="1.5" fill="#E7DCC3"/>
+  <circle cx="32" cy="57.75" r="1.5" fill="#E7DCC3"/>
+  <circle cx="6.25" cy="32" r="1.5" fill="#E7DCC3"/>
 </svg>

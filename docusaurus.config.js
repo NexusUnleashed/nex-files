@@ -52,7 +52,7 @@ const packageDocsPlugin = ({
 const config = {
   title: "nex*",
   tagline: "A modern package ecosystem for Achaea on Nexus",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
   url: "https://nexusunleashed.github.io",
   baseUrl: "/nex-files/",
   organizationName: "NexusUnleashed",
@@ -144,9 +144,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: "img/GeminiLogo.jpg",
+      image: "img/nex-files-social-card.png",
       metadata: [
         { name: "theme-color", content: "#0b0f17" },
+        { name: "twitter:card", content: "summary_large_image" },
         {
           name: "keywords",
           content:
