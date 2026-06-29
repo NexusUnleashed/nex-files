@@ -22,7 +22,7 @@ const sidebars = {
           items: [
             "guides/configuration/options",
             "guides/configuration/class-configuration",
-            "guides/configuration/target-priorities",
+            "guides/configuration/area-configuration",
           ],
         },
         "guides/decision-model",
