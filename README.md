@@ -52,6 +52,10 @@ npm run serve
 GitHub Actions reproduces the sibling checkout layout before building and
 deploying to GitHub Pages.
 
+If sibling repositories are private, configure the repository secret
+`NEX_DOCS_REPO_TOKEN` with read access to those repositories so Actions can
+check them out.
+
 ## Published site
 
 https://nexusunleashed.github.io/nex-files/
