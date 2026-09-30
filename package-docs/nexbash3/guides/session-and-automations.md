@@ -15,7 +15,7 @@ nexBash snapshots your baselines at the start and reports the deltas at the end:
 
 | Metric | Source |
 | --- | --- |
-| `kills` | Achievement kill counter delta over the run. |
+| `kills` | Delta of the game's `TotalCreaturesKilled` counter over the run; other achievement updates never move it. |
 | `gold` | Gold gained over the run (clamped at 0, so spending never shows negative). |
 | `elapsedMs` | Wall-clock time since `nb start`. |
 

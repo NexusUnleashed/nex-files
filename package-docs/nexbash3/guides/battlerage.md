@@ -48,8 +48,9 @@ while your rage is above the matching reserve. These are read by the rage gates
 through `ctx.battlerage.{shieldBuffer, ccBuffer, generalBuffer}`.
 
 Crowd-control rages also require the active NPC's `ccMinAttackers` to be positive
-and the current exact `ctx.attackerCount` to have reached that minimum. This
-keeps an NPC's CC policy independent from the area's safety cap.
+and the current exact `ctx.attackerCount` to have reached that minimum. That is
+a plain headcount — attacker weights do not apply — which keeps an NPC's CC
+policy independent from the area's safety cap.
 
 ## Live battlerage state
 

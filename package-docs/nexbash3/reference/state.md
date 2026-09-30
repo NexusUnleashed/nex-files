@@ -27,7 +27,7 @@ UI, debug overlays, logging, and integrations.
 | `state.system` | object | `version`, `enabled` (a run is live), and the transient `slow` toggle. |
 | `state.area` | object | `active`, canonical identity `key`, `gameId`, `gameName`, `maxAttackers`, and `routeLength`. Identity/config fields are `null` when no area is active. |
 | `state.strategy` | object | Active class strategy `id` (`null` on an unsupported class). |
-| `state.combat` | object | `hasTarget`, active `target`, tracked-room `targetCount`, objective-eligible `eligibleTargetCount`, and exact `attackerCount`/`attackerIds`. |
+| `state.combat` | object | `hasTarget`, active `target`, tracked-room `targetCount`, objective-eligible `eligibleTargetCount`, exact `attackerCount`/`attackerIds`, and `attackerWeight` (the engaged attackers weighted by NPC `attackerWeight`, compared against `area.maxAttackers`). |
 | `state.session` | object | Per-run scoreboard: `kills`, `gold`, `elapsedMs` (all `0` when no run is active). |
 | `state.hunt` | object or `null` | Frozen correlated hunt-session snapshot: owner, objective, progress, route passes, lifecycle timestamps, and terminal state. |
 | `state.effects` | object | Transient bashing-effect state: `bloodcloak` and `maya` are booleans (available or not); `deathcape` is `{ available, charges, max }` with a running `0`–`50` charge count. |
@@ -47,6 +47,7 @@ UI, debug overlays, logging, and integrations.
     targetCount: 3,
     eligibleTargetCount: 2,
     attackerCount: 1,
+    attackerWeight: 1,
     attackerIds: ["4821"]
   },
   session:  { kills: 18, gold: 2400, elapsedMs: 305000 },

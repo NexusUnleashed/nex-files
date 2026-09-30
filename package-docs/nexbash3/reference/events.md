@@ -48,7 +48,8 @@ rely on them.
 | `nexbash4.area.changed` | area lifecycle payload | The complete transition settled; subscribe here when only the final active identity matters. |
 | `nexbash4.stopped` | `{ area, summary }` | A run went inert on **any** route — manual `stop()`, a STOP event, or area-clear self-completion. Fires once per run; `summary` is the final `{ kills, gold, elapsedMs }` scoreboard. |
 | `nexbash4.area.cleared` | the active `Area` | The bashing run completed (for routed areas). Precedes the run's `nexbash4.stopped`. |
-| `nexbash4.room.cleared` | `GMCP.Room.Info` | The current room holds no targets — a fresh room with nothing spawned yet, or the last target just died. Fires every time `checkingForTargets` confirms this, so it may repeat for the same room. |
+| `nexbash4.room.cleared` | `{ room }` | The current room holds no targets — a fresh room with nothing spawned yet, or the last target just died. Fires every time `checkingForTargets` confirms this, so it may repeat for the same room. |
+| `nexbash4.room.skipped` | `{ room, reason, detail }` | Policy skips a contested room, an authored avoid target, or a room with no safe target inside the attacker budget. |
 | `nexbash4.discovery.recorded` | `{ areaKey, areaName, npc, field, value, source }` | A new mob observation was recorded mid-run, such as an observed damage range. |
 | `nexbash4.discovery.report` | `{ reason, area, discoveries }` | A run ended (`reason` is `"manualStop"` or `"areaClear"`); reports the run's discoveries. |
 | `nexbash4.quest.chain.complete` | none | A scripted quest chain finished. |
@@ -93,6 +94,18 @@ the final `changed`, it is the incoming owned clone. There is exactly one
 edge events for enter/exit work and `changed` for caches that only need the
 settled identity.
 
+### Mnemosyne
+
+| Topic | Payload | Emitted when |
+| --- | --- | --- |
+| `nexbash4.mnemosyne.level.changed` | `{ themeId, themeName }` \| `null` | A generated level loaded (its flavor line matched a theme), or the Mnemosyne area deactivated (`null`). |
+
+The payload is the new value of `nexBash.mnemosyne.level`, deeply frozen. Every
+level load raises it, including a second level of the same theme, because each
+generated level is new. Leaving Mnemosyne raises it once with `null`, during the
+area's scoped cleanup. Attach per-level Mnemosyne work to this topic rather than
+to the Mnemosyne area.
+
 ### Owned hunt sessions
 
 Every `nexbash4.hunt.*` event contains `type`, `runId`, `owner`, `area`,
@@ -103,18 +116,23 @@ same frozen event object raised on EventStream.
 | Topic | Additional payload | Emitted when |
 | --- | --- | --- |
 | `nexbash4.hunt.started` | none | The area lease and first normal bash pass are live. |
-| `nexbash4.hunt.routePassStarted` | `{ routePass }` | A subsequent full route pass begins. |
 | `nexbash4.hunt.targetSlain` | `{ target, matchedObjective }` | A tracked target dies; progress includes exact objective matches. |
 | `nexbash4.hunt.roomCleared` | `{ room }` | A room in the requested route is verified clear. |
-| `nexbash4.hunt.routeCompleted` | `{ routePasses, clearedRooms, skippedRooms, safe }` | The normal bash pass ends and its room-clear evidence is evaluated. |
-| `nexbash4.hunt.waitingForTargets` | `{ routePasses, waitMs }` | A safe quota pass completed below quota and the respawn wait begins. |
+| `nexbash4.hunt.roomSkipped` | `{ room, reason, detail }` | A room in the requested route is skipped by nexBash policy. |
 | `nexbash4.hunt.finished` | terminal fields | Exactly once, after normal area and option state have been restored. |
 
-Terminal outcomes distinguish success, failure, and abort. Normal success
-reasons are `killQuotaReached` and `routeCleared`; an incomplete pass fails with
-`routeBlocked` and includes `details.skippedRooms`. All control operations are
-run-id correlated, so an old callback cannot cancel or observe a newer run by
-accident.
+Each hunt is exactly one route pass. Terminal outcomes are:
+
+| Outcome | Meaning | Reasons |
+| --- | --- | --- |
+| `success` | The route pass completed and the objective was met. | `routeCompleted`, `killQuotaReached` |
+| `failure` | The route pass completed but the objective was not met. | `killQuotaNotMet` |
+| `aborted` | The route pass did not complete. | `bashingStopped`, or the caller's cancellation reason |
+
+Every terminal carries frozen `{ clearedRooms, skippedRooms, unreachedRooms }`
+coverage. Each skipped entry contains `{ room, reason, detail }`; coverage is
+evidence and never changes the outcome. All control operations are run-id
+correlated, so an old callback cannot cancel or observe a newer run by accident.
 
 ### Effect availability
 
@@ -153,8 +171,9 @@ context — they are owned by those packages, not by nexBash.
 | Topic | nexBash's reaction |
 | --- | --- |
 | `nexsys4.system.class.changed` | Re-select the class strategy. |
+| `nexsys4.system.paused` / `.unpaused` | Hold / release the bash machine under the `"system"` reason (see `api.control.hold`). Other holders stay in force. |
 | `nexmap4.area.changed` | Resolve and apply the area for the new location. |
-| `IRE.Misc.Achievement` | Update the session kill count and collect gold. |
+| `IRE.Misc.Achievement` | Record the `TotalCreaturesKilled` total and collect gold. Every achievement counter shares this message; other names are ignored. |
 | `IRE.Target.Info` | Update the active target's HP. |
 | `nexskill.match.skill.<skill>.<id>` | Track crowd-control landing on a target (stormbolt, dilation, ague, scorch, psidaze, deaden, temperance, stagnate, cleanseaura, boinad, curse). |
 | `nexskill.match.npc` | Record NPC damage received during an active run. |
@@ -177,7 +196,6 @@ on exit:
 | `nexsys4.item.room.added` / `.removed` | Track the room's combatant roster in both directions: a mob arriving or leaving re-scans the room, and the active target leaving/dying ends the engagement. |
 | `nexmap4.room.changed` / `nexmap4.pathing.start` / `nexmap4.pathing.complete` | Drive room re-scan and pathing updates. |
 | `Room.Players` | Re-evaluate room contest and target count. |
-| `nexsys4.system.paused` / `.unpaused` | Pause / resume the run. |
 | `nexsys4.def.got.shield` / `.got.prismatic` / `nexsys4.aff.got.aeon` | Suspend offence and clear offence queues. |
 
 ## Contract notes

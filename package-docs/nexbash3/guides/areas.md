@@ -14,10 +14,10 @@ library of area definitions and selects the right one from your location.
 | Field | Meaning |
 | --- | --- |
 | `gameName` / `gameId` | Area identity (a scalar or a list of IRE area names/ids). |
-| `npcs` | A map of NPC name → combat facts (`aggro`, `canAssist`, `assistGroup`, `ccMinAttackers`, `threatLevel`, `canShield`, `totalHp`, …). |
+| `npcs` | A map of NPC name → combat facts (`aggro`, `canAssist`, `assistGroup`, `ccMinAttackers`, `attackerWeight`, `canShield`, `totalHp`, …). |
 | `areaTargets` | The ordered target priority list (defaults to the `npcs` keys). |
 | `avoidTargets` | NPC names whose presence makes nexBash skip the room. |
-| `maxAttackers` | Maximum projected attackers nexBash may engage (default 5). |
+| `maxAttackers` | Maximum projected attackers nexBash may engage, each counting as its NPC's `attackerWeight` (default 99). |
 | `stepDelay` / `startRoom` | Optional pacing and entry-room hints. |
 | `setup(area, scope)` | Optional trusted package setup for scoped triggers, rules, and events. |
 | `automations` | Persisted command actions run on activation or deactivation. |
@@ -38,58 +38,48 @@ action would add:
   `assistGroup`;
 - `groupName` is unrelated display/squint metadata.
 
-An action is legal only when the complete projected set is within
-`area.maxAttackers`. Selection searches past unsafe high-priority candidates, so
+Each projected attacker counts as its NPC's `attackerWeight` — `1` unless the
+area says otherwise — and an action is legal only when that weighted total is
+within `area.maxAttackers`. With every weight at `1` the budget is a plain
+headcount; a weight of `2` marks a denizen that uses two attackers' worth of the
+area's survivable budget. The same total decides escape: once the engaged
+attackers weigh more than `maxAttackers`, fly, burrow and flee become eligible.
+Selection searches past unsafe high-priority candidates, so
 an unsafe first target does not make nexBash abandon a room when a later target
 is safe. Shield swaps, coupled rage plus primary attacks, autonomous rage, and
 fixed-size AoE all use the same projection.
 
 `ccMinAttackers` separately controls crowd control. `0` disables CC for that NPC;
 otherwise CC is eligible when the current attacker count reaches the configured
-minimum.
+minimum. That count is a plain headcount; attacker weights do not apply.
 
-## Focus threats
+## No per-NPC danger field
 
-`maxAttackers` is a count, and a count cannot say that one particular denizen is
-worth more attention than the rest of the room combined. `threatLevel` does.
+`attackerWeight` says how much of the area's attacker budget a denizen uses. It
+cannot say that one particular denizen must be fought alone in an area where
+everything else may be fought together: pushed that far, a weight would make
+nexBash flee a fight it had already committed to. `threatLevel` used to try: a non-negative integer that sorted above every live combat fact and refused
+multi-target attacks while one was present.
 
-A non-negative integer on the NPC, `0` by default. Any positive value declares:
-*this denizen must be eliminated before attention is divided.* It does two
-things, and they work as a pair:
+It has been removed. The behaviours it was reaching for turned out to depend on
+live state rather than on a static rank:
 
-- **It sorts first.** Target selection ranks the highest `threatLevel` above
-  every live combat fact, so the threat is picked before a wounded or
-  lower-priority mob. Within one threat tier nothing changes: shielded last,
-  then lowest HP, then the area's declaration order.
-- **It blocks multi-target attacks.** While such an NPC is present and
-  attackable, nexBash refuses every multi-target attack — a Magi will not
-  Stormhammer past a boss and will keep hitting single targets until it is dead.
-  A shielded focus threat still counts; a shield is not an elimination.
+- *May I engage this at all?* An isolation requirement — "never fight this
+  alongside anything else" — is a per-denizen constraint, and the only knob
+  carrying it was the area-wide `maxAttackers`.
+- *May I disengage once committed?* No ranking key can reach this: the shield-swap
+  planner excludes the active target from its own candidates, so a target's rank
+  has never had any bearing on whether nexBash leaves it.
 
-The second rule needs the first. On its own it would suppress AoE forever,
-because nothing would push selection onto the threat whose death lifts the
-suppression. Together they read as one behaviour: kill the dangerous thing
-first, then the room opens back up.
+Target selection is therefore a pure progress ordering — shielded last, then
+lowest HP, then the area's declaration order — and every safety term lives at the
+engagement boundary where the projected attacker set is known.
 
-This is a separate axis from `ccMinAttackers` on purpose, even though the two
-usually travel together. `ccMinAttackers` answers *"is controlling this worth the
-rage right now?"* and is player-tunable; `threatLevel` answers *"is this thing
-dangerous enough that I must not split my damage?"* and is a fixed fact about the
-denizen. It is code-authored only — it has no config-UI control and is not stored
-as a per-player override, so trimming a rage budget can never quietly re-enable a
-multi-target attack next to something lethal.
+`ccMinAttackers` is unaffected and remains the CC axis: *"is controlling this
+worth the rage right now?"*, player-tunable, per NPC.
 
-Examples:
-
-- Tuar uses a permissive cap (`99`) because the non-assisting Nelbennir can be
-  swapped or multi-targeted efficiently.
-- Mannamot uses `maxAttackers: 1`; greater elementals do not assist, while any
-  represented lesser-elemental helpers share the explicit
-  `mannamot-lessers` group.
-- A universal-assist room marks only confirmed helpers with
-  `canAssist: true` and leaves `assistGroup` null.
-- An NPC with `ccMinAttackers: 2` is controlled only once at least two attackers
-  are engaged.
+Real play scenarios and the design work replacing this live in
+`docs/scenarios/target-selection.md`.
 
 ## Selecting an area
 

@@ -36,8 +36,12 @@ Two Advanced options turn the scrollback into a saved log (see
 
 - **Auto-Download Log on Logout** writes the buffer to an HTML log when you
   disconnect.
-- **Virtualized HTML Logs** produces an interactive, virtualized HTML viewer
-  suited to very long sessions.
+- **Virtualized HTML Logs** renders only the rows on screen, which keeps logs
+  from very long sessions responsive.
+
+Every log opens with a toolbar for searching it and for showing or hiding
+timestamps, prompts, and gagged lines (lines suppressed on the live display but
+kept for review). Gagged lines start hidden, as they do in the scrollback modal.
 
 ## Display styling
 

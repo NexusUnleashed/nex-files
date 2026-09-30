@@ -12,7 +12,7 @@ lifecycle helpers and accessors also live directly on the global.
 
 | Namespace | Purpose | Methods |
 | --- | --- | --- |
-| `api.control` | Manual run lifecycle and internal run-control mechanics | `start`, `stop`, `enableLokiCheck` |
+| `api.control` | Manual run lifecycle and internal run-control mechanics | `start`, `stop`, `enableLokiCheck`, `hold`, `release`, `isHeld` |
 | `api.hunt` | Correlated, externally owned PvE executions | `start`, `stop`, `get`, `subscribe` |
 | `api.config` | Area / NPC configuration | `setArea`, `registerArea`, `addArea`, `addNpc` |
 | `api.observe` | Report observed game-state into the owned models | `npc.shield.*`, `npc.cc.*`, `self.effects.*`, `self.battlerage.*` |
@@ -36,13 +36,31 @@ nexBash.api.control.enableLokiCheck(); // arm a one-shot Loki affliction probe
 `start()` is a visible no-op with a notice when no area matches your location.
 `stop()` is silent when no run was active.
 
+#### Holding the bash machine
+
+`hold(reason)` pauses the bash machine without ending the run, and
+`release(reason)` lets it go. Holds are reason-scoped, so independent holders
+never undo each other: the machine pauses on the first reason and resumes only
+when the last reason is released. While any reason is held, `start()` and a
+room refresh leave the machine paused instead of scanning the room.
+
+```js
+nexBash.api.control.hold("my-package"); // → true when the reason was new
+nexBash.api.control.isHeld();           // → true
+nexBash.api.control.release("my-package"); // → true when the reason was held
+```
+
+On resume the machine requests a fresh room push before it re-evaluates the
+room. nexBash holds the machine itself under the `"system"` reason while nexSys
+is paused. Use a reason of your own, and always release it.
+
 ### `api.hunt`
 
 `hunt` is the sole versioned automation boundary for a package that needs
 nexBash to perform PvE while retaining ownership of its own workflow. The caller supplies
 the objective, route, target names, and correlation identity; nexBash owns the
-temporary area lease, combat, safe route verification, progress, cancellation,
-and restoration of the player's normal area.
+temporary area lease, combat, room coverage, progress, cancellation, and
+restoration of the player's normal area.
 
 ```js
 const result = nexBash.api.hunt.start({
@@ -67,17 +85,17 @@ if (result.ok) {
 }
 ```
 
-The supported objectives are:
+Every hunt is exactly one route pass. The supported objectives are:
 
-- `{ type: "routeClear" }`: complete one normal route pass, and succeed only
-  when every unique route room was actually reported clear.
-- `{ type: "killQuota", requiredKills }`: count exact objective-target deaths
-  and repeat complete route passes after the respawn interval until the quota.
+- `{ type: "routePass" }`: succeed with `routeCompleted` when the route ends,
+  regardless of skipped rooms.
+- `{ type: "killQuota", requiredKills }`: count exact objective-target deaths,
+  stop immediately with `killQuotaReached` when the quota is met, or fail with
+  `killQuotaNotMet` when the route ends below quota.
 
 The optional `slow` boolean selects slow-mode for this session and defaults to
 `false`; the prior setting is restored when the session finishes. The optional
-`respawnIntervalMs` is `10000` by default and accepts `100` through `60000`.
-The optional `area` may be a complete `Area` instance. Without it, the
+`area` may be a complete `Area` instance. Without it, the
 API resolves a registered area for the current location. Configured NPC metadata
 is preserved whenever available. A requested target missing from that area gets
 the standard `new Npc()` defaults on the session's transient clone. If the
@@ -92,12 +110,42 @@ time. `get(runId)` returns a frozen active or recently completed snapshot.
 unsubscribe function. The callback and `nexbash4.hunt.*` topics carry the same
 correlated event shapes.
 
+Terminal outcomes have one of these verdicts:
+
+| Outcome | Meaning | Reasons |
+| --- | --- | --- |
+| `success` | The route pass completed and the objective was met. | `routeCompleted`, `killQuotaReached` |
+| `failure` | The route pass completed but the objective was not met. | `killQuotaNotMet` |
+| `aborted` | The route pass did not complete. | `bashingStopped`, or the caller's cancellation reason |
+
+Every terminal and `get()` snapshot includes frozen, route-ordered coverage.
+Duplicate room IDs appear once, and each room reflects the last decision made
+there:
+
+```js
+coverage: {
+  clearedRooms: [12001],
+  skippedRooms: [
+    {
+      room: 12002,
+      reason: "contested",
+      detail: { players: ["Someone"] },
+    },
+  ],
+  unreachedRooms: [12003],
+}
+```
+
+Skip reasons are `contested` (`{ players }`), `avoidTarget` (`{ target }`), and
+`noSafeTarget` (`{ attackable, maxAttackers }`). Coverage is evidence only; a
+skip never decides the terminal outcome.
+
 Feature detection is explicit:
 
 ```js
-nexBash.capabilities.huntSession;          // "1.1.0"
-nexBash.api.hunt.version;                  // "1.1.0"
-nexBash.api.hunt.capabilities.objectives;  // ["killQuota", "routeClear"]
+nexBash.capabilities.huntSession;          // "2.0.0"
+nexBash.api.hunt.version;                  // "2.0.0"
+nexBash.api.hunt.capabilities.objectives;  // ["killQuota", "routePass"]
 nexBash.api.hunt.capabilities.slowMode;    // true
 nexBash.api.hunt.capabilities.transientNpcDefaults; // true
 ```

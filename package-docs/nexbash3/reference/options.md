@@ -73,7 +73,8 @@ schema **v4**:
           "canShield": true,
           "canAssist": false,
           "assistGroup": null,
-          "ccMinAttackers": 1
+          "ccMinAttackers": 1,
+          "attackerWeight": 1
         }
       }
     }
@@ -113,11 +114,12 @@ active.
 | `areaTargets` | Ordered target names. |
 | `avoidTargets` | NPC names whose presence makes nexBash skip the room. |
 | `npcs` | Per-NPC combat overrides. See [Area Configuration](../guides/configuration/area-configuration.md). |
-| `maxAttackers` | Maximum projected exact attackers allowed. |
+| `maxAttackers` | Maximum projected attackers allowed, each counting as its NPC's `attackerWeight`. |
 | `route` / `stepDelay` / `startRoom` | Optional route, pacing, and entry-room data. |
 
 Per-NPC overrides include boolean combat facts, `resistances`/`damageTypes`,
-nonnegative integer `ccMinAttackers`, and nullable trimmed `assistGroup`. An
+nonnegative integers `ccMinAttackers` and `attackerWeight`, and nullable trimmed
+`assistGroup`. An
 explicit `null` assist group is preserved.
 
 ### Per-strategy fields

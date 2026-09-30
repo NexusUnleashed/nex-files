@@ -22,9 +22,10 @@ To add a brand-new area, walk to it in-game and use `nb addarea` (see [Commands]
 The **Area Settings** sub-tab configures the attacker budget, target exclusion,
 and lifecycle commands for the selected area:
 
-- **Maximum Attackers** — The maximum number of exact NPC attackers nexBash may
-  project after an action (defaults to 5). Room population alone does not consume
-  this budget.
+- **Maximum Attackers** — The maximum number of NPC attackers nexBash may
+  project after an action (defaults to 99). Each attacker counts as its NPC's
+  **Attacker Weight**, normally 1. Room population alone does not consume this
+  budget.
 - **Avoid Targets** — A list of specific NPC names. If any of these NPCs are present in a room, nexBash will skip that room entirely. To add an avoid target, type its name and press Add.
 - **On activation** — Commands sent after the area's scoped setup completes and
   the owned clone is live.
@@ -65,21 +66,27 @@ selected target:
 | --- | --- |
 | **Aggro** | Count this NPC as attacking when it is present. |
 | **Can Assist** | This NPC defends direct attacks according to its Assist Group. |
-| **Can Block** | This NPC can block movement or escape paths. |
+| **Can Block** | This NPC blocks a normal flee. While one is attacking, nexBash flees with leap and mountjump instead. |
 | **Can Chase** | This NPC may follow after you leave the room. |
-| **Can Fly** | This NPC can follow or attack in flight-relevant rooms. |
+| **Can Fly** | This NPC can reach you in the sky. With Can Chase, it follows a fly escape, so nexBash flees first and flies from the next room instead. |
 | **Can Heal** | This NPC can heal itself or others (gates abilities like scorch). |
 | **Can Raze** | This NPC can remove your shield defence. |
 | **Can Shield** | This NPC can raise a shield that affects action choice. |
 | **Can Web** | This NPC can web — drives morimbuul pre-draw and safety logic. |
 
-Two typed fields sit below the switches:
+Three typed fields sit below the switches:
 
 - **Assist Group** — blank means a confirmed assistant defends any directly
   attacked NPC. A nonblank value couples it only to direct targets with the same
   explicit group. It does not use `groupName`.
 - **CC Minimum Attackers** — `0` disables crowd control for the NPC. A positive
-  value enables CC only when the current exact attacker count reaches it.
+  value enables CC only when the current exact attacker count reaches it. This
+  is a plain headcount; attacker weights do not affect it.
+- **Attacker Weight** — how many attackers this NPC counts as against the area's
+  Maximum Attackers (default `1`). Raise it for a denizen you can only survive
+  fighting with fewer companions — for example, a weight of `2` in an area
+  whose budget is `2` means that NPC is only ever fought alone. A weight larger
+  than the area's budget means the NPC is never engaged.
 
 The selected target's estimated **health** (`totalHp`) is shown next to its name.
 A target in the list with no stored data shows an empty flag panel until you set

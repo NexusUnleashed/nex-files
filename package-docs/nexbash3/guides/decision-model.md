@@ -92,11 +92,12 @@ the target model and turns them into answers.
 
 | Field | Meaning |
 | --- | --- |
-| `ctx.target` | Active target facts: `id`, `name`, `hp` (0-100%), `totalHp`, `shielded`, `aggro`, `canAssist`, `assistGroup`, `ccMinAttackers`, `threatLevel`, `cc`, `resistances`, `damageTypes`, and `canHeal`. |
+| `ctx.target` | Active target facts: `id`, `name`, `hp` (0-100%), `totalHp`, `shielded`, `aggro`, `canAssist`, `assistGroup`, `ccMinAttackers`, `cc`, `resistances`, `damageTypes`, and `canHeal`. |
 | `ctx.hasTarget` / `ctx.targetCount` | Whether a target exists and how many configured mobs are in the room. |
-| `ctx.attackerIds` / `ctx.attackerCount` / `ctx.maxAttackers` | Exact current attacker IDs, their count, and the active-area budget. |
-| `ctx.aoePlan` / `ctx.aoeTargetIds` | A prepared safe fixed-size AoE projection and its exact IDs, or no plan/IDs when unsafe — including whenever a `threatLevel` denizen is present. |
-| `ctx.room.threatLevel` | Highest `threatLevel` among attackable NPCs present; `0` when the room holds no focus threat. Distinct from `ctx.incomingThreat`, which is squint's *adjacent-room* danger scalar. |
+| `ctx.attackerIds` / `ctx.attackerCount` / `ctx.attackerWeight` / `ctx.maxAttackers` | Exact current attacker IDs, their headcount, their total weighted by each NPC's `attackerWeight` (what the budget and escape compare), and the active-area budget. |
+| `ctx.flyPursuerCount` | Current attackers that can both fly and chase. They follow a `fly` escape into the sky, so `fly` is not valid while any is attacking — `flee` sheds them instead, by sending `<dir>` then `fly` so they never see the take-off. |
+| `ctx.fleeBlockerCount` | Current attackers that block movement. While any is attacking, `flee` sends `leap <dir>` and `mountjump <dir>` instead of the bare direction, and cannot also fly — a bypass costs the balance. |
+| `ctx.aoePlan` / `ctx.aoeTargetIds` | A prepared safe fixed-size AoE projection and its exact IDs, or no plan/IDs when no set of that size fits the area's attacker budget. |
 | `ctx.party` | Party `members`, `leader`, `size`, `isMember`, and `isLeader`. |
 | `ctx.enabled(key)` | Whether a catalog key belongs to an effective lane. |
 | `ctx.haveAff` / `ctx.haveAnyAff` / `ctx.haveDef` / `ctx.haveBal` / `ctx.isClass` | Player-state predicates delegated to nexSys4. |

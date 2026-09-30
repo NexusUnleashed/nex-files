@@ -100,6 +100,7 @@ attacker budget:
 nexBash.state.area.maxAttackers;
 nexBash.state.combat.targetCount;
 nexBash.state.combat.attackerCount;
+nexBash.state.combat.attackerWeight;
 nexBash.state.combat.attackerIds;
 nexBash.api.diagnostics.report().engagement;
 ```

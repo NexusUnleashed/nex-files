@@ -87,7 +87,7 @@ While running, inspect a read-only snapshot in the console:
 ```js
 nexBash.state.system;   // { version, enabled }
 nexBash.state.area;     // { gameId, gameName, maxAttackers, routeLength }
-nexBash.state.combat;   // { hasTarget, targetCount, attackerCount, attackerIds }
+nexBash.state.combat;   // { hasTarget, targetCount, attackerCount, attackerWeight, attackerIds }
 nexBash.state.session;  // { kills, gold, elapsedMs }
 ```
 

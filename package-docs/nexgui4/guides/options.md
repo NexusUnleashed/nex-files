@@ -68,7 +68,7 @@ The Display tab styles the game display and scrollback:
 | --- | --- |
 | Login Tracker | Show formatted login / logout notices by diffing the who list against Achaea's public roster. |
 | Auto-Download Log on Logout | Download the scrollback buffer as an HTML log when you disconnect. |
-| Virtualized HTML Logs | Download logs as an interactive virtualized HTML viewer for long sessions. |
+| Virtualized HTML Logs | Download logs as a virtualized HTML viewer that renders only the rows on screen, for very long sessions. |
 | Native Display Override | Mount the nexGui display in the Nexus output area instead of a panel tab (see [Layout & presets](./layout.md#native-display)). |
 | Event Bus Debug Mode | Log internal events to the browser console. **Session-only** — resets on reload. |
 
