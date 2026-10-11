@@ -109,9 +109,10 @@ Use the extension surface that matches who owns the behavior:
 2. An external package subscribes to the semantic EventStream topics
    `nexbash4.area.activated` and `nexbash4.area.deactivated`. This keeps the
    package's code and cleanup under that package's ownership.
-3. A shipped, code-authored area may provide `setup(area, scope)` when it must
-   install low-level triggers, rules, or listeners. Register each resource with
-   the supplied scope; it is disposed exactly when that activation ends.
+3. A code-authored area registered by nexBash or another package may provide
+   `setup(area, scope)` when it must install low-level triggers, rules, or
+   listeners. Register each resource with the supplied scope; it is disposed
+   exactly when that activation ends.
 
 For example, an external package can attach enter/exit behavior without
 modifying the Area definition:
@@ -143,25 +144,30 @@ Lifecycle payloads contain frozen identity descriptors, not mutable live Area
 instances. See the [event contract](../reference/events.md#area-lifecycle) for
 the complete payload and ordering.
 
-Code-authored area setup receives the narrower resource API:
+At its simplest, a code-authored area can run one piece of code when it loads
+and return another piece of code to run when it unloads:
 
 ```js
 const area = new nexBash.classes.Area({
   gameId: 207,
   gameName: "the Island of Tuar",
-  setup(_area, scope) {
-    scope.registerEvent("my-package.signal", handleSignal, {
-      id: "nexBash:tuar:signal",
-    });
-    scope.addTrigger({ name: "Tuar marker", pattern, action });
-    scope.loadRules("tuar", rules);
-    return () => releaseAnyOtherResource();
+  setup(area) {
+    nexusclient.send_commands(`say I have arrived at ${area.gameName}!`);
+
+    return () => {
+      nexusclient.send_commands("say Area complete!");
+    };
   },
 });
+
+nexBash.api.config.registerArea(area);
 ```
 
-The scope records exact listener, trigger, and rule-pack identities and disposes
-them in reverse order. Do not remove shared tags from area setup.
+`setup()` runs each time the area becomes active. The function it returns is the
+area's teardown function, which runs when that activation ends. More advanced
+area code can also accept `scope` as the second argument and use
+`scope.registerEvent`, `scope.addTrigger`, or `scope.loadRules`; the scope cleans
+those resources up automatically in reverse order.
 
 ## Combat Loop
 

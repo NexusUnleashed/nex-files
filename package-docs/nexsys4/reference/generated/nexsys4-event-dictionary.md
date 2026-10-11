@@ -52,8 +52,8 @@ External package authors should start with the
 | `nexsys4.system.status.changed` | none | none | `stable` | Character status snapshot changed. |
 | `nexsys4.system.class.changed` | none | none | `stable` | Character class changed. |
 | `nexsys4.system.target.changed` | none | none | `stable` | Current target changed. |
-| `nexsys4.system.room.changed` | none | none | `stable` | Current room changed. |
-| `nexsys4.system.room_items.changed` | none | none | `stable` | Visible room items changed. |
+| `nexsys4.room.changed` | none | none | `stable` | Current room identity changed synchronously at ingestion (id, name, exits). |
+| `nexsys4.room.features.changed` | none | none | `stable` | Current room walls, frozen ground, or catalog-relative completeness changed synchronously. |
 | `nexsys4.system.pause.changed` | none | none | `stable` | Runtime pause state changed. |
 | `nexsys4.system.paused` | none | none | `stable` | Runtime paused. |
 | `nexsys4.system.unpaused` | none | none | `stable` | Runtime unpaused. |

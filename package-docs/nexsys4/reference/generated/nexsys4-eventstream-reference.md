@@ -43,8 +43,6 @@ restate hand-maintained runtime notes.
 | `nexsys4.system.status.changed` | none | `stable` | Character status snapshot changed. |
 | `nexsys4.system.class.changed` | none | `stable` | Character class changed. |
 | `nexsys4.system.target.changed` | none | `stable` | Current target changed. |
-| `nexsys4.system.room.changed` | none | `stable` | Current room changed. |
-| `nexsys4.system.room_items.changed` | none | `stable` | Visible room items changed. |
 | `nexsys4.system.pause.changed` | none | `stable` | Runtime pause state changed. |
 | `nexsys4.system.paused` | none | `stable` | Runtime paused. |
 | `nexsys4.system.unpaused` | none | `stable` | Runtime unpaused. |
@@ -69,13 +67,12 @@ restate hand-maintained runtime notes.
 | `nexsys4.eqbal.got` | none | `stable` | Balance and equilibrium are both available. |
 | `nexsys4.limb.updated` | `nexsys4.limb.updated.<limb>` (eventstream) | `stable` | Limb damage or break state changed. |
 
-### Items, cache, queue, rules, and serverside
+### Room and items
 
 | Topic | Scoped EventStream variants | Stability | Description |
 | --- | --- | --- | --- |
-| `nexsys4.cache.amount.changed` | none | `stable` | Cached item counts changed. |
-| `nexsys4.cache.inventory.list` | none | `stable` | Inventory cache snapshot applied. |
-| `nexsys4.cache.rift.list` | none | `stable` | Rift cache snapshot applied. |
+| `nexsys4.room.changed` | none | `stable` | Current room identity changed synchronously at ingestion (id, name, exits). |
+| `nexsys4.room.features.changed` | none | `stable` | Current room walls, frozen ground, or catalog-relative completeness changed synchronously. |
 | `nexsys4.item.room.added` | none | `stable` | An item appeared in the current room. |
 | `nexsys4.item.room.removed` | none | `stable` | An item left the current room. |
 | `nexsys4.item.room.updated` | none | `stable` | A current-room item changed. |
@@ -84,6 +81,14 @@ restate hand-maintained runtime notes.
 | `nexsys4.item.inv.removed` | none | `stable` | An item was removed from inventory. |
 | `nexsys4.item.inv.updated` | none | `stable` | An inventory item changed. |
 | `nexsys4.item.inv.list` | none | `stable` | Inventory item list snapshot received. |
+
+### Cache, queues, rules, and serverside
+
+| Topic | Scoped EventStream variants | Stability | Description |
+| --- | --- | --- | --- |
+| `nexsys4.cache.amount.changed` | none | `stable` | Cached item counts changed. |
+| `nexsys4.cache.inventory.list` | none | `stable` | Inventory cache snapshot applied. |
+| `nexsys4.cache.rift.list` | none | `stable` | Rift cache snapshot applied. |
 | `nexsys4.queue.sent` | `nexsys4.queue.sent.<queueName>` (eventstream) | `stable` | A queue submission was accepted by the server. |
 | `nexsys4.queue.fired` | `nexsys4.queue.fired.<queueName>` (eventstream) | `stable` | A queue fire was acknowledged for a named queue. |
 | `nexsys4.queue.fired.ack` | none | `stable` | Queue fire acknowledgement was recorded. |

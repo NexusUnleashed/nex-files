@@ -14,17 +14,19 @@ nexBash4 is a combat layer on top of other Nexus packages. The following must be
 present (they are declared as peer dependencies and are never bundled into
 nexBash):
 
-| Package                   | Role                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------- |
-| **nexSys4** (`nexsys`)    | Character, affliction, defence, balance state and command queues. **Required.** |
-| **nexEvent** (`nexevent`) | The `eventStream` pub/sub bus nexBash listens and emits on.                     |
+| Package                     | Role                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| **nexSys4** (`nexsys4`)     | Character, affliction, defence, balance state and command queues. **Required.** |
+| **nexEvent** (`nexevent`)   | The `eventStream` pub/sub bus nexBash listens and emits on.                     |
+| **nexAction** (`nexaction`) | Scoped text triggers used by nexBash and code-authored areas. **Required.**     |
 
 These optional host packages enrich behavior when present:
 
-| Package    | Adds                                                   |
-| ---------- | ------------------------------------------------------ |
-| **nexMap** | Pathing and area-change detection.                     |
-| **nexGui** | Party awareness (leader/membership) for group bashing. |
+| Package                     | Adds                                                   |
+| --------------------------- | ------------------------------------------------------ |
+| **nexMap4** (`nexmap4`)     | Pathing and area-change detection.                     |
+| **nexGui4** (`nexgui4`)     | Party awareness (leader/membership) for group bashing. |
+| **nexSkills** (`nexskills`) | Skill and NPC match events used for combat tracking.   |
 
 Install and verify [nexSys4](../../nexSys/getting-started/installation.md) first.
 

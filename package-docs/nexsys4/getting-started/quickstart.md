@@ -1,63 +1,103 @@
 ---
 title: Quickstart
-description: Complete the first nexSys4 configuration and verify character state.
+description: Review your curing setup, learn the everyday commands, and check that nexSys is working.
 ---
 
 # Quickstart
 
-## 1. Open configuration
+This page walks you through your curing setup and the commands you'll use
+every day. It assumes nexSys is installed and running. If it isn't, start
+with [Installation](./installation.md).
 
-Run this in the Nexus developer console:
+nexSys works well out of the box. Expect to spend about ten minutes here,
+most of it on defences.
 
-```js
-nexSys.api.ui.openConfig();
+## 1. Open the configuration window
+
+```text
+ns config
 ```
 
-The dialog has five tabs: **System**, **Aff Priorities**, **Defences**,
-**Precache**, and **Colors**.
+The window has five tabs: **System**, **Aff Priorities**, **Defences**,
+**Precache**, and **Colors**. Nothing you change takes effect until you
+select **Save**. **Cancel**, or closing the window, throws your changes away.
 
-## 2. Review system settings
+## 2. System
 
-On the System tab:
+Check these settings first:
 
-1. Choose Transmutation or Concoctions.
-2. Choose whether health or mana has sip priority.
-3. Review the sip, moss, fracture, and mana thresholds.
-4. Enable only the notices and client overrides you want.
+- **Load on login**: switch it on so nexSys starts every time you log in.
+- **Curing type**: choose the curing skill your character uses,
+  **Transmutation** (minerals) or **Concoctions** (herbs).
+- **Sip priority**: what to sip first when both health and mana are low.
+  The `hh` alias swaps it in game.
+- **Thresholds**: when to sip and eat moss. The defaults suit most
+  characters.
 
-See [System configuration](../guides/configuration/system.md) for the setting
-semantics and current defaults.
+Every setting is explained in [System settings](../guides/configuration/system.md).
 
-## 3. Set priorities and defences
+## 3. Aff Priorities
 
-Drag afflictions into the desired priority columns. Priority `0` is the ignored
-column. On Defences, select the current class, choose player-controlled defup
-entries, and review each defence priority.
+nexSys ships with recommended affliction priorities, so there's nothing you
+have to change here. To make an affliction more or less urgent, drag it to
+another column. **Prio 1** is cured first, and **Ignored 26** is never cured.
 
-## 4. Set precache targets
+Leave columns 1 to 3 empty. nexSys's [rules](../guides/rules.md) use them to
+push an affliction to the front when the situation calls for it.
 
-Choose the herb and mineral quantities nexSys4 should maintain. A value of `0`
-disables precaching for that item.
+## 4. Defences
 
-## 5. Save
+The class list starts on your current class. For each defence:
 
-Changes remain a draft until **Save** is selected. Saving persists the changed
-settings and asks the runtime to reconcile them with server-side curing.
+- **Priority** `1` to `25` means nexSys looks after the defence. Lower numbers
+  go up first. `0` means nexSys leaves it alone.
+- **Defup** checked means the defence goes up only when you type `defup`.
+  Unchecked means nexSys keeps it up all the time and raises it again if
+  it's stripped.
 
-## 6. Verify live state
+Defence names are colored by cost. Red ones take balance or equilibrium to
+raise, so give them the lowest priority or leave them for `defup`. See
+[Defences](../guides/configuration/defences.md) for the details.
 
-Once logged in and startup is complete, inspect a few read-only snapshots:
+## 5. Precache
 
-```js
-nexSys.state.class;
-nexSys.state.affs;
-nexSys.state.balances;
-nexSys.state.serverside;
-```
+Each number is how many of that herb or mineral to carry. nexSys takes more
+out of your rift when you're short and puts extras back. With the default of
+`0`, that curative stays in your rift. See
+[Precache](../guides/configuration/precache.md).
 
-For a complete, copyable debug snapshot:
+## 6. Save
 
-```js
-JSON.stringify(nexSys.state, null, 2);
-```
+Select **Save**. nexSys stores your configuration and updates Achaea's
+server-side curing straight away.
 
+## Everyday commands
+
+| Command | What it does |
+| --- | --- |
+| `pp` | Pause or resume nexSys. Pausing also turns server-side curing off. |
+| `defup` | Raise your defences. |
+| `defoff` | Lower your defences. |
+| `t <name>` | Set your target. |
+| `qa <command>` | Queue a command to run as soon as you have balance. |
+| `ns config` | Open the configuration window. |
+
+All the aliases are on the [Commands](../guides/commands.md) page.
+
+## Check that it's working
+
+- Your prompt is the nexSys prompt. A `(p)` at the front means nexSys is
+  paused. Type `pp` to resume.
+- Notices such as `[-nexSys-] +aff asthma` appear as you gain and lose
+  afflictions. You can choose which notices you see on the System tab.
+- In game, `CURINGSET LIST` shows `nexsys4-default` as your active curing
+  set.
+
+## Next steps
+
+- [How nexSys works](../guides/how-it-works.md) explains what nexSys does at
+  login and on every prompt.
+- The [Configuration](../guides/configuration/index.md) guide covers every
+  setting.
+- [Customizing nexSys](../guides/customizing.md) shows how to add your own
+  aliases and scripts without losing them to updates.
