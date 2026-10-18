@@ -1,0 +1,39 @@
+{
+  "source": "https://wiki.achaea.com/Category:Classes",
+  "classes": {
+    "Alchemist": ["Alchemy", "Physiology", "Formulation", "Sublimation"],
+    "Apostate": ["Evileye", "Necromancy", "Apostasy"],
+    "Bard": ["Bladedance", "Composition", "Sagas", "Woe", "Harmonics", "Swashbuckling", "Voicecraft"],
+    "Blademaster": ["TwoArts", "Striking", "Shindo"],
+    "Depthswalker": ["Aeonics", "Shadowmancy", "Terminus"],
+    "Druid": ["Groves", "Metamorphosis", "Reclamation"],
+    "Infernal": ["Weaponmastery", "Oppression", "Malignity", "Chivalry", "Warrior Tert"],
+    "Jester": ["Tarot", "Pranks", "Puppetry"],
+    "Magi": ["Elementalism", "Crystalism", "Artificing"],
+    "Monk": ["Tekura", "Shikudo", "Kaido", "Telepathy"],
+    "Occultist": ["Occultism", "Tarot", "Domination"],
+    "Paladin": ["Weaponmastery", "Excision", "Valour", "Chivalry", "Warrior Tert"],
+    "Pariah": ["Memorium", "Pestilence", "Charnel"],
+    "Priest": ["Spirituality", "Devotion", "Zeal", "Healing"],
+    "Psion": ["Weaving", "Psionics", "Emulation"],
+    "Runewarden": ["Weaponmastery", "Runelore", "Discipline", "Chivalry", "Warrior Tert"],
+    "Sentinel": ["Metamorphosis", "Woodlore", "Skirmishing"],
+    "Serpent": ["Subterfuge", "Venom", "Hypnosis"],
+    "Shaman": ["Spiritlore", "Curses", "Vodun"],
+    "Sylvan": ["Propagation", "Groves", "Weatherweaving"],
+    "Unnamable": ["Weaponmastery", "Anathema", "Dominion", "Chivalry", "Warrior Tert"],
+    "Dragon": ["Dragoncraft"],
+    "Air Lord": ["Duress"],
+    "Earth Lord": ["Sculpting"],
+    "Fire Lord": ["Ignition"],
+    "Water Lord": ["Pervasion"]
+  },
+  "groups": {
+    "Tradeskills": ["Conjuration", "Enchantment", "Gathering", "Jewellery", "Tailoring"]
+  },
+  "aliases": {
+    "Artifice": "Artificing",
+    "Knight terts": "Warrior Tert",
+    "Dual blunt spec": { "skill": "Weaponmastery", "prefix": "(Dual blunt)" }
+  }
+}

@@ -19,7 +19,9 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "gen-classleads": "node ./scripts/generate-classleads.mjs",
-    "gen-bazaar": "node ./scripts/generate-bazaar-json.mjs"
+    "gen-bazaar": "node ./scripts/generate-bazaar-json.mjs",
+    "update:classleads": "node ./scripts/update-classleads.mjs",
+    "update:classleads:full": "node ./scripts/update-classleads.mjs --full"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.1",

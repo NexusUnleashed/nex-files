@@ -1,32 +1,4 @@
 {
-  "classes": {
-    "Alchemist": ["Alchemy", "Physiology", "Formulation", "Sublimation"],
-    "Apostate": ["Evileye", "Necromancy", "Apostasy"],
-    "Bard": ["Bladedance", "Composition", "Sagas", "Woe"],
-    "Blademaster": ["TwoArts", "Striking", "Shindo"],
-    "Depthswalker": ["Aeonics", "Shadowmancy", "Terminus"],
-    "Druid": ["Groves", "Metamorphosis", "Reclamation"],
-    "Infernal": ["Weaponmastery", "Oppression", "Malingity"],
-    "Jester": ["Tarot", "Pranks", "Puppetry"],
-    "Magi": ["Elementalism", "Crystalism", "Artificing"],
-    "Monk": ["Tekura", "Shikudo", "Kaido", "Telepathy"],
-    "Occultist": ["Occultism", "Tarot", "Domination"],
-    "Paladin": ["Weaponmastery", "Excision", "Valour"],
-    "Pariah": ["Memorium", "Pestilence", "Charnel"],
-    "Priest": ["Spirituality", "Devotion", "Zeal"],
-    "Psion": ["Weaving", "Psionics", "Emulation"],
-    "Runewarden": ["Weaponmastery", "Runelore", "Discipline"],
-    "Sentinel": ["Metamorphosis", "Woodlore", "Skirmishing"],
-    "Serpent": ["Subterfuge", "Venom", "Hypnosis"],
-    "Shaman": ["Spiritlore", "Curses", "Vodun"],
-    "Sylvan": ["Propagation", "Groves", "Weatherweaving"],
-    "Unnamable": ["Weaponmastery", "Anathema", "Dominion"],
-    "Dragon": ["Dragoncraft"],
-    "Fire Lord": ["Ignition"],
-    "Water Lord": ["Pervasion"],
-    "Earth Lord": ["Sculpting"],
-    "Air Lord": ["Duress"]
-  },
   "skills": {
     "Aeonics": [
       {
@@ -7158,43 +7130,5 @@
         "text": "Zeal now correctly unmasks the hinder affliction in the event of a failure."
       }
     ]
-  },
-  "unmappedSkills": [
-    "Artefacts",
-    "Artifice",
-    "Attainment",
-    "Avoidance",
-    "Bard",
-    "Chivalry",
-    "Conjuration",
-    "Dragoncraft",
-    "Dual blunt spec",
-    "Duress",
-    "Enchantment",
-    "Gathering",
-    "Guards",
-    "Harmonics",
-    "Healing",
-    "Ignition",
-    "Jewellery",
-    "Knight terts",
-    "Misc",
-    "Occultist",
-    "Pervasion",
-    "Priest general",
-    "Riding",
-    "Sculpting",
-    "Seafaring",
-    "Survival",
-    "Swashbuckling",
-    "Tailoring",
-    "Talismans",
-    "Tattoos",
-    "Traits",
-    "Twoarts",
-    "Vision",
-    "Voicecraft",
-    "Warrior Tert",
-    "Weaponry"
-  ]
+  }
 }

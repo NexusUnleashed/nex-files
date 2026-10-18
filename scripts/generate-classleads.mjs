@@ -2,14 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(process.cwd());
-const dataPath = path.join(root, "compendium", "classleads", "classleads_data.json");
-const outPath = path.join(root, "compendium", "classleads", "class_skills_tree.mdx");
+const classleadsDir = path.join(root, "compendium", "classleads");
+const dataPath = path.join(classleadsDir, "classleads_data.json");
+const classesPath = path.join(classleadsDir, "classes.json");
+const outPath = path.join(classleadsDir, "class_skills_tree.mdx");
 
-function skillSlug(value = "") {
-  return String(value)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "");
+// Case- and spacing-insensitive name used to match skills and classes, so
+// "Twoarts" finds "TwoArts" and "Firelord" finds "Fire Lord".
+function nameKey(value = "") {
+  return String(value).toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
 function escapeHtml(str = "") {
@@ -18,7 +19,9 @@ function escapeHtml(str = "") {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+    .replace(/'/g, "&#39;")
+    .replace(/{/g, "&#123;")
+    .replace(/}/g, "&#125;");
 }
 
 // Wrap any ALL-CAPS word or sequence of ALL-CAPS words in <strong> tags.
@@ -29,94 +32,176 @@ function formatAllCapsToBold(str = "") {
   return escaped.replace(re, (m) => `<strong>${m}</strong>`);
 }
 
-function buildDoc(data) {
-  const classesMap = data.classes || {};
-  const skillsMap = data.skills || {};
-  const unmapped = data.unmappedSkills || [];
+function plural(count, word) {
+  return `${count} ${word}${count === 1 ? "" : "s"}`;
+}
 
-  const skillToClasses = Object.entries(classesMap).reduce(
-    (acc, [className, skills]) => {
-      (skills || []).forEach((s) => {
-        if (!acc[s]) acc[s] = [];
-        acc[s].push(className);
-      });
-      return acc;
-    },
-    {}
+function byName(a, b) {
+  return a.name.localeCompare(b.name);
+}
+
+// Groups the recorded changes into a Class > Skill tree using classes.json.
+// Custom groups (e.g. "Tradeskills") follow the classes. Entries headed by a
+// class name (e.g. "Bard", "Priest general") become that class's General node.
+// Skills no class or group claims stay at the top level.
+function buildTree(data, config) {
+  // An alias is a skill name, or { skill, prefix } to also prepend
+  // "(prefix): " to each moved entry.
+  const aliases = new Map(
+    Object.entries(config.aliases || {}).map(([from, to]) => [
+      nameKey(from),
+      typeof to === "string" ? { skill: to } : to,
+    ])
   );
 
-  // Build candidate skills and dedupe by slug to avoid duplicate heading ids
-  const candidates = [
-    ...Object.keys(skillsMap),
-    ...Object.values(classesMap).flat(),
-    ...unmapped,
+  const changesByKey = new Map();
+  const nameByKey = new Map();
+  for (const [name, changes] of Object.entries(data.skills || {})) {
+    const alias = aliases.get(nameKey(name));
+    const skillName = alias?.skill ?? name;
+    const key = nameKey(skillName);
+    const moved = (changes || []).map((chg) =>
+      alias?.prefix ? { ...chg, text: `${alias.prefix}: ${chg.text || ""}` } : chg
+    );
+    if (!changesByKey.has(key)) {
+      changesByKey.set(key, []);
+      nameByKey.set(key, skillName);
+    }
+    changesByKey.get(key).push(...moved);
+  }
+  // Aliased names merge into one list, so keep each list in date order.
+  for (const changes of changesByKey.values()) {
+    changes.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+  }
+
+  const parents = [
+    ...Object.entries(config.classes || {}).map(([name, skills]) => ({
+      name,
+      skills,
+      isClass: true,
+    })),
+    ...Object.entries(config.groups || {}).map(([name, skills]) => ({
+      name,
+      skills,
+      isClass: false,
+    })),
   ];
-  const bySlug = new Map();
-  for (const name of candidates) {
-    const slug = skillSlug(name);
-    if (!bySlug.has(slug)) {
-      bySlug.set(slug, name);
+
+  const parentsBySkill = new Map();
+  for (const parent of parents) {
+    for (const skill of parent.skills) {
+      const key = nameKey(skill);
+      if (!parentsBySkill.has(key)) parentsBySkill.set(key, []);
+      parentsBySkill.get(key).push(parent.name);
     }
   }
-  const allSkills = Array.from(bySlug.values()).sort((a, b) =>
-    a.localeCompare(b)
-  );
 
+  const claimed = new Set();
+  const groups = parents.map((parent) => {
+    const skills = parent.skills
+      .map((name) => {
+        const key = nameKey(name);
+        claimed.add(key);
+        return {
+          name,
+          changes: changesByKey.get(key) || [],
+          sharedWith: parentsBySkill.get(key).filter((p) => p !== parent.name),
+        };
+      })
+      .sort(byName);
+
+    if (parent.isClass) {
+      const classKey = nameKey(parent.name);
+      const generalKeys = [classKey, `${classKey}general`];
+      generalKeys.forEach((key) => claimed.add(key));
+      const general = generalKeys.flatMap((key) => changesByKey.get(key) || []);
+      if (general.length) {
+        skills.unshift({ name: "General", changes: general, sharedWith: [] });
+      }
+    }
+
+    return { name: parent.name, skills };
+  });
+
+  const unclassed = [...changesByKey]
+    .filter(([key]) => !claimed.has(key))
+    .map(([key, changes]) => ({ name: nameByKey.get(key), changes }))
+    .sort(byName);
+
+  return { groups, unclassed };
+}
+
+function renderSummary(name, meta) {
+  return (
+    "<summary>\n" +
+    `<strong>${escapeHtml(name)}</strong>` +
+    ` <span className="classlead-meta">${escapeHtml(meta)}</span>\n` +
+    "</summary>\n"
+  );
+}
+
+function renderChanges(changes) {
+  if (!changes.length) {
+    return '<p className="classlead-empty">No changes recorded.</p>\n';
+  }
+
+  let out = "<ul>\n";
+  for (const chg of changes) {
+    const date = chg.dateDisplay
+      ? ` <em>(${escapeHtml(chg.dateDisplay)})</em>`
+      : "";
+    out += `<li>${formatAllCapsToBold(chg.text || "")}${date}</li>\n`;
+  }
+  return out + "</ul>\n";
+}
+
+function renderSkill(skill) {
+  const meta = [plural(skill.changes.length, "change")];
+  if (skill.sharedWith.length) {
+    meta.push(`shared with ${skill.sharedWith.join(", ")}`);
+  }
+
+  return (
+    '<details className="classlead-skill">\n' +
+    renderSummary(skill.name, meta.join(" · ")) +
+    renderChanges(skill.changes) +
+    "</details>\n"
+  );
+}
+
+function renderGroup(group) {
+  const changeCount = group.skills.reduce((n, s) => n + s.changes.length, 0);
+  const skillCount = group.skills.filter((s) => s.name !== "General").length;
+  const meta = `${plural(skillCount, "skill")} · ${plural(changeCount, "change")}`;
+
+  // Markdown heading recognized by Docusaurus ToC
+  return (
+    `## ${group.name}\n\n` +
+    '<details className="classlead-node classlead-group">\n' +
+    renderSummary(group.name, meta) +
+    group.skills.map(renderSkill).join("") +
+    "</details>\n\n"
+  );
+}
+
+function renderUnclassed(skill) {
+  return (
+    `## ${skill.name}\n\n` +
+    '<details className="classlead-node">\n' +
+    renderSummary(skill.name, plural(skill.changes.length, "change")) +
+    renderChanges(skill.changes) +
+    "</details>\n\n"
+  );
+}
+
+function buildDoc(tree) {
   let body = "";
 
   body += "# Class Skills Tree\n\n";
-  // Wrap all generated skill sections so we can target headings via global CSS
+  // Wrap all generated sections so we can target headings via global CSS
   body += '<div id="classleads-skilltree">\n\n';
-
-  for (const skill of allSkills) {
-    const id = skillSlug(skill);
-    const classes = skillToClasses[skill] || [];
-    const changes = skillsMap[skill] || [];
-    const skillSummary = `${skill} ${classes.join(" ")}`.trim();
-
-    // Markdown heading recognized by Docusaurus ToC
-    body += `## ${skill}\n\n`;
-
-    // Details block for the visible UI
-    body += `<details data-skill-block data-text="${escapeHtml(
-      skillSummary
-    )}">\n`;
-    body += "<summary>\n";
-    body += `<strong>${escapeHtml(skill)}</strong>`;
-    if (classes.length) {
-      body += ` <span className=\"skill-classes\">(${escapeHtml(
-        classes.join(", ")
-      )})</span>`;
-    }
-    body += "\n</summary>\n";
-
-    if (!classes.length) {
-      body += "<p><em>Not currently mapped to a class.</em></p>\n";
-    }
-
-    if (changes.length) {
-      body += "<ul>\n";
-      for (const chg of changes) {
-        const date = chg.dateDisplay
-          ? ` <em>(${escapeHtml(chg.dateDisplay)})</em>`
-          : "";
-        const formatted = formatAllCapsToBold(chg.text || "");
-        const liTextAttr = `${skill} ${chg.text || ""} ${
-          chg.dateDisplay || ""
-        }`.trim();
-        body += `<li data-change-line data-text="${escapeHtml(liTextAttr)}">`;
-        body += `${formatted}${date}`;
-        body += "</li>\n";
-      }
-      body += "</ul>\n";
-    } else {
-      body += "<p>No changes recorded.</p>\n";
-    }
-
-    body += "</details>\n\n";
-  }
-
-  // Close wrapper
+  body += tree.groups.map(renderGroup).join("");
+  body += tree.unclassed.map(renderUnclassed).join("");
   body += "</div>\n";
 
   const frontMatter =
@@ -132,32 +217,18 @@ function buildDoc(data) {
 
 function main() {
   try {
-    const raw = fs.readFileSync(dataPath, "utf8");
-    const data = JSON.parse(raw);
-    const mdx = buildDoc(data);
-    fs.writeFileSync(outPath, mdx, "utf8");
+    const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+    const config = JSON.parse(fs.readFileSync(classesPath, "utf8"));
+    const tree = buildTree(data, config);
+    fs.writeFileSync(outPath, buildDoc(tree), "utf8");
     console.log(
-      `[classleads] Generated ${path.relative(
-        root,
-        outPath
-      )} from JSON (${allSkillsCount(data)} skills).`
+      `[classleads] Generated ${path.relative(root, outPath)} from JSON ` +
+        `(${tree.groups.length} classes and groups, ${tree.unclassed.length} unclassed skills).`
     );
   } catch (err) {
     console.error("[classleads] Failed to generate MDX:", err);
     process.exit(1);
   }
-}
-
-function allSkillsCount(data) {
-  const classesMap = data.classes || {};
-  const skillsMap = data.skills || {};
-  const unmapped = data.unmappedSkills || [];
-  const set = new Set([
-    ...Object.keys(skillsMap),
-    ...Object.values(classesMap).flat(),
-    ...unmapped,
-  ]);
-  return set.size;
 }
 
 main();

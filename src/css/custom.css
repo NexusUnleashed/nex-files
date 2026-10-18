@@ -404,8 +404,44 @@ table td {
   content: none;
 }
 
+/* Tree levels: .classlead-node (a class or group, or a skill neither claims)
+   holds .classlead-skill rows, which hold the change list. */
 #classleads-skilltree details {
-  margin-bottom: 0.7rem;
+  --docusaurus-details-decoration-color: var(--nex-brass);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--nex-copy);
+}
+
+#classleads-skilltree summary {
+  padding: 0.75rem 1rem 0.75rem 2.1rem;
+  color: var(--nex-heading);
+  font-family: var(--ifm-heading-font-family);
+  cursor: pointer;
+}
+
+#classleads-skilltree summary::before {
+  top: 50%;
+  left: 0.95rem;
+  margin-top: calc(var(--docusaurus-details-summary-arrow-size) * -1);
+}
+
+#classleads-skilltree summary:hover {
+  background: color-mix(in srgb, var(--nex-brass) 9%, transparent);
+}
+
+#classleads-skilltree [class*="collapsibleContent"] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#classleads-skilltree .classlead-node {
+  margin-bottom: 0.6rem;
   border: 1px solid var(--nex-border-strong);
   border-radius: 0.2rem;
   background: var(--nex-card-background);
@@ -413,26 +449,79 @@ table td {
   overflow: hidden;
 }
 
-#classleads-skilltree summary {
-  padding: 0.95rem 1.05rem;
-  color: var(--nex-heading);
-  font-family: var(--ifm-heading-font-family);
+#classleads-skilltree .classlead-node > summary {
   font-size: 1.12rem;
-  cursor: pointer;
 }
 
-#classleads-skilltree details > ul,
-#classleads-skilltree details > p {
+#classleads-skilltree .classlead-node[data-collapsed="false"] > summary {
+  border-bottom: 1px solid var(--nex-border);
+}
+
+/* Skill rows hang off a guide line under the class name. */
+#classleads-skilltree .classlead-group [class*="collapsibleContent"] {
+  padding: 0.35rem 0.75rem 0.6rem;
+}
+
+#classleads-skilltree .classlead-skill {
+  margin-left: 0.95rem;
+  border-left: 1px solid var(--nex-border-strong);
+}
+
+#classleads-skilltree .classlead-skill > summary {
+  padding: 0.4rem 0.75rem 0.4rem 1.7rem;
+  font-size: 1.02rem;
+}
+
+#classleads-skilltree .classlead-skill > summary::before {
+  left: 0.7rem;
+}
+
+#classleads-skilltree .classlead-skill[data-collapsed="false"] > summary strong {
+  color: var(--nex-brass-strong);
+}
+
+#classleads-skilltree .classlead-node ul,
+#classleads-skilltree .classlead-empty {
   margin: 0;
-  padding: 0.3rem 2.5rem 1.1rem;
+  padding: 0.5rem 1.25rem 0.9rem 2.6rem;
 }
 
-.skill-classes {
-  margin-left: 0.5rem;
+#classleads-skilltree .classlead-skill ul,
+#classleads-skilltree .classlead-skill .classlead-empty {
+  padding: 0.2rem 0.75rem 0.7rem 2.6rem;
+}
+
+#classleads-skilltree li + li {
+  margin-top: 0.3rem;
+}
+
+#classleads-skilltree .classlead-empty {
+  color: var(--nex-copy-muted);
+  font-style: italic;
+}
+
+.classlead-meta {
+  margin-left: 0.6rem;
   color: var(--nex-copy-muted);
   font-family: var(--ifm-font-family-base);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+  #classleads-skilltree .classlead-group [class*="collapsibleContent"] {
+    padding-right: 0.25rem;
+  }
+
+  #classleads-skilltree .classlead-skill {
+    margin-left: 0.35rem;
+  }
+
+  #classleads-skilltree .classlead-node ul,
+  #classleads-skilltree .classlead-skill ul {
+    padding-right: 0.5rem;
+    padding-left: 1.9rem;
+  }
 }
 
 @media screen and (max-width: 996px) {
