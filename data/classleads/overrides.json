@@ -1,0 +1,24 @@
+{
+  "subjects": {
+    "^Mnemosyne": {
+      "note": "Mnemosyne boon and affix updates are posted under class names. Keep them together under Mnemosyne, one entry per section, rather than with the class skills.",
+      "group": "Mnemosyne"
+    }
+  },
+  "posts": {
+    "4": { "skill": "Shikudo" },
+    "22": { "skill": "Tattoos", "note": "Starburst tattoo changes." },
+    "31": { "skill": "Pranks" },
+    "37": { "skill": "Weaving" },
+    "39": { "skill": "Psionics" },
+    "57": { "skill": "Oppression" },
+    "90": { "skill": "Oppression" },
+    "140": {
+      "skill": "Weaving",
+      "exclude": ["Avoiding players", "Making it clear", "Not impacting", "Making reflections"],
+      "note": "Psion weapon attacks and prepares. The excluded bullets are design goals, not changes."
+    },
+    "149": { "headings": { "General": "Serpent" }, "note": "A serpent patch; its General section is serpent-wide." },
+    "171": { "exclude": ["But is cutting damage not unblockable"], "note": "A stray line left at the end of Woodlore." }
+  }
+}

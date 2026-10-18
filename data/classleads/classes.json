@@ -31,9 +31,28 @@
   "groups": {
     "Tradeskills": ["Conjuration", "Enchantment", "Gathering", "Jewellery", "Tailoring"]
   },
+  "standalone": [
+    "Artefacts",
+    "Attainment",
+    "Avoidance",
+    "Guards",
+    "Misc",
+    "Riding",
+    "Seafaring",
+    "Survival",
+    "Talismans",
+    "Tattoos",
+    "Traits",
+    "Vision",
+    "Weaponry"
+  ],
   "aliases": {
     "Artifice": "Artificing",
     "Knight terts": "Warrior Tert",
-    "Dual blunt spec": { "skill": "Weaponmastery", "prefix": "(Dual blunt)" }
+    "Warrior tertiaries": "Warrior Tert",
+    "Dual blunt spec": { "skill": "Weaponmastery", "prefix": "(Dual blunt)" },
+    "Discipline (and clones)": ["Discipline", "Valour", "Malignity", "Dominion"],
+    "Puppetry/Vodun": ["Puppetry", "Vodun"],
+    "Tarot (all death tarot changes also apply to Jester's)": "Tarot"
   }
 }

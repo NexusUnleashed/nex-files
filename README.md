@@ -48,6 +48,18 @@ Refresh the committed documentation snapshot after package docs change:
 npm run sync:package-docs
 ```
 
+## Classleads
+
+The Compendium's Classleads page is generated from the Achaea classleads news
+posts. Fetch new posts and regenerate the page with:
+
+```bash
+npm run update:classleads
+```
+
+See [data/classleads/README.md](data/classleads/README.md) for how posts are
+read and how to resolve the warnings the generator prints.
+
 ## Development
 
 ```bash
