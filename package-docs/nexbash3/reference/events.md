@@ -46,8 +46,8 @@ rely on them.
 | `nexbash4.area.activated` | area lifecycle payload | An owned area clone and its scoped setup are live. |
 | `nexbash4.area.deactivated` | area lifecycle payload | The outgoing area's automations and scoped cleanup completed and the active area is `null`. |
 | `nexbash4.area.changed` | area lifecycle payload | The complete transition settled; subscribe here when only the final active identity matters. |
-| `nexbash4.stopped` | `{ area, summary }` | A run went inert on **any** route — manual `stop()`, a STOP event, or area-clear self-completion. Fires once per run; `summary` is the final `{ kills, gold, elapsedMs }` scoreboard. |
-| `nexbash4.area.cleared` | the active `Area` | The bashing run completed (for routed areas). Precedes the run's `nexbash4.stopped`. |
+| `nexbash4.stopped` | `{ area, summary, runId }` | A run went inert on **any** route — manual `stop()`, a STOP event, or area-clear self-completion. Fires once per run after combat listeners and pending offence are released; `summary` is the final `{ kills, gold, elapsedMs }` scoreboard. `runId` identifies the owned hunt, or is `null` for manual bashing. |
+| `nexbash4.area.cleared` | the active `Area` | The bashing run completed (for routed areas). Fires at the prompt after route completion, allowing the final block's gold-drop triggers to queue pickup first. Precedes the run's `nexbash4.stopped`; does not wait for pickup acknowledgment. |
 | `nexbash4.room.cleared` | `{ room }` | The current room holds no targets — a fresh room with nothing spawned yet, or the last target just died. Fires every time `checkingForTargets` confirms this, so it may repeat for the same room. |
 | `nexbash4.room.skipped` | `{ room, reason, detail }` | Policy skips a contested room, an authored avoid target, or a room with no safe target inside the attacker budget. |
 | `nexbash4.discovery.recorded` | `{ areaKey, areaName, npc, field, value, source }` | A new mob observation was recorded mid-run, such as an observed damage range. |
@@ -119,7 +119,7 @@ same frozen event object raised on EventStream.
 | `nexbash4.hunt.targetSlain` | `{ target, matchedObjective }` | A tracked target dies; progress includes exact objective matches. |
 | `nexbash4.hunt.roomCleared` | `{ room }` | A room in the requested route is verified clear. |
 | `nexbash4.hunt.roomSkipped` | `{ room, reason, detail }` | A room in the requested route is skipped by nexBash policy. |
-| `nexbash4.hunt.finished` | terminal fields | Exactly once, after normal area and option state have been restored. |
+| `nexbash4.hunt.finished` | terminal fields | Exactly once, after the old combat actor/listeners have stopped, pending offence has been removed, and normal area and option state have been restored. Safe to start the next task from this callback. |
 
 Each hunt is exactly one route pass. Terminal outcomes are:
 

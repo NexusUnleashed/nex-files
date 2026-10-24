@@ -60,6 +60,10 @@ Some defences can only be held one at a time, such as the four `avoid`
 stances or parrying and guarding different limbs. When you give one of them a
 priority, the window sets the others in its group back to `0`.
 
+`parrying nothing` is part of the parrying group: you hold it whenever you
+aren't parrying a limb. Give it a priority to have nexSys keep your parry
+down, sending `parry nothing` if a parry goes up.
+
 ## Who raises the defence
 
 Most defences are raised by Achaea's server-side curing. A few that the

@@ -76,7 +76,7 @@ then, it lasts for the session.
 | `resetPriority(name)` / `resetAllPriorities()` | Return session priorities to your defaults. |
 | `defup()` | Raise your defences, as the `defup` alias does. |
 | `defoff()` | Lower your defences, as the `defoff` alias does. |
-| `parry(limb)` | Parry (or guard) a limb and keep parrying it. Takes a code such as `"rl"` or a name such as `"right leg"`. |
+| `parry(limb)` | Parry (or guard) a limb and keep parrying it. Takes a code such as `"rl"` or a name such as `"right leg"`. `"nothing"` stops parrying and keeps your parry down. |
 
 ## `api.balances`
 
@@ -232,14 +232,43 @@ them when you're done. See
 | `add(rule, options?)` | Add a rule. `{ index }` puts it at a position. Returns `false` if the id is taken. |
 | `remove(id)` | Remove a rule. |
 | `enable(id)` / `disable(id)` | Switch a rule on or off. |
-| `enablePack(packId)` / `disablePack(packId)` | Switch every rule in a pack on or off. |
-| `load(packId, rules)` / `unload(packId)` | Add or remove a pack of rules. |
-| `reorder(ids)` | Set the order of every rule. |
-| `list()` | Every rule: `{ id, ruleOrder, enabled, terminal, isActive, suspendsCuring, pack, tags, meta }` |
+| `reset(id)` | Restore the rule's default enabled flag. |
+| `isEnabled(id)` | Read the rule's own enabled flag, independently of its pack. Unknown ids return `false`. |
+| `updateEnabled({ rules, packs })` | Apply a partial batch of enabled choices. Each map is keyed by id, with `true`, `false`, or `null` to restore defaults. Returns `{ ok, changed, errors }`; invalid entries reject the whole batch. |
+| `packs.load({ id, label?, description?, enabled?, rules })` | Register a pack and its rules. Rule ids must be unique; the pack id is not automatically prefixed to them. |
+| `packs.unload(packId)` | Remove a pack and its rule definitions. Saved enabled choices remain available if it loads again. |
+| `packs.enable(packId)` / `packs.disable(packId)` | Change the pack's enabled flag without changing the rules' own flags. |
+| `packs.reset(packId)` | Restore the pack's default flag without resetting individual rules. |
+| `packs.isEnabled(packId)` | Read the pack's own flag. Unknown ids return `false`. |
+| `packs.list()` | Loaded pack descriptors, including `id`, `label`, `description`, `origin`, `defaultEnabled`, `enabled`, and `registrationId`. |
+| `reorder(ids)` | Set the complete evaluation order for this session. Order is not persisted. |
+| `list()` | Rules in evaluation order, including descriptions, defaults, own/effective enabled flags, and current activity. |
+| `getSource(id)` | Read an external rule's evaluator source, or `null` when unavailable. Does not execute it; referenced helpers and captured values are not included. |
 | `bindTransition(id, { onActivate, onDeactivate })` | Run code when a rule switches on or off. Returns a function that stops listening. |
 
-The rule format and the helpers a rule can use are described in
-[Rules](../guides/rules.md).
+`list()` entries include `id`, `pack`, `label`, `logic`, `origin`, `tags`,
+`meta`, `terminal`, `defaultEnabled`, `enabled`, `effectiveEnabled`,
+`registrationId`, `ruleOrder`, `isActive`, and `suspendsCuring`.
+`effectiveEnabled` requires both the rule and pack flags. `isActive` means
+the rule matched in the completed evaluation; neither enabled flag proves
+that a command was sent.
+
+Public registrations have origin `external`. Entries with origin `internal`
+are runtime-controlled and cannot be toggled, reset, removed, or unloaded
+through these methods. Single-entry mutations return whether anything
+changed; malformed rule or pack definitions throw. Batch errors identify
+the `kind`, `id`, and `reason` (`invalid`, `unknown`, or `internal`).
+
+API changes apply in memory immediately. Persist rule and pack enabled
+choices with `nexSys.api.control.applySettings()`; resets also need this
+save. Only deviations from defaults are stored under
+`nexSys4Settings.ruleSettings`. Definitions, source, activity, and rule order
+are not persisted. Definitions must be registered each session with stable
+ids so saved choices can apply, including to packages loaded after startup.
+
+The [Rules menu](../guides/rules.md#using-the-rules-menu) stages these choices
+until **Save**. The [Rules guide](../guides/rules.md#writing-your-own-rule)
+describes the rule format and context helpers.
 
 ## `api.prompt`
 

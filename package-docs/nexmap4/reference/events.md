@@ -31,13 +31,36 @@ listed below.
 | `nexmap4.room.changed.<id>`          | Same as `nexmap4.room.changed` (`<id>` is the numeric room id).                                                                  | Immediately after `nexmap4.room.changed`, scoped to a specific room.                                                               |
 | `nexmap4.mnemosyne.ghost.reconciled` | `{ roomId, syntheticRoomId, sourceRoomId, direction }`                                                                           | Raised once after the factual GMCP node has replaced its ghost and its exits, outgoing edges, and graph notification are complete. |
 | `nexmap4.area.changed`               | `{ currentArea, roomId }`                                                                                                        | The current GMCP area name changes (after the room events).                                                                        |
-| `nexmap4.pathing.start`              | `{ sourceId, targetId, executionMode, segmentCount, totalWeight }`                                                               | The Stepper accepts a new planned path.                                                                                            |
-| `nexmap4.pathing.complete`           | `{ sourceId, targetId, finalRoomId }`                                                                                            | The Stepper reaches the destination.                                                                                               |
-| `nexmap4.pathing.blocked`            | `{ sourceId, targetId, segmentIndex, reason, error? }`                                                                           | Path execution cannot continue.                                                                                                    |
+| `nexmap4.pathing.start` | `{ operationId, sourceId, targetId, executionMode, segmentCount, totalWeight }` | A travel operation starts: the Stepper accepts a new planned path. |
+| `nexmap4.pathing.rerouted` | Same as `nexmap4.pathing.start`, plus `reason`. | The operation continues on a re-planned route (locked door, wormhole, Nur rift). |
+| `nexmap4.pathing.complete` | `{ operationId, sourceId, targetId, segmentIndex, finalRoomId, elapsedMs }` | **Terminal.** The operation reaches its destination. |
+| `nexmap4.pathing.blocked` | `{ operationId, sourceId, targetId, segmentIndex, reason, error? }` | **Terminal.** nexMap cannot finish the operation. |
+| `nexmap4.pathing.stopped` | `{ operationId, sourceId, targetId, segmentIndex, reason }` | **Terminal.** The operation was ended on request; `reason: "replaced"` when a new travel request superseded it. |
 | `nexmap4.script.start`               | `{ scriptId, category, sourceRoomId, targetRoomId, segmentIndex, commandsSent, triggerCondition, travelClasses, destinationId }` | Before a scripted-exit segment's commands are sent.                                                                                |
 | `nexmap4.script.fired`               | Script payload plus `{ detail }`.                                                                                                | The script's trigger condition is satisfied.                                                                                       |
 | `nexmap4.script.timeout`             | Script payload plus `{ detail: { durationMs } }`.                                                                                | The script reaches its `durationMs` ceiling.                                                                                       |
 | `nexmap4.bootstrap.phase`            | `{ phase, attempts, ready, completed }`                                                                                          | A startup phase transition (after the host adapter exists).                                                                        |
+
+### Travel operations
+
+Every trip nexMap starts is one **travel operation**, named by its
+`operationId`. The same id is returned as `value.operationId` from
+`nexMap.api.travel.goto`, `toRoom`, and `toArea`, and every `nexmap4.pathing.*`
+event carries it.
+
+- An operation ends with **exactly one** terminal event: `complete`, `blocked`,
+  or `stopped`.
+- A re-route — a locked door, a missing or drifted wormhole, a wormhole tried
+  while flying, a moved Nur rift — continues the same operation and raises
+  `rerouted`. A re-plan that finds no route, or fails, ends it `blocked`
+  (`reason: "no-alternate-route"` or the failure's reason).
+- A paused (chase) route is never re-planned; a blocking reaction ends it
+  `blocked`.
+- Starting new travel while an operation is open ends the old one `stopped`
+  with `reason: "replaced"`.
+
+To follow one trip, match `operationId`. To cancel only your own trip, pass it
+to `nexMap.api.travel.stop(reason, { operationId })`.
 
 ### Scoped room events
 

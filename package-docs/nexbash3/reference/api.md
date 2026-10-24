@@ -110,6 +110,18 @@ time. `get(runId)` returns a frozen active or recently completed snapshot.
 unsubscribe function. The callback and `nexbash4.hunt.*` topics carry the same
 correlated event shapes.
 
+Reaching a kill quota commits the hunt's terminal outcome before notifying
+`targetSlain` subscribers. From that point, nexBash refuses further target
+selection, attacks, battlerage, and route advancement, including signals in
+the same received block while actor shutdown is deferred.
+
+The `finished` callback is a handoff boundary: the old combat actor and its
+listeners have stopped, pending offensive queue lanes have been cleared,
+and the area lease and runtime settings have been restored. A subscriber may
+start its next task or another hunt from that callback. Stale stop events and
+deferred callbacks cannot stop the new run. Queues that no longer contain a
+submitted attack, such as a lane holding only gold pickup, are preserved.
+
 Terminal outcomes have one of these verdicts:
 
 | Outcome | Meaning | Reasons |
@@ -149,6 +161,44 @@ nexBash.api.hunt.capabilities.objectives;  // ["killQuota", "routePass"]
 nexBash.api.hunt.capabilities.slowMode;    // true
 nexBash.api.hunt.capabilities.transientNpcDefaults; // true
 ```
+
+### The `nexBash:hunt` routine
+
+When nexConductor is loaded, nexBash registers `nexBash:hunt`: the hunt
+session wrapped as a conductor routine. A routine in any package reaches
+bashing through it, by registry id, instead of driving `api.hunt` itself:
+
+```js
+huntingMigri: {
+  invoke: {
+    src: "runRoutine",
+    input: {
+      id: "nexBash:hunt",
+      input: {
+        owner: { package: "nexQuest", routineId: "nexQuest:ancientGrudges" },
+        targets: ["Dakk, leader of the Migri", "a Migri warrior"],
+        route: [35104, 35809, 34871],
+        startRoom: 35104,
+        objective: { type: "killQuota", requiredKills: 6 },
+      },
+    },
+    onDone: [{ guard: "succeeded", target: "claimingBounty" }, { target: "failed" }],
+  },
+  // A caller bounds the whole hunt with its own timer.
+  after: { 600000: "timedOut" },
+},
+```
+
+The routine first gets onto the route: it travels to `startRoom` when one is
+given, otherwise it begins in the current room when that room is on the route
+and travels to the route's first room when it is not. It then runs one hunt
+session and finishes with the hunt terminal (`{ outcome, reason, runId,
+progress, coverage, ... }`). A start nexBash refuses ends as
+`{ outcome: "aborted", reason: "hunt-rejected", rejection }`, and an
+unreachable route ends with the travel output. Leaving the invoking state
+cancels exactly this hunt with `cancelReason` (default `routineCancelled`).
+`runRoutine` reports `{ outcome: "aborted", reason: "unresolved" }` when nexBash
+is not loaded.
 
 ### `api.config`
 

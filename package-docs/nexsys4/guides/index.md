@@ -13,6 +13,8 @@ feature behaves. You don't need any code for the first group.
 - [Commands](./commands.md): every alias that comes with the package
 - [Configuration](./configuration/index.md): each tab of the configuration
   window, setting by setting
+- [Rules menu](./rules.md#using-the-rules-menu): inspect rules, switch rules
+  and packs on or off, and save your choices
 - [How nexSys works](./how-it-works.md): what nexSys does at login and on
   every prompt, and why it pauses
 - [Curing and priorities](./curing.md): how nexSys runs server-side curing
@@ -29,8 +31,8 @@ copy-ready examples.
   scripts so updates don't remove them
 - [Custom prompt](./custom-prompt.md): change what the prompt shows and how it
   looks
-- [Rules](./rules.md): the built-in situational rules, and how to write your
-  own
+- [Writing rules](./rules.md#writing-your-own-rule): add your own situational
+  curing rules
 
 For exact function names, state shapes, and event names, use the
 [Reference](../reference/index.md).

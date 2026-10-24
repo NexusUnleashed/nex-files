@@ -32,9 +32,9 @@ External package authors should start with the
 
 ## Registry summary
 
-- Total topics: 70
+- Total topics: 73
 - EventStream-public topics: 49
-- JS-public-only topics: 21
+- JS-public-only topics: 24
 - Internal-only topics: 0
 
 ## EventStream-public topics
@@ -115,7 +115,10 @@ External package authors should start with the
 | `nexsys4.rule.disabled` | none | none | `stable` | Declarative rule was disabled. |
 | `nexsys4.rule.pack.loaded` | none | none | `stable` | Declarative rule pack was loaded. |
 | `nexsys4.rule.pack.unloaded` | none | none | `stable` | Declarative rule pack was unloaded. |
+| `nexsys4.rule.pack.enabled` | none | none | `stable` | Declarative rule pack's own flag was enabled. |
+| `nexsys4.rule.pack.disabled` | none | none | `stable` | Declarative rule pack's own flag was disabled, gating its rules. |
 | `nexsys4.rule.order.changed` | none | none | `stable` | General rule evaluation order changed. |
+| `nexsys4.rule.registry.changed` | none | none | `stable` | Rule catalog changed: membership, configuration, order, or matched and suspension state. Fires once per operation or evaluation. |
 
 ## Internal-only topics
 
